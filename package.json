@@ -42,6 +42,7 @@
   "dependencies": {
     "mobx": "^4.3.0",
     "mobx-react": "^5.1.2",
+    "normalize.css": "^8.0.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-router": "^4.2.0"

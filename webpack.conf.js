@@ -36,7 +36,6 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        include: [path.resolve(__dirname, 'src')],
         use: [
           'style-loader',
           {
@@ -48,7 +47,6 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        include: [path.resolve(__dirname, 'src')],
         use: [
           'style-loader',
           {
@@ -61,7 +59,6 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpe?g|gif|ico)(\?.*)?$/,
-        include: [path.resolve(__dirname, 'src')],
         loader: 'url-loader',
         options: {
           limit: 1000,
@@ -70,7 +67,6 @@ module.exports = {
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        include: [path.resolve(__dirname, 'src')],
         loader: 'file-loader',
         options: {
           name: 'font/[name].[hash:5].[ext]'
