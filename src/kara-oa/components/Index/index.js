@@ -20,13 +20,13 @@ class KaraOA extends Component{
       <div className="KaraOA">
         <div>
           <div>{Store1.xxx}</div>
-          <div></div>
+          <div><i className="font">&#xe6ae;</i></div>
         </div>
         <div>
-          <div></div>
+          <div><i className="font">&#xe6a8;</i></div>
         </div>
         <div>
-          <div></div>
+          <div><i className="font">&#xe6ae;</i></div>
           <div>{Store2.xxx2}</div>
         </div>
       </div>
