@@ -1,24 +1,29 @@
 import React, {Component} from 'react'
-import './index.scss'
+import {observable, configure} from 'mobx'
+import {Provider} from 'mobx-react'
+import Index from './components/Index'
+import Store1 from './stores/Store1'
+import Store2 from './stores/Store2'
 
-class KaraOA extends Component{
+configure({
+  enforceActions: true,
+  isolateGlobalState: true,
+})
+
+class KaraOAStore extends Component{
+  constructor(props){
+    super(props)
+    Store1.setXXX('heihei')
+    Store2.setXXX2('haha')
+  }
+
   render(){
     return (
-      <div className="KaraOA">
-        <div>
-          <div></div>
-          <div></div>
-        </div>
-        <div>
-          <div></div>
-        </div>
-        <div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
+      <Provider {...{Store1, Store2}} >
+        <Index />
+      </Provider>
     )
   }
 }
 
-export default KaraOA
+export default KaraOAStore
