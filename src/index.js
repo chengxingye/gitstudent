@@ -1,13 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import KaraOA from './kara-oa'
+import Frame from './Frame'
 
 ReactDOM.render(
-  <KaraOA />,
+  <Frame />,
   document.getElementById('app')
 )
-
-if(module.hot){
-  module.hot.accept()
-}

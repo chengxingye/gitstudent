@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import {observable, configure} from 'mobx'
 import {Provider} from 'mobx-react'
+import {Route, Switch} from 'react-router'
 import Index from './components/Index'
+import One from './components/One'
 import Store1 from './stores/Store1'
 import Store2 from './stores/Store2'
 
@@ -18,9 +20,14 @@ class KaraOAStore extends Component{
   }
 
   render(){
+    const {match} = this.props
+
     return (
       <Provider {...{Store1, Store2}} >
-        <Index />
+        <Switch>
+          <Route exact path={`${match.path}/one`} component={One} />
+          <Route component={Index} />
+        </Switch>
       </Provider>
     )
   }
