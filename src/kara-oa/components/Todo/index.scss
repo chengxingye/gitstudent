@@ -1,0 +1,51 @@
+div.KaraOA{
+  div.Todo{
+    background-color: #FFFFFF;
+    >ol{
+      margin: 0;
+      padding: 0;
+      display: flex;
+      line-height: 30px;
+      background-color: #f2f2f2;
+      cursor: pointer;
+      >li{
+        padding: 0 10px;
+        color: #838383;
+        border-bottom: 1px solid #d9d9d9;
+        border-right: 1px solid #d9d9d9;
+        &:last-child{
+          border-right: none;
+        }
+        &.empty{
+          flex: 1 1 auto;
+          cursor: default;
+        }
+        &.active{
+          border-bottom: none;
+          background-color: #FFFFFF;
+        }
+        &.orange{
+          color: #ff8d3a;
+        }
+        >span{
+          &.red{
+            color: #ff7e38;
+          }
+          &.green{
+            color: #2aca05;
+          }
+        }
+      }
+    }
+    >p.nothing{
+      margin-top: 40px;
+      font-size: 14px;
+      color: #838383;
+      text-align: center;
+      line-height: 89px;
+      >img{
+        vertical-align: middle;
+      }
+    }
+  }
+}

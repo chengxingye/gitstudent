@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Redirect, Route, Router, Switch} from 'react-router'
 import createBrowserHistory from 'history/createBrowserHistory'
 import 'normalize.css'
-import './font/font.css'
+import './skin/default.css'
 import KaraOA from '../kara-oa'
 import {hot} from 'react-hot-loader'
 

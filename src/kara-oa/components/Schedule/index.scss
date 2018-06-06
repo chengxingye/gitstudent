@@ -1,0 +1,115 @@
+div.KaraOA{
+  div.Schedule{
+    background-color: #FFFFFF;
+    >header{
+      line-height: 30px;
+      padding: 0 10px;
+      background-color: #f2f2f2;
+      border-bottom: 1px solid #d9d9d9;
+      color: #838383;
+      font-size: 14px;
+      position: relative;
+      >button{
+        position: absolute;
+        right: 0;
+        top: 0;
+        border: none;
+        border-left: 1px solid #d9d9d9;
+        background-color: transparent;
+        height: 100%;
+        padding: 0 10px;
+        color: #ff8d3a;
+        cursor: pointer;
+        outline: none;
+      }
+    }
+    >section{
+      padding: 20px;
+      padding-bottom: 30px;
+      display: flex;
+      >div.left{
+        width: 224px;
+        height: 170px;
+        >h1{
+          margin: 0;
+          color: #232323;
+          font-size: 14px;
+          height: 30px;
+          line-height: 30px;
+          text-align: center;
+          >i{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            font-size: 12px;
+            cursor: pointer;
+          }
+        }
+        >header{
+          width: 100%;
+          display: table;
+          >b{
+            display: table-cell;
+            text-align: center;
+            color: #cbcbcb;
+            font-size: 12px;
+            line-height: 20px;
+          }
+        }
+        >div{
+          text-align: center;
+          font-size: 0;
+          >span{
+            display: inline-block;
+            margin: 0 6px;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            font-size: 12px;
+            color: #838383;
+            position: relative;
+            cursor: pointer;
+            &.gray{
+              color: #dedede;
+            }
+            &.cur{
+              color: #FFFFFF;
+              background-color: #ff9445;
+              border-radius: 20px;
+            }
+            &.mark:after{
+              content: "●";
+              position: absolute;
+              left: 0;
+              bottom: -6px;
+              width: 20px;
+              text-align: center;
+              font-size: 12px;
+              line-height: 12px;
+            }
+          }
+        }
+      }
+      >div.right{
+        width: 0;
+        flex: 1 1 auto;
+        >h1{
+          margin: 0;
+          color: #232323;
+          font-size: 14px;
+          height: 30px;
+          line-height: 30px;
+          >button{
+            border: none;
+            font-size: 12px;
+            color: #ff9445;
+            background-color: transparent;
+            margin-left: 5px;
+            outline: none;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

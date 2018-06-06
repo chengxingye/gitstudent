@@ -1,0 +1,161 @@
+/* stylelint-disable */
+@charset "UTF-8";
+/* 主样式 */
+html {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font: 14px/1.5 "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #333;
+}
+*,
+*::before,
+*::after {
+  -moz-box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+p {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+/* skin */
+/* F: find 发现在什么地方 */
+/* R: replace 被取代的颜色 */
+
+/* #################### 文字 #################### */
+.s-default {
+  color: #333; /* 默认 */
+}
+.s-second {
+  color: #666; /* 辅色 */
+}
+.s-primary {
+  color: #ff9445; /* 凸显 */
+}
+/* 凸显深 凸显浅*/
+.s-success {
+  color: #2fc257; /* 成功 */
+}
+.s-warn {
+  color: #000; /* 警告 暂无 */
+}
+.s-danger {
+  color: #ff533f; /* 危险 */
+}
+.s-info {
+  color: #5f95fd; /* 一般 */
+}
+.s-link {
+  color: #0f4f9f; /* 链接 R:#066280 */
+}
+.s-reverse {
+  color: #fff; /* 反色 */
+}
+.s-women {
+  color: #f800e9; /* 女士 F:个人信息 */
+}
+
+/* #################### 背景 #################### */
+.s-bg-primary {
+  background-color: #ffa969; /* 凸显(大块的浅) */
+}
+.s-bg-primary.small {
+  background-color: #ff9445; /* 凸显(小块的深) */
+}
+.s-bg-primary.active {
+  background-color: #ff8329; /* 凸显active */
+}
+.s-bg-primary-hover:hover {
+  background-color: #ffa969; /* 凸显色hover F:左侧菜单 */
+}
+.s-bg-page {
+  background-color: #f0f0f0; /* 页面主背景 */
+}
+.s-bg-container {
+  background-color: #fff; /* 内容 */
+}
+.s-bg-info {
+  background-color: #f8f8f8; /* 块 一般是 s-bg-container 凸显的地方 F:朋友圈 */
+}
+.s-bg-panel-title {
+  background-color: #f2f2f2; /* tab F:工作台 */
+}
+.s-bg-panel-title.active {
+  background-color: #fff; /* tab.active */
+}
+.s-bg-input {
+  background-color: #f3f3f3; /* input */
+}
+.s-bg-menu.active {
+  background-color: #e5e5e5; /* 菜单active F:个人中心 */
+}
+.s-bg-top {
+  background-color: #fdffff; /* 顶部bar */
+}
+.s-bg-switch {
+  background-color: #f7f7f7; /* switch按钮 */
+}
+.s-bg-slicer-dot {
+  background-color: #a0a0a0; /* slider控制按钮 F: 工作台 */
+}
+.s-bg-group-top {
+  background-color: #f3f5fa; /* 同事圈顶部 ?? */
+}
+.s-bg-score {
+  background-color: #f4735e; /* 积分 */
+}
+.s-bg-dot {
+  background-color: #fc6832; /* 小点 F:工作台 */
+}
+.s-bg-danger {
+  background-color: #ff533f; /* 危险 */
+}
+.s-bg-audio {
+  background-color: #dfe3ee; /* 语音 F:朋友圈 */
+}
+.s-bg-file {
+  background-color: #ca6ad2; /* 文件 */
+}
+.s-bg-zip {
+  background-color: #ffbb00; /* 压缩包 */
+}
+/* #################### 边框 #################### */
+
+/* #################### 按钮 #################### */
+.s-btn {
+  background-color: #b2b2b2; /* tooltip 改按钮 ？？？ */
+}
+/* #################### 其他 #################### */
+.s-br-normal {
+  border-radius: 4px; /* 默认圆角 */
+}
+
+/* 同事圈背景图片 */

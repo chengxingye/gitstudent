@@ -1,0 +1,87 @@
+div.KaraOA{
+  div.News{
+    background-color: #FFFFFF;
+    >header{
+      line-height: 30px;
+      padding: 0 10px;
+      background-color: #f2f2f2;
+      border-bottom: 1px solid #d9d9d9;
+      color: #838383;
+      font-size: 14px;
+    }
+    >section{
+      box-sizing: border-box;
+      padding: 15px 20px 30px 20px;
+      >header{
+        cursor: pointer;
+        height: 70px;
+        display: flex;
+        >b{
+          width: 110px;
+          margin-right: 10px;
+          background-image: url(./header.png);
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+        >div{
+          width: 0;
+          flex: 1 1 auto;
+          >h1{
+            margin: 0;
+            color: #0f4f9f;
+            font-size: 18px;
+            line-height: 30px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+          >p{
+            color: #222222;
+            font-size: 14px;
+            height: 40px;
+            line-height: 20px;
+            position: relative;
+            >sub{
+              position: absolute;
+              right: 0;
+              bottom: 0;
+              line-height: 16px;
+              font-size: 13px;
+            }
+          }
+        }
+      }
+      >ul{
+        margin-top: 15px;
+        padding-top: 10px;
+        border-top: 1px solid #d9d9d9;
+        color: #222222;
+        font-size: 16px;
+        line-height: 26px;
+        >li{
+          cursor: pointer;
+          position: relative;
+          box-sizing: border-box;
+          padding-right: 160px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          &:before{
+            content: '■';
+            margin-right: 15px;
+            margin-top: -3px;
+            color: #fc6832;
+          }
+          sub{
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            line-height: 24px;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+}
