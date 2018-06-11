@@ -1,11 +1,12 @@
 div.KaraOA{
   div.Todo{
     background-color: #FFFFFF;
+    position: relative;
     >ol{
       margin: 0;
       padding: 0;
       display: flex;
-      line-height: 30px;
+      line-height: 29px;
       background-color: #f2f2f2;
       cursor: pointer;
       >li{
@@ -31,6 +32,9 @@ div.KaraOA{
           &.red{
             color: #ff7e38;
           }
+          &.blue{
+            color: #055dca;
+          }
           &.green{
             color: #2aca05;
           }
@@ -38,6 +42,7 @@ div.KaraOA{
       }
     }
     >p.nothing{
+      display: none;
       margin-top: 40px;
       font-size: 14px;
       color: #838383;
@@ -45,6 +50,191 @@ div.KaraOA{
       line-height: 89px;
       >img{
         vertical-align: middle;
+      }
+    }
+    >ul.type0{
+      color: #838383;
+      margin: 9px 0;
+      line-height: 30px;
+      white-space: nowrap;
+      >li{
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        >label{
+          flex: 0 0 130px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin-right: 20px;
+          cursor: pointer;
+        }
+        >p{
+          width: 0;
+          flex: 1 1 auto;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+    >ul.type1{
+      color: #838383;
+      margin: 9px 0;
+      line-height: 30px;
+      white-space: nowrap;
+      >li{
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        >label{
+          flex: 0 0 130px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin-right: 20px;
+          cursor: pointer;
+        }
+        >p{
+          width: 0;
+          flex: 1 1 auto;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        >span{
+          display: none;
+          flex: 0 0 75px;
+          color: #ff8d3a;
+          text-align: center;
+        }
+        >button{
+          display: none;
+          outline: none;
+          cursor: pointer;
+          flex: 0 0 50px;
+          background-color: #ff8d3a;
+          color: #FFFFFF;
+          border: none;
+          height: 20px;
+          border-radius: 20px;
+        }
+        &:hover{
+          border-top: 1px solid #d9d9d9;
+          border-bottom: 1px solid #d9d9d9;
+          box-shadow: 0 0 10px #e3e3e3;
+          >span{
+            display: block;
+          }
+          >button{
+            display: block;
+          }
+        }
+      }
+    }
+    >table{
+      margin: 9px 0;
+      width: 100%;
+      border-spacing: 0;
+      >tbody>tr>td{
+        padding: 15px 20px;
+        line-height: 20px;
+        >span{
+          color: #5f95fd;
+        }
+      }
+    }
+    >div.approve{
+      &.hide{
+        display: none;
+      }
+      position: absolute;
+      left: 0;
+      top: 40px;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0 10px;
+      background-color: #FFFFFF;
+      border-top: 1px solid #d9d9d9;
+      border-bottom: 1px solid #d9d9d9;
+      box-shadow: 0 0 10px #e3e3e3;
+      >header{
+        display: flex;
+        line-height: 25px;
+        >label{
+          display: block;
+          width: 130px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin-right: 20px;
+        }
+        >p{
+          width: 0;
+          max-height: 50px;
+          flex: 1 1 auto;
+          word-break: break-all;
+          overflow: hidden;
+        }
+      }
+      >h2{
+        margin: 0;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        font-weight: normal;
+        >button{
+          margin-right: 15px;
+          border: none;
+          height: 20px;
+          border-radius: 20px;
+          font-size: 12px;
+          padding: 0 15px;
+          color: #FFFFFF;
+          outline: none;
+          cursor: pointer;
+          &:nth-child(1){
+            background-color: #ff9445;
+          }
+          &:nth-child(2){
+            background-color: #a2a2a2;
+          }
+          &:nth-child(3){
+            background-color: #5f95fd;
+          }
+        }
+        >span{
+          display: block;
+          flex: 1 1 auto;
+          text-align: right;
+          color: #838383;
+          font-size: 12px;
+        }
+      }
+      >textarea{
+        display: block;
+        border: 1px solid #d9d9d9;
+        width: 100%;
+        height: 32px;
+        outline: none;
+        padding: 5px 10px;
+        resize: none;
+        border-radius: 5px;
+        font-size: 13px;
+        line-height: 20px;
+      }
+      >footer{
+        margin: 0;
+        padding: 5px 0;
+        text-align: right;
+        >button{
+          border: none;
+          padding: 0 15px;
+          height: 20px;
+          border-radius: 20px;
+          background-color: #ff9445;
+          color: #FFFFFF;
+          outline: none;
+          cursor: pointer;
+        }
       }
     }
   }
