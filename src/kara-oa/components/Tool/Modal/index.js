@@ -4,9 +4,30 @@ import './index.scss'
 import {Paging} from '../../common'
 
 class Modal extends Component{
+  static PAGE_SIZE = 10
+
   state = {
+    typeIndex: 0,
+    pageNo: 0,
     keyword: '',
     isFocus: false,
+  }
+
+  setTypeIndex = e=>{
+    if(e.target.dataset.ii !== undefined){
+      this.setState({
+        typeIndex: Number(e.target.dataset.ii),
+        pageNo: 0,
+      })
+    }
+  }
+
+  onChange = pageNo=>{
+    this.setState({pageNo})
+  }
+
+  onToggle = id=>{
+    this.props.onToggle(id)
   }
 
   keywordChange = e=>{
@@ -37,12 +58,20 @@ class Modal extends Component{
     this.props.onClose()
   }
 
+  stopPropagation = e=>{
+    e.stopPropagation()
+  }
+
   render(){
-    const {keyword, isFocus} = this.state
+    const {typeIndex, pageNo, keyword, isFocus} = this.state
+    const {types, appGroup, apps} = this.props
+    let custom = appGroup['wc_custom']
+    let uiList = appGroup[types[typeIndex].id]
+    let count = Math.ceil(uiList.length/Modal.PAGE_SIZE)
 
     return ReactDOM.createPortal(
-      <div className="KaraOAModal">
-        <div>
+      <div className="KaraOAModal" onClick={this.close}>
+        <div onClick={this.stopPropagation}>
           <h1>自定义功能<i onClick={this.close} className="kara-oa-font">&#xe655;</i></h1>
           <form className={isFocus ? 'focus' : ''}>
             <i className="kara-oa-font">&#xe61c;</i>
@@ -86,57 +115,39 @@ class Modal extends Component{
             </ul>
             :
             <section>
-              <ol>
-                <li className="active">场景</li>
-                <li>MIS</li>
-                <li>HR</li>
-                <li>财务支撑</li>
-                <li>运营管理</li>
-                <li>供应管理</li>
+              <ol onClick={this.setTypeIndex}>
+                {
+                  types.map((type, index)=>(
+                    <li 
+                      key={type.id}
+                      data-ii={index}
+                      className={index===typeIndex ? 'active' : ''}>{type.name}</li>
+                  ))
+                }
               </ol>
               <ul>
-                <li className="added">
-                  <b></b>
-                  <p>MIS在线</p>
-                </li>
-                <li>
-                  <b></b>
-                  <p>MIS在线</p>
-                </li>
-                <li>
-                  <b></b>
-                  <p>MIS在线</p>
-                </li>
-                <li>
-                  <b></b>
-                  <p>MIS在线</p>
-                </li>
-                <li>
-                  <b></b>
-                  <p>MIS在线</p>
-                </li>
-                <li>
-                  <b></b>
-                  <p>MIS在线</p>
-                </li>
-                <li>
-                  <b></b>
-                  <p>MIS在线</p>
-                </li>
-                <li>
-                  <b></b>
-                  <p>MIS在线</p>
-                </li>
-                <li>
-                  <b></b>
-                  <p>MIS在线</p>
-                </li>
-                <li>
-                  <b></b>
-                  <p>MIS在线</p>
-                </li>
+                {
+                  uiList.slice(pageNo*Modal.PAGE_SIZE, (pageNo+1)*Modal.PAGE_SIZE).map(id=>(
+                    <li key={id} className={custom.includes(id) ? 'added' : ''}>
+                      <b 
+                        onClick={e=>this.onToggle(id)}
+                        title={apps[id].appDesc} 
+                        style={{backgroundImage: `url(${apps[id].icon})`}}></b>
+                      <p>{apps[id].appName}</p>
+                    </li>
+                  ))
+                }
               </ul>
-              <Paging no={1} count={3} />
+              {
+                count>1
+                ?
+                <Paging 
+                  no={pageNo} 
+                  count={count}
+                  onChange={this.onChange} />
+                :
+                null
+              }
             </section>
           }
         </div>

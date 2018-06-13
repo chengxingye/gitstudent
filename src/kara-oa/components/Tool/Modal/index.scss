@@ -105,7 +105,7 @@ div.KaraOAModal{
         flex-flow: wrap;
         >li{
           width: 0;
-          flex: 1 1 126px;
+          flex: 0 1 126px;
           &.added{
             >b:before{
               position: absolute;
@@ -126,12 +126,14 @@ div.KaraOAModal{
             display: block;
             width: 50px;
             height: 50px;
+            border-radius: 5px;
             margin: 0 auto;
-            background-image: url(./icon.png);
-            background-size: contain;
-            backgrond-repeat: no-repeat;
+            background-color: #ffa969;
+            background-size: 30px 30px;
+            background-repeat: no-repeat;
             background-position: center;
             position: relative;
+            cursor: pointer;
           }
           >p{
             line-height: 33px;

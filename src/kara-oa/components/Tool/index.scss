@@ -41,13 +41,15 @@ div.KaraOA{
           margin: 0 auto;
           border-radius: 5px;
           cursor: pointer;
-          background-image: url(./icon.png);
-          &.add{
-            background-image: url(./add.png);
-          }
-          background-size: contain;
+          background-color: #ffa969;
+          background-size: 30px 30px;
           background-repeat: no-repeat;
           background-position: center;
+          &.add{
+            background-color: transparent;
+            background-size: cover;
+            background-image: url(./add.png);
+          }
           position: relative;
           >i{
             position: absolute;
