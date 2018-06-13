@@ -56,6 +56,7 @@ class Todo extends Component{
     if(e.target.tagName !== 'I')  return
     e.nativeEvent.stopImmediatePropagation()
     e.stopPropagation()
+    // TODO 如果当前pop已经显示 则隐藏当前pop 
     let rect = e.target.getBoundingClientRect()
     this.setState({
       pop: {
