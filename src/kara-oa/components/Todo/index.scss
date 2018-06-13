@@ -143,9 +143,6 @@ div.KaraOA{
       }
     }
     >div.approve{
-      &.hide{
-        display: none;
-      }
       position: absolute;
       left: 0;
       top: 40px;
@@ -234,6 +231,99 @@ div.KaraOA{
           color: #FFFFFF;
           outline: none;
           cursor: pointer;
+        }
+      }
+    }
+    >div.track{
+      position: absolute;
+      left: 0;
+      top: 40px;
+      width: 100%;
+      height: 140px;
+      background-color: #FFFFFF;
+      border-top: 1px solid #d9d9d9;
+      border-bottom: 1px solid #d9d9d9;
+      box-shadow: 0 0 10px #e3e3e3;
+      >header{
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        line-height: 30px;
+        white-space: nowrap;
+        >label{
+          flex: 0 0 130px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin-right: 20px;
+        }
+        >p{
+          width: 0;
+          flex: 1 1 auto;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        >span{
+          flex: 0 0 75px;
+          color: #ff8d3a;
+          text-align: center;
+        }
+        >button{
+          outline: none;
+          flex: 0 0 50px;
+          background-color: #ff8d3a;
+          color: #FFFFFF;
+          border: none;
+          height: 20px;
+          border-radius: 20px;
+        }
+      }
+      div.scroll{
+        overflow-x: auto;
+        overflow-y: hidden;
+        >ul{
+          width: auto;
+          height: 90px;
+          margin-top: 20px;
+          box-sizing: border-box;
+          padding-left: 51px;
+          white-space: nowrap;
+          >li{
+            display: inline-block;
+            vertical-align: top;
+            width: 127px;
+            white-space: normal;
+            border-top: 2px solid #b2b2b2;
+            position: relative;
+            font-size: 0.39rem;
+            color: #b2b2b2;
+            >i{
+              position: absolute;
+              left: -8px;
+              top: -9px;
+              width: 16px;
+              height: 16px;
+              background-color: #b2b2b2;
+              border-radius: 16px;
+              cursor: pointer;
+            }
+            &.active{
+              color: #ff9445;
+              >i{
+                background-color: #ff9445;
+              }
+            }
+            &:last-child{
+              width: 51px;
+              border-top: 2px solid transparent;
+            }
+            >p{
+              position: absolute;
+              left: -35px;
+              top: 20px;
+              width: 70px;
+              text-align: center;
+            }
+          }
         }
       }
     }

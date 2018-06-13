@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './index.scss'
+import Pop from './Pop'
 
 class Todo extends Component{
   state = {
@@ -7,12 +8,18 @@ class Todo extends Component{
     tab: 0,
     isApprove: false,
     isApproveReject: false,
+    isTrack: false,
+    pop: {},
   }
 
-  constructor(props){
-    super(props)
+  componentDidMount(){
     document.addEventListener('click', ()=>{
-      this.setState({isApprove: false})
+      this.setState({
+        isApprove: false,
+        isApproveReject: false,
+        isTrack: false,
+        pop: {}
+      })
     }, false)
   }
 
@@ -38,8 +45,41 @@ class Todo extends Component{
     this.setState({isApproveReject: !this.state.isApproveReject})
   }
 
+  showTrack = e=>{
+    if(!this.state.isTrack){
+      e.nativeEvent.stopImmediatePropagation()
+      this.setState({isTrack: true})
+    }
+  }
+
+  showPop = e=>{
+    if(e.target.tagName !== 'I')  return
+    e.nativeEvent.stopImmediatePropagation()
+    e.stopPropagation()
+    let rect = e.target.getBoundingClientRect()
+    this.setState({
+      pop: {
+        show: true,
+        left: rect.left-23,
+        top: rect.top+24,
+      }
+    })
+  }
+
+  stopTrackPropagation = e=>{
+    e.nativeEvent.stopImmediatePropagation()
+    if(this.state.pop.show){
+      this.setState({
+        pop: {
+          ...this.state.pop,
+          show: false
+        }
+      })
+    }
+  }
+
   render(){
-    const {tab, isApprove, isApproveReject} = this.state
+    const {tab, isApprove, isApproveReject, isTrack, pop} = this.state
     let dataPanel = null
     if(tab === 0){
       dataPanel = (
@@ -68,7 +108,7 @@ class Todo extends Component{
       )
     }else if(tab === 1){
       dataPanel = (
-        <ul className="type1">
+        <ul className="type1" onClick={this.showTrack}>
           <li>
             <label>1、跟踪 任务跟踪任务跟踪</label>
             <p>任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪</p>
@@ -139,36 +179,85 @@ class Todo extends Component{
         {
           dataPanel
         }
-        <div 
-          className={`${isApprove ? '' : 'hide '}approve`}
-          onClick={this.stopPropagation}>
-          <header>
-            <label>1、常伟 调动-Band8</label>
-            <p>常伟 调动-Band8常伟 调动-Band8常伟 调动-Band8常伟 调动-Band8常伟 调动-Band8常伟 调动-Band8</p>
-          </header>
-          <h2>
-            <button>同意</button>
-            <button onClick={this.toggleReject}>驳回</button>
-            <button>查看详情</button>
-            <span>2018-05-18</span>
-          </h2>
-          {
-            isApproveReject
-            ?
-            <textarea placeholder="请输入驳回原因"></textarea>
-            :
-            null
-          }
-          {
-            isApproveReject
-            ?
-            <footer>
-              <button>提交</button>
-            </footer>
-            :
-            null
-          }
-        </div>
+        {
+          isApprove
+          ?
+          <div 
+            className="approve"
+            onClick={this.stopPropagation}>
+            <header>
+              <label>1、常伟 调动-Band8</label>
+              <p>常伟 调动-Band8常伟 调动-Band8常伟 调动-Band8常伟 调动-Band8常伟 调动-Band8常伟 调动-Band8</p>
+            </header>
+            <h2>
+              <button>同意</button>
+              <button onClick={this.toggleReject}>驳回</button>
+              <button>查看详情</button>
+              <span>2018-05-18</span>
+            </h2>
+            {
+              isApproveReject
+              ?
+              <textarea placeholder="请输入驳回原因"></textarea>
+              :
+              null
+            }
+            {
+              isApproveReject
+              ?
+              <footer>
+                <button>提交</button>
+              </footer>
+              :
+              null
+            }
+          </div>
+          :
+          null
+        }
+        {
+          isTrack
+          ?
+          <div 
+            className="track" 
+            onClick={this.stopTrackPropagation}>
+            <header>
+              <label>1、跟踪 任务跟踪任务跟踪</label>
+              <p>任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪</p>
+              <span>处理中</span>
+              <button>流程</button>
+            </header>
+            <div className="scroll">
+              <ul onClick={this.showPop}>
+                <li>
+                  <i></i>
+                  <p>高芳<br/>2018-03-27 19:12</p>
+                </li>
+                <li>
+                  <i></i>
+                  <p>高芳<br/>2018-03-27 19:12</p>
+                </li>
+                <li>
+                  <i></i>
+                  <p>高芳<br/>2018-03-27 19:12</p>
+                </li>
+                <li className="active">
+                  <i></i>
+                  <p>高芳<br/>2018-03-27 19:12</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          :
+          null
+        }
+        {
+          pop.show
+          ?
+          <Pop left={pop.left} top={pop.top} />
+          :
+          null
+        }
       </div>
     )
   }
