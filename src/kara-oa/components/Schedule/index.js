@@ -1,8 +1,76 @@
 import React, {Component} from 'react'
 import './index.scss'
+import {Paging} from '../common'
 
 class Schedule extends Component{
+  constructor(props){
+    super(props)
+    let date = new Date()
+    this.state = {
+      year: date.getFullYear(),
+      month: date.getMonth()+1,
+      today: {
+        y: date.getFullYear(),
+        m: date.getMonth()+1,
+        d: date.getDate(),
+      },
+      marks: [
+        '2018/6/4',
+        '2018/6/12',
+        '2018/6/28',
+      ],
+    }
+  }
+
+  generateDatePanel = (year, month)=>{
+    let DAY = 24*60*60*1000
+    let firstDay = new Date(year, month-1, 1)
+    let diffDays = firstDay.getDay() || 7
+    firstDay = new Date(firstDay.getTime() - diffDays*DAY)
+    let result = []
+    for(let i=0; i<42; i++){
+      let date = new Date(firstDay.getTime() + i*DAY)
+      result.push({
+        y: date.getFullYear(),
+        m: date.getMonth()+1,
+        d: date.getDate(),
+      })
+    }
+    return result
+  }
+
+  prev = ()=>{
+    let {year, month} = this.state
+    year = month===1 ? year-1 : year
+    month = month===1 ? 12 : month-1
+    this.setState({year, month})
+  }
+
+  next = ()=>{
+    let {year, month} = this.state
+    year = month===12 ? year+1 : year
+    month = month===12 ? 1 : month+1
+    this.setState({year, month})
+  }
+
+  setToday = e=>{
+    if(e.target.title){
+      let ymd = e.target.title.split('/')
+      let y = Number(ymd[0])
+      let m = Number(ymd[1])
+      let d = Number(ymd[2])
+      this.setState({
+        year: y,
+        month: m,
+        today: {y, m, d},
+      })
+    }
+  }
+
   render(){
+    const {year, month, today, marks} = this.state
+    const dp = this.generateDatePanel(year, month)
+
     return (
       <div className="Schedule">
         <header>
@@ -12,9 +80,9 @@ class Schedule extends Component{
         <section>
           <div className="left">
             <h1>
-              <i className="kara-oa-font">&#xe618;</i>
-              &ensp;2018年5月&ensp;
-              <i className="kara-oa-font">&#xe7a5;</i>
+              <i onClick={this.prev} className="kara-oa-font">&#xe618;</i>
+              &ensp;{year}年{month}月&ensp;
+              <i onClick={this.next} className="kara-oa-font">&#xe7a5;</i>
             </h1>
             <header>
               <b>日</b>
@@ -25,53 +93,81 @@ class Schedule extends Component{
               <b>五</b>
               <b>六</b>
             </header>
-            <div>
-              <span className="gray">26</span>
-              <span className="gray">27</span>
-              <span className="gray">28</span>
-              <span className="gray">29</span>
-              <span className="gray">30</span>
-              <span className="gray">31</span>
-              <span>01</span>
-              <span>02</span>
-              <span>03</span>
-              <span>04</span>
-              <span>05</span>
-              <span>06</span>
-              <span>07</span>
-              <span>08</span>
-              <span>09</span>
-              <span>10</span>
-              <span>11</span>
-              <span>12</span>
-              <span>13</span>
-              <span>14</span>
-              <span>15</span>
-              <span>16</span>
-              <span className="mark">17</span>
-              <span className="mark">18</span>
-              <span className="mark">19</span>
-              <span>20</span>
-              <span className="cur">21</span>
-              <span>22</span>
-              <span>23</span>
-              <span>24</span>
-              <span>25</span>
-              <span>26</span>
-              <span className="mark">27</span>
-              <span>28</span>
-              <span>29</span>
-              <span className="mark">30</span>
-              <span>31</span>
-              <span>01</span>
-              <span>02</span>
-              <span>03</span>
-              <span>04</span>
-              <span>05</span>
+            <div onClick={this.setToday}>
+              {
+                dp.map((date, index)=>{
+                  let classNames = []
+                  if(date.y!==year || date.m!==month){
+                    classNames.push('gray')
+                  }
+                  if(date.y===today.y && date.m===today.m && date.d===today.d){
+                    classNames.push('cur')
+                  }
+                  if(marks.includes(`${date.y}/${date.m}/${date.d}`)){
+                    classNames.push('mark')
+                  }
+                  return (
+                    <span 
+                      key={index} 
+                      title={`${date.y}/${date.m}/${date.d}`}
+                      className={classNames.join(' ')}>{date.d}</span>
+                  )
+                })
+              }
             </div>
           </div>
           <div className="right">
             <h1>我的日程<button>+添加日程</button></h1>
+            <section>
+              <ul>
+                <li>
+                  <label>全天</label>
+                  <p>需求需求文档编写及问题确认OA需求文档编写及问题确认OA需求文档编写及问题确认OA需求文档编写及问题确认</p>
+                  <div className="pop">
+                    <header>
+                      <label>全天</label>
+                      <p>需求需求文档编写及问题确认需求需求文档编写及问题确认需求需求文档编写及问题确认需求需求文档编写及问题确认</p>
+                    </header>
+                    <footer>
+                      <button>查看详情</button>
+                      <button>编辑</button>
+                      <button>删除</button>
+                    </footer>
+                  </div>
+                </li>
+                <li>
+                  <label>14:00</label>
+                  <p>项目组例会项目组例会项目组例会项目组例会</p>
+                  <div className="pop">
+                    <header>
+                      <label>14:00</label>
+                      <p>项目组例会项目组例会项目组例会项目组例会</p>
+                    </header>
+                    <footer>
+                      <button>查看详情</button>
+                      <button>编辑</button>
+                      <button>删除</button>
+                    </footer>
+                  </div>
+                </li>
+                <li>
+                  <label>17:00</label>
+                  <p>客户反馈问题跟进客户反馈问题跟进客户反馈问题跟进</p>
+                  <div className="pop">
+                    <header>
+                      <label>17:00</label>
+                      <p>客户反馈问题跟进客户反馈问题跟进客户反馈问题跟进客户反馈问题跟进客户反馈问题跟进客户反馈问题跟进</p>
+                    </header>
+                    <footer>
+                      <button>查看详情</button>
+                      <button>编辑</button>
+                      <button>删除</button>
+                    </footer>
+                  </div>
+                </li>
+              </ul>
+              <Paging no={1} count={3} />
+            </section>
           </div>
         </section>
       </div>

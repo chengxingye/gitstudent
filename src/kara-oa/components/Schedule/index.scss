@@ -24,12 +24,11 @@ div.KaraOA{
       }
     }
     >section{
-      padding: 20px;
-      padding-bottom: 30px;
+      padding: 20px 10px 0 10px;
       display: flex;
       >div.left{
         width: 224px;
-        height: 170px;
+        height: 197px;
         >h1{
           margin: 0;
           color: #232323;
@@ -81,11 +80,12 @@ div.KaraOA{
               content: "●";
               position: absolute;
               left: 0;
-              bottom: -6px;
+              bottom: -4px;
               width: 20px;
               text-align: center;
               font-size: 12px;
               line-height: 12px;
+              color: #838383;
             }
           }
         }
@@ -107,6 +107,89 @@ div.KaraOA{
             margin-left: 5px;
             outline: none;
             cursor: pointer;
+          }
+        }
+        >section{
+          height: 167px;
+          position: relative;
+          >ul{
+            line-height: 22px;
+            font-size: 13px;
+            color: #333333;
+            >li{
+              display: flex;
+              cursor: default;
+              position: relative;
+              >label{
+                flex: 0 0 56px;
+                color: #ff9445;
+                text-align: center;
+              }
+              >p{
+                width: 0;
+                height: 44px;
+                flex: 1 1 auto;
+                overflow: hidden;
+              }
+              &:hover{
+                >div.pop{
+                  display: block;
+                }
+              }
+              >div.pop{
+                display: none;
+                position: absolute;
+                left: -5px;
+                bottom: 0;
+                width: 250px;
+                padding: 5px;
+                background-color: #FFFFFF;
+                box-shadow: 0 0 10px #d9d9d9;
+                border: 1px solid #d9d9d9;
+                border-radius: 5px;
+                >header{
+                  display: flex;
+                  align-items: center;
+                  line-height: 20px;
+                  >label{
+                    flex: 0 0 56px;
+                    color: #ff9445;
+                    text-align: center;
+                  }
+                  >p{
+                    width: 0;
+                    flex: 1 1 auto;
+                  }
+                }
+                >footer{
+                  padding-top: 5px;
+                  padding-left: 56px;
+                  >button{
+                    border: none;
+                    background-color: transparent;
+                    height: 20px;
+                    line-height: 20px;
+                    border-radius: 20px;
+                    color: #FFFFFF;
+                    margin-right: 10px;
+                    cursor: pointer;
+                    outline: none;
+                    padding: 0 10px;
+                    font-size: 12px;
+                    &:nth-child(1){
+                      background-color: #5f95fd;
+                    }
+                    &:nth-child(2){
+                      color: #5f95fd;
+                    }
+                    &:nth-child(3){
+                      color: #ff533f;
+                      margin-right: 0;
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
