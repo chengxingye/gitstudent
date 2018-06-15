@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import './index.scss'
-import {Paging} from '../common'
 
 class Schedule extends Component{
   constructor(props){
@@ -19,6 +18,8 @@ class Schedule extends Component{
         '2018/6/12',
         '2018/6/28',
       ],
+      pageNo: 1,
+      pageCount: 10,
     }
   }
 
@@ -67,8 +68,18 @@ class Schedule extends Component{
     }
   }
 
+  prevPage = e=>{
+    if(e.target.classList.contains('disabled')) return
+    this.setState({pageNo: this.state.pageNo-1})
+  }
+
+  nextPage = e=>{
+    if(e.target.classList.contains('disabled')) return
+    this.setState({pageNo: this.state.pageNo+1})
+  }
+
   render(){
-    const {year, month, today, marks} = this.state
+    const {year, month, today, marks, pageNo, pageCount} = this.state
     const dp = this.generateDatePanel(year, month)
 
     return (
@@ -166,7 +177,21 @@ class Schedule extends Component{
                   </div>
                 </li>
               </ul>
-              <Paging no={1} count={3} />
+              {
+                pageCount>1
+                ?
+                <div className="paging">
+                  <span 
+                    onClick={this.prevPage} 
+                    className={`kara-oa-font${pageNo<=1 ? ' disabled' : ''}`}>&#xe618;</span>
+                  {pageNo}
+                  <span 
+                    onClick={this.nextPage} 
+                    className={`kara-oa-font${pageNo>=pageCount ? ' disabled' : ''}`}>&#xe7a5;</span>
+                </div>
+                :
+                null
+              }
             </section>
           </div>
         </section>
