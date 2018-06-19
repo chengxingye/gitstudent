@@ -1,7 +1,11 @@
 import React, {Component} from 'react'
+import {inject, observer} from 'mobx-react'
 import './index.scss'
 import Pop from './Pop'
+import Language from '../../language'
 
+@inject('Config')
+@observer
 class Todo extends Component{
   state = {
     list: [],
@@ -80,6 +84,7 @@ class Todo extends Component{
   }
 
   render(){
+    const LConfig = Language[this.props.Config.language]['Todo']
     const {tab, isApprove, isApproveReject, isTrack, pop} = this.state
     let dataPanel = null
     if(tab === 0){
@@ -113,32 +118,32 @@ class Todo extends Component{
           <li>
             <label>1、跟踪 任务跟踪任务跟踪</label>
             <p>任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪</p>
-            <span>处理中</span>
-            <button>流程</button>
+            <span>{LConfig['TRACK_PROCESSING']}</span>
+            <button>{LConfig['TRACK_BUTTON_PROCESS']}</button>
           </li>
           <li>
             <label>2、跟踪 任务跟踪任务跟踪</label>
             <p>任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪</p>
-            <span>处理中</span>
-            <button>流程</button>
+            <span>{LConfig['TRACK_PROCESSING']}</span>
+            <button>{LConfig['TRACK_BUTTON_PROCESS']}</button>
           </li>
           <li>
             <label>3、跟踪 任务跟踪任务跟踪</label>
             <p>任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪</p>
-            <span>处理中</span>
-            <button>流程</button>
+            <span>{LConfig['TRACK_PROCESSING']}</span>
+            <button>{LConfig['TRACK_BUTTON_PROCESS']}</button>
           </li>
           <li>
             <label>4、跟踪 任务跟踪任务跟踪</label>
             <p>任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪</p>
-            <span>处理中</span>
-            <button>流程</button>
+            <span>{LConfig['TRACK_PROCESSING']}</span>
+            <button>{LConfig['TRACK_BUTTON_PROCESS']}</button>
           </li>
           <li>
             <label>5、跟踪 任务跟踪任务跟踪</label>
             <p>任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪</p>
-            <span>处理中</span>
-            <button>流程</button>
+            <span>{LConfig['TRACK_PROCESSING']}</span>
+            <button>{LConfig['TRACK_BUTTON_PROCESS']}</button>
           </li>
         </ul>
       )
@@ -147,16 +152,16 @@ class Todo extends Component{
         <table>
           <tbody>
             <tr>
-              <td>项目第三方采购: <span>10</span></td>
-              <td>新立项审批: <span>10</span></td>
+              <td>{LConfig['OTHER_0_0']}: <span>10</span></td>
+              <td>{LConfig['OTHER_0_1']}: <span>10</span></td>
             </tr>
             <tr>
-              <td>外包管理: <span>20</span></td>
-              <td>IT资产变更管理系统: <span>20</span></td>
+              <td>{LConfig['OTHER_1_0']}: <span>20</span></td>
+              <td>{LConfig['OTHER_1_1']}: <span>20</span></td>
             </tr>
             <tr>
-              <td>销售合同管理部审批: <span>15</span></td>
-              <td>劳动合同: <span>15</span></td>
+              <td>{LConfig['OTHER_2_0']}: <span>15</span></td>
+              <td>{LConfig['OTHER_2_1']}: <span>15</span></td>
             </tr>
           </tbody>
         </table>
@@ -166,9 +171,9 @@ class Todo extends Component{
     return (
       <div className="Todo">
         <ol>
-          <li onClick={e=>this.setTab(0)} className={`${tab===0 ? 'active' : ''}`}>待办&ensp;<span className="red">2</span></li>
-          <li onClick={e=>this.setTab(1)} className={`${tab===1 ? 'active' : ''}`}>任务跟踪&ensp;<span className="blue">12</span></li>
-          <li onClick={e=>this.setTab(2)} className={`${tab===2 ? 'active' : ''}`}>其他待办&ensp;<span className="green">12</span></li>
+          <li onClick={e=>this.setTab(0)} className={`${tab===0 ? 'active' : ''}`}>{LConfig['TODO_TITLE']}&ensp;<span className="red">2</span></li>
+          <li onClick={e=>this.setTab(1)} className={`${tab===1 ? 'active' : ''}`}>{LConfig['TRACK_TITLE']}&ensp;<span className="blue">12</span></li>
+          <li onClick={e=>this.setTab(2)} className={`${tab===2 ? 'active' : ''}`}>{LConfig['OTHER_TITLE']}&ensp;<span className="green">12</span></li>
           <li className="empty"></li>
           <li className="kara-oa-font orange">&#xe7a4;</li>
           <li className="kara-oa-font orange">&#xe671;</li>
@@ -191,15 +196,15 @@ class Todo extends Component{
               <p>常伟 调动-Band8常伟 调动-Band8常伟 调动-Band8常伟 调动-Band8常伟 调动-Band8常伟 调动-Band8</p>
             </header>
             <h2>
-              <button>同意</button>
-              <button onClick={this.toggleReject}>驳回</button>
-              <button>查看详情</button>
+              <button>{LConfig['TODO_AGREE']}</button>
+              <button onClick={this.toggleReject}>{LConfig['TODO_REJECT']}</button>
+              <button>{LConfig['TODO_DETAIL']}</button>
               <span>2018-05-18</span>
             </h2>
             {
               isApproveReject
               ?
-              <textarea placeholder="请输入驳回原因"></textarea>
+              <textarea placeholder={LConfig['TODO_REJECT_PLACEHOLDER']}></textarea>
               :
               null
             }
@@ -207,7 +212,7 @@ class Todo extends Component{
               isApproveReject
               ?
               <footer>
-                <button>提交</button>
+                <button>{LConfig['TODO_SUBMIT']}</button>
               </footer>
               :
               null
@@ -225,8 +230,8 @@ class Todo extends Component{
             <header>
               <label>1、跟踪 任务跟踪任务跟踪</label>
               <p>任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪</p>
-              <span>处理中</span>
-              <button>流程</button>
+              <span>{LConfig['TRACK_PROCESSING']}</span>
+              <button>{LConfig['TRACK_BUTTON_PROCESS']}</button>
             </header>
             <div className="scroll">
               <ul onClick={this.showPop}>

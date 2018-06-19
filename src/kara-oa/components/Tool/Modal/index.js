@@ -1,8 +1,12 @@
 import React, {Component} from 'react'
+import {inject, observer} from 'mobx-react'
 import ReactDOM from 'react-dom'
 import './index.scss'
 import {Paging} from '../../common'
+import Language from '../../../language'
 
+@inject('Config')
+@observer
 class Modal extends Component{
   static PAGE_SIZE = 10
 
@@ -63,6 +67,7 @@ class Modal extends Component{
   }
 
   render(){
+    const LConfig = Language[this.props.Config.language]['Tool']
     const {typeIndex, pageNo, keyword, isFocus} = this.state
     const {types, appGroup, apps} = this.props
     let custom = appGroup['wc_custom']
@@ -72,7 +77,7 @@ class Modal extends Component{
     return ReactDOM.createPortal(
       <div className="KaraOAModal" onClick={this.close}>
         <div onClick={this.stopPropagation}>
-          <h1>自定义功能<i onClick={this.close} className="kara-oa-font">&#xe655;</i></h1>
+          <h1>{LConfig['MODAL_TITLE']}<i onClick={this.close} className="kara-oa-font">&#xe655;</i></h1>
           <form className={isFocus ? 'focus' : ''}>
             <i className="kara-oa-font">&#xe61c;</i>
             <input type="text" onFocus={this.keywordFocus} onBlur={this.keywordBlur} value={keyword} onChange={this.keywordChange} />
@@ -95,10 +100,10 @@ class Modal extends Component{
                 </figure>
                 <div>
                   <h1>薪资自助服务</h1>
-                  <h2>关键字：工资，薪水</h2>
-                  <p>简介：支持员工对当月及历史月份的薪资查询</p>
+                  <h2>{LConfig['MODAL_KEYWORD']}：工资，薪水</h2>
+                  <p>{LConfig['MODAL_INTRODUCTION']}：支持员工对当月及历史月份的薪资查询</p>
                 </div>
-                <button>已添加</button>
+                <button>{LConfig['MODAL_ADDED']}</button>
               </li>
               <li>
                 <figure>
@@ -107,10 +112,10 @@ class Modal extends Component{
                 </figure>
                 <div>
                   <h1>薪资自助服务</h1>
-                  <h2>关键字：工资，薪水</h2>
-                  <p>简介：支持员工对当月及历史月份的薪资查询</p>
+                  <h2>{LConfig['MODAL_KEYWORD']}：工资，薪水</h2>
+                  <p>{LConfig['MODAL_INTRODUCTION']}：支持员工对当月及历史月份的薪资查询</p>
                 </div>
-                <button>添加</button>
+                <button>{LConfig['MODAL_ADD']}</button>
               </li>
             </ul>
             :
@@ -128,11 +133,19 @@ class Modal extends Component{
               <ul>
                 {
                   uiList.slice(pageNo*Modal.PAGE_SIZE, (pageNo+1)*Modal.PAGE_SIZE).map(id=>(
-                    <li key={id} className={custom.includes(id) ? 'added' : ''}>
+                    <li key={id}>
                       <b 
                         onClick={e=>this.onToggle(id)}
                         title={apps[id].appDesc} 
-                        style={{backgroundImage: `url(${apps[id].icon})`}}></b>
+                        style={{backgroundImage: `url(${apps[id].icon})`}}>
+                        {
+                          custom.includes(id)
+                          ?
+                          <sup>{LConfig['MODAL_ADDED']}</sup>
+                          :
+                          null
+                        }
+                      </b>
                       <p>{apps[id].appName}</p>
                     </li>
                   ))

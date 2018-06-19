@@ -1,11 +1,16 @@
 import React, {Component} from 'react'
+import {inject, observer} from 'mobx-react'
 import './index.scss'
+import Language from '../../language'
 
+@inject('Config')
+@observer
 class News extends Component{
   render(){
+    const LConfig = Language[this.props.Config.language]['News']
     return (
       <div className="News">
-        <header>头条号</header>
+        <header>{LConfig['TITLE']}</header>
         <section>
           <header>
             <b></b>

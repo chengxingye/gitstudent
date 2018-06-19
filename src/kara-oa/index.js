@@ -13,6 +13,15 @@ configure({
 class KaraOAStore extends Component{
   constructor(props){
     super(props)
+    Config.set('', '', this.props.language)
+  }
+
+  componentWillReceiveProps(nextProps){
+    Config.set('', '', nextProps.language)
+  }
+
+  shouldComponentUpdate(){
+    return false
   }
 
   render(){

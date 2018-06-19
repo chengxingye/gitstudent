@@ -1,6 +1,10 @@
 import React, {Component} from 'react'
+import {inject, observer} from 'mobx-react'
 import './index.scss'
+import Language from '../../language'
 
+@inject('Config')
+@observer
 class Schedule extends Component{
   constructor(props){
     super(props)
@@ -79,30 +83,31 @@ class Schedule extends Component{
   }
 
   render(){
+    const LConfig = Language[this.props.Config.language]['Schedule']
     const {year, month, today, marks, pageNo, pageCount} = this.state
     const dp = this.generateDatePanel(year, month)
 
     return (
       <div className="Schedule">
         <header>
-          我的日程
+          {LConfig['TITLE']}
           <button className="kara-oa-font">&#xe671;</button>
         </header>
         <section>
           <div className="left">
             <h1>
               <i onClick={this.prev} className="kara-oa-font">&#xe618;</i>
-              &ensp;{year}年{month}月&ensp;
+              &ensp;{year}{LConfig['YEAR_LABEL']}{month}{LConfig['MONTH_LABEL']}&ensp;
               <i onClick={this.next} className="kara-oa-font">&#xe7a5;</i>
             </h1>
             <header>
-              <b>日</b>
-              <b>一</b>
-              <b>二</b>
-              <b>三</b>
-              <b>四</b>
-              <b>五</b>
-              <b>六</b>
+              <b>{LConfig['WEEK_SUNDAY']}</b>
+              <b>{LConfig['WEEK_MONDAY']}</b>
+              <b>{LConfig['WEEK_TUESDAY']}</b>
+              <b>{LConfig['WEEK_WEDNESDAY']}</b>
+              <b>{LConfig['WEEK_THURSDAY']}</b>
+              <b>{LConfig['WEEK_FRIDAY']}</b>
+              <b>{LConfig['WEEK_SATURDAY']}</b>
             </header>
             <div onClick={this.setToday}>
               {
@@ -128,21 +133,21 @@ class Schedule extends Component{
             </div>
           </div>
           <div className="right">
-            <h1>我的日程<button>+添加日程</button></h1>
+            <h1>{LConfig['SUB_TITLE']}<button>+{LConfig['ADD_SCHEDULE']}</button></h1>
             <section>
               <ul>
                 <li>
-                  <label>全天</label>
+                  <label>{LConfig['ALL_DAY']}</label>
                   <p>需求需求文档编写及问题确认OA需求文档编写及问题确认OA需求文档编写及问题确认OA需求文档编写及问题确认</p>
                   <div className="pop">
                     <header>
-                      <label>全天</label>
+                      <label>{LConfig['ALL_DAY']}</label>
                       <p>需求需求文档编写及问题确认需求需求文档编写及问题确认需求需求文档编写及问题确认需求需求文档编写及问题确认</p>
                     </header>
                     <footer>
-                      <button>查看详情</button>
-                      <button>编辑</button>
-                      <button>删除</button>
+                      <button>{LConfig['TO_DETAIL']}</button>
+                      <button>{LConfig['TO_EDIT']}</button>
+                      <button>{LConfig['TO_DEL']}</button>
                     </footer>
                   </div>
                 </li>
@@ -155,9 +160,9 @@ class Schedule extends Component{
                       <p>项目组例会项目组例会项目组例会项目组例会</p>
                     </header>
                     <footer>
-                      <button>查看详情</button>
-                      <button>编辑</button>
-                      <button>删除</button>
+                      <button>{LConfig['TO_DETAIL']}</button>
+                      <button>{LConfig['TO_EDIT']}</button>
+                      <button>{LConfig['TO_DEL']}</button>
                     </footer>
                   </div>
                 </li>
@@ -170,9 +175,9 @@ class Schedule extends Component{
                       <p>客户反馈问题跟进客户反馈问题跟进客户反馈问题跟进客户反馈问题跟进客户反馈问题跟进客户反馈问题跟进</p>
                     </header>
                     <footer>
-                      <button>查看详情</button>
-                      <button>编辑</button>
-                      <button>删除</button>
+                      <button>{LConfig['TO_DETAIL']}</button>
+                      <button>{LConfig['TO_EDIT']}</button>
+                      <button>{LConfig['TO_DEL']}</button>
                     </footer>
                   </div>
                 </li>

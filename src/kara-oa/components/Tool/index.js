@@ -1,8 +1,12 @@
 import React, {Component} from 'react'
+import {inject, observer} from 'mobx-react'
 import './index.scss'
 import {Paging} from '../common'
 import Modal from './Modal'
+import Language from '../../language'
 
+@inject('Config')
+@observer
 class Tool extends Component{
   static PAGE_SIZE = 10
 
@@ -328,6 +332,7 @@ class Tool extends Component{
   }
 
   render(){
+    const LConfig = Language[this.props.Config.language]['Tool']
     const {types, typeId, apps, appGroup, isEdit, pageNo, isModal} = this.state
     let uiList = appGroup[typeId]
     if(isEdit && typeId==='wc_custom'){
@@ -354,7 +359,7 @@ class Tool extends Component{
               ?
               <li key={id}>
                 <b onClick={this.showModal} className="add"></b>
-                <p>添加</p>
+                <p>{LConfig['ADD']}</p>
               </li>
               :
               <li key={id}>
@@ -375,7 +380,7 @@ class Tool extends Component{
         {
           typeId==='wc_custom'
           ?
-          <button onClick={this.toggleEdit}>{isEdit ? '确定' : '自定义'}</button>
+          <button onClick={this.toggleEdit}>{isEdit ? LConfig['BUTTON_OK'] : LConfig['BUTTON_CUSTOM']}</button>
           :
           null
         }

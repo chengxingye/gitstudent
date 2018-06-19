@@ -11,14 +11,29 @@ class Frame extends Component{
     basename: `/`
   })
 
+  state = {
+    language: 'zh'
+  }
+
+  toggleLanguage = ()=>{
+    this.setState({
+      language: this.state.language==='zh' ? 'en' : 'zh'
+    })
+  }
+
   render(){
+    const {language} = this.state
+
     return (
-      <Router history={this.history}>
-        <Switch>
-          <Route path="/oa" component={KaraOA} />
-          <Redirect to="/oa" />
-        </Switch>
-      </Router>
+      <React.Fragment>
+        <button onClick={this.toggleLanguage}>{language}</button>
+        <Router history={this.history}>
+          <Switch>
+            <Route path="/oa" render={props=>(<KaraOA {...props} language={language} />)} />
+            <Redirect to="/oa" />
+          </Switch>
+        </Router>
+      </React.Fragment>
     )
   }
 }
