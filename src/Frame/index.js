@@ -12,7 +12,9 @@ class Frame extends Component{
   })
 
   state = {
-    language: 'zh'
+    language: 'zh',
+    token: 'uuf8m6kuPpYv04a7cPVzd53f4XPnCZ0N',
+    karagw: 'https://xin-sandbox.asiainfo.com:16020',
   }
 
   toggleLanguage = ()=>{
@@ -22,14 +24,20 @@ class Frame extends Component{
   }
 
   render(){
-    const {language} = this.state
+    const {language, token, karagw} = this.state
 
     return (
       <React.Fragment>
         <button onClick={this.toggleLanguage}>{language}</button>
         <Router history={this.history}>
           <Switch>
-            <Route path="/oa" render={props=>(<KaraOA {...props} language={language} />)} />
+            <Route path="/oa" render={props=>(
+              <KaraOA 
+                {...props} 
+                language={language} 
+                token={token} 
+                karagw={karagw} />
+            )} />
             <Redirect to="/oa" />
           </Switch>
         </Router>

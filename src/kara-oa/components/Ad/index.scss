@@ -2,7 +2,7 @@ div.KaraOA{
   div.Ad{
     background-color: #FFFFFF;
     position: relative;
-    >ul{
+    >nav{
       display: table;
       width: auto;
       height: 100%;
@@ -10,7 +10,7 @@ div.KaraOA{
       &.anim{
         transition: transform 0.3s linear;
       }
-      >li{
+      >a{
         display: table-cell;
         min-width: 483px;
         background-size: cover;

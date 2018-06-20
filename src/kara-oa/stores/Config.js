@@ -1,8 +1,8 @@
 import {observable, action} from 'mobx'
 
 class Config {
-  @observable token = null
-  @observable karagw = null
+  @observable token = ''
+  @observable karagw = ''
   @observable language = 'zh' // zh: 中文 en: 英文
 
   @action set(token, karagw, language){

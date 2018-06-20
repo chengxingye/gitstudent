@@ -91,8 +91,8 @@ export default {
     },
     Schedule:{
       TITLE : '我的日程en',
-      YEAR_LABEL: '年en',
-      MONTH_LABEL: '月en',
+      YEAR_LABEL: '.',
+      MONTH_LABEL: '',
       WEEK_SUNDAY: 'Sun',
       WEEK_MONDAY: 'Mon',
       WEEK_TUESDAY: 'Tue',

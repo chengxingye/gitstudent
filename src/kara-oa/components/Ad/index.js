@@ -1,14 +1,11 @@
 import React, {Component} from 'react'
 import './index.scss'
 import {Paging} from '../common'
+import API from '../../api'
 
 class Ad extends Component{
   state = {
-    list: [
-      'https://home.asiainfo.com/AIFLS/FileRoot/5/6/5/56573867-1d18-96b4-4fcf-adb01dcaa768/%E5%91%A8%E4%B8%89%E5%BE%AE%E8%AF%BE.jpg',
-      'https://home.asiainfo.com/AIFLS/FileRoot/f/6/e/f6eaf6a7-754a-b44c-44d2-4b493cf18f0b/%E5%BA%94%E6%94%B6%E7%BB%93%E7%AE%97%E7%B3%BB%E7%BB%9F%E5%B9%BF%E5%91%8Abanner.png',
-      'https://home.asiainfo.com/AIFLS/FileRoot/d/f/a/dfa7c274-108a-8ae5-4ffa-dae2a29011a4/%E4%BA%9A%E4%BF%A1%E6%96%87%E5%8C%96.jpg',
-    ],
+    list: [],
     isEnter: false,
     activeIndexUI: 0
   }
@@ -20,7 +17,16 @@ class Ad extends Component{
   }
 
   componentDidMount(){
-    this.start()
+    API.get('/api/v1.0.0/sym/getAD.web').end().then(res=>res.result.appADList[0].advertisementList).then(res=>{
+      this.setState({
+        list: res.map(l=>({
+          title: l.title,
+          picUrl: l.picUrl,
+          linkUrl: l.linkUrl,
+        }))
+      })
+      setTimeout(this.start, 0)
+    })
   }
 
   start = ()=>{
@@ -94,13 +100,20 @@ class Ad extends Component{
         className="Ad"
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}>
-        <ul 
+        <nav 
           ref={this.wrapper} 
           onTransitionEnd={this.onTransitionEnd}>
           {
-            uiList.map((ad, index)=>(<li key={index} style={{backgroundImage: `url(${ad})`}}></li>))
+            uiList.map((ad, index)=>(
+              <a 
+                target="_blank"
+                title={ad.title}
+                key={index} 
+                style={{backgroundImage: `url(${ad.picUrl})`}}
+                href={ad.linkUrl}></a>
+            ))
           }
-        </ul>
+        </nav>
         <span 
           className={`${isEnter&&len > 1 ? '' : 'hide '}left kara-oa-font`}
           onClick={this.prev}

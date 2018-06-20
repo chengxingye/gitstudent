@@ -13,11 +13,13 @@ configure({
 class KaraOAStore extends Component{
   constructor(props){
     super(props)
-    Config.set('', '', this.props.language)
+    const {token, karagw, language} = this.props
+    Config.set(token, karagw, language)
   }
 
   componentWillReceiveProps(nextProps){
-    Config.set('', '', nextProps.language)
+    const {token, karagw, language} = nextProps
+    Config.set(token, karagw, language)
   }
 
   shouldComponentUpdate(){
