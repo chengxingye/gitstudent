@@ -11,13 +11,13 @@ div.KaraOA{
     }
     >section{
       box-sizing: border-box;
-      padding: 15px 20px 30px 20px;
+      padding: 20px;
       >header{
         cursor: pointer;
-        height: 70px;
+        height: 90px;
         display: flex;
         >b{
-          width: 110px;
+          width: 140px;
           margin-right: 10px;
           background-image: url(./header.png);
           background-size: cover;
@@ -31,7 +31,7 @@ div.KaraOA{
             margin: 0;
             color: #0f4f9f;
             font-size: 18px;
-            line-height: 30px;
+            line-height: 39px;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -39,26 +39,26 @@ div.KaraOA{
           >p{
             color: #222222;
             font-size: 14px;
-            height: 40px;
-            line-height: 20px;
+            height: 50px;
+            line-height: 25px;
             position: relative;
             >sub{
               position: absolute;
               right: 0;
               bottom: 0;
-              line-height: 16px;
+              line-height: 25px;
               font-size: 13px;
             }
           }
         }
       }
       >ul{
-        margin-top: 15px;
-        padding-top: 10px;
+        margin-top: 18px;
+        padding-top: 12px;
         border-top: 1px solid #d9d9d9;
         color: #222222;
         font-size: 16px;
-        line-height: 26px;
+        line-height: 32px;
         >li{
           cursor: pointer;
           position: relative;
@@ -70,14 +70,15 @@ div.KaraOA{
           &:before{
             content: '■';
             margin-right: 15px;
-            margin-top: -3px;
             color: #fc6832;
+            position: relative;
+            top: -2px;
           }
           sub{
             position: absolute;
             right: 0;
             bottom: 0;
-            line-height: 24px;
+            line-height: 32px;
             font-size: 13px;
           }
         }

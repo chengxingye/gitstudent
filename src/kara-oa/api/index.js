@@ -26,7 +26,7 @@ export default{
         'Content-Type': 'application/json',
         Authorization: `bearer ${Config.token}`,
       },
-      body
+      body: JSON.stringify(body),
     }).then(res=>res.json())
   },
 }

@@ -2,10 +2,13 @@ import React, {Component} from 'react'
 import {inject, observer} from 'mobx-react'
 import './index.scss'
 import Language from '../../language'
+import API from '../../api'
 
 @inject('Config')
 @observer
 class Schedule extends Component{
+  static PAGE_SIZE = 4
+
   constructor(props){
     super(props)
     let date = new Date()
@@ -17,14 +20,49 @@ class Schedule extends Component{
         m: date.getMonth()+1,
         d: date.getDate(),
       },
-      marks: [
-        '2018/6/4',
-        '2018/6/12',
-        '2018/6/28',
-      ],
+      marks: [],
       pageNo: 1,
-      pageCount: 10,
+      pageCount: 0,
+      result: [],
     }
+  }
+
+  componentDidMount(){
+    const {year, month, today} = this.state
+    this.getMonthList(year, month)
+    this.getDayList(today.y, today.m, today.d)
+  }
+
+  getMonthList(year, month){
+    API.post('/api/v1.0.0/schedule/event/getList.month').end(null, {
+      type: 'bot',
+      day: `${year}${month<10 ? '0'+month : month}`,
+    }).then(res=>res.resultList).then(res=>{
+      this.setState({
+        marks: res.map(o=>{
+          let dd = new Date(o.beginTime)
+          return `${dd.getFullYear()}/${dd.getMonth()+1}/${dd.getDate()}`
+        })
+      })
+    })
+  }
+
+  getDayList(y, m, d){
+    API.post('/api/v1.0.0/schedule/event/getList.day/bot').end(null, {
+      day: `${y}${m<10 ? '0'+m : m}${d<10 ? '0'+d : d}`,
+    }).then(res=>{
+      res.resultList.forEach(o=>{
+        let dd = new Date(o.beginTime)
+        let h = dd.getHours()
+        let m = dd.getMinutes()
+        o.beginTime = `${h<10 ? '0'+h : h}:${m<10 ? '0'+m : m}`
+      })
+      this.setState({
+        result: res.resultList,
+        pageNo: 1,
+        pageCount: Math.ceil(res.resultList.length/Schedule.PAGE_SIZE),
+      })
+    })
   }
 
   generateDatePanel = (year, month)=>{
@@ -48,6 +86,7 @@ class Schedule extends Component{
     let {year, month} = this.state
     year = month===1 ? year-1 : year
     month = month===1 ? 12 : month-1
+    this.getMonthList(year, month)
     this.setState({year, month})
   }
 
@@ -55,20 +94,30 @@ class Schedule extends Component{
     let {year, month} = this.state
     year = month===12 ? year+1 : year
     month = month===12 ? 1 : month+1
+    this.getMonthList(year, month)
     this.setState({year, month})
   }
 
   setToday = e=>{
     if(e.target.title){
+      const {year, month} = this.state
       let ymd = e.target.title.split('/')
       let y = Number(ymd[0])
       let m = Number(ymd[1])
       let d = Number(ymd[2])
-      this.setState({
-        year: y,
-        month: m,
-        today: {y, m, d},
-      })
+      this.getDayList(y, m, d)
+      if(year===y && month===m){
+        this.setState({
+          today: {y, m, d},
+        })
+      }else{
+        this.getMonthList(y, m)
+        this.setState({
+          year: y,
+          month: m,
+          today: {y, m, d},
+        })
+      }
     }
   }
 
@@ -84,7 +133,7 @@ class Schedule extends Component{
 
   render(){
     const LConfig = Language[this.props.Config.language]['Schedule']
-    const {year, month, today, marks, pageNo, pageCount} = this.state
+    const {year, month, today, marks, pageNo, pageCount, result} = this.state
     const dp = this.generateDatePanel(year, month)
 
     return (
@@ -119,7 +168,7 @@ class Schedule extends Component{
                   if(date.y===today.y && date.m===today.m && date.d===today.d){
                     classNames.push('cur')
                   }
-                  if(marks.includes(`${date.y}/${date.m}/${date.d}`)){
+                  if(marks.some(o=>o===`${date.y}/${date.m}/${date.d}`)){
                     classNames.push('mark')
                   }
                   return (
@@ -136,51 +185,25 @@ class Schedule extends Component{
             <h1>{LConfig['SUB_TITLE']}<button>+{LConfig['ADD_SCHEDULE']}</button></h1>
             <section>
               <ul>
-                <li>
-                  <label>{LConfig['ALL_DAY']}</label>
-                  <p>需求需求文档编写及问题确认OA需求文档编写及问题确认OA需求文档编写及问题确认OA需求文档编写及问题确认</p>
-                  <div className="pop">
-                    <header>
-                      <label>{LConfig['ALL_DAY']}</label>
-                      <p>需求需求文档编写及问题确认需求需求文档编写及问题确认需求需求文档编写及问题确认需求需求文档编写及问题确认</p>
-                    </header>
-                    <footer>
-                      <button>{LConfig['TO_DETAIL']}</button>
-                      <button>{LConfig['TO_EDIT']}</button>
-                      <button>{LConfig['TO_DEL']}</button>
-                    </footer>
-                  </div>
-                </li>
-                <li>
-                  <label>14:00</label>
-                  <p>项目组例会项目组例会项目组例会项目组例会</p>
-                  <div className="pop">
-                    <header>
-                      <label>14:00</label>
-                      <p>项目组例会项目组例会项目组例会项目组例会</p>
-                    </header>
-                    <footer>
-                      <button>{LConfig['TO_DETAIL']}</button>
-                      <button>{LConfig['TO_EDIT']}</button>
-                      <button>{LConfig['TO_DEL']}</button>
-                    </footer>
-                  </div>
-                </li>
-                <li>
-                  <label>17:00</label>
-                  <p>客户反馈问题跟进客户反馈问题跟进客户反馈问题跟进</p>
-                  <div className="pop">
-                    <header>
-                      <label>17:00</label>
-                      <p>客户反馈问题跟进客户反馈问题跟进客户反馈问题跟进客户反馈问题跟进客户反馈问题跟进客户反馈问题跟进</p>
-                    </header>
-                    <footer>
-                      <button>{LConfig['TO_DETAIL']}</button>
-                      <button>{LConfig['TO_EDIT']}</button>
-                      <button>{LConfig['TO_DEL']}</button>
-                    </footer>
-                  </div>
-                </li>
+                {
+                  result.slice((pageNo-1)*Schedule.PAGE_SIZE, pageNo*Schedule.PAGE_SIZE).map(event=>(
+                    <li key={event.id}>
+                      <label>{event.isAllDay==='yes' ? LConfig['ALL_DAY'] : event.beginTime}</label>
+                      <p>{event.content}</p>
+                      <div className="pop">
+                        <header>
+                          <label>{event.isAllDay==='yes' ? LConfig['ALL_DAY'] : event.beginTime}</label>
+                          <p>{event.content}</p>
+                        </header>
+                        <footer>
+                          <button>{LConfig['TO_DETAIL']}</button>
+                          <button>{LConfig['TO_EDIT']}</button>
+                          <button>{LConfig['TO_DEL']}</button>
+                        </footer>
+                      </div>
+                    </li>
+                  ))
+                }
               </ul>
               {
                 pageCount>1
