@@ -1,0 +1,187 @@
+div.KaraOAModal{
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  >div{
+    width: 860px;
+    height: 560px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -430px;
+    margin-top: -280px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 30px;
+    >h1{
+      margin: 0;
+      font-size: 16px;
+      color: #282828;
+      line-height: 24px;
+      position: relative;
+      >i{
+        position: absolute;
+        right: 0;
+        font-size: 24px;
+        cursor: pointer;
+      }
+    }
+    >form{
+      width: 400px;
+      height: 34px;
+      background-color: #f3f3f3;
+      border: 1px solid #d9d9d9;
+      border-radius: 5px;
+      margin: 0 auto;
+      margin-top: 40px;
+      display: flex;
+      &.focus{
+        background-color: #FFFFFF;
+        border: 1px solid #ffa969;
+        >i{
+          color: #ffa969;
+        }
+      }
+      >i{
+        display: block;
+        width: 34px;
+        height: 34px;
+        line-height: 34px;
+        text-align: center;
+        color: #b0b0b0;
+        &:last-child{
+          cursor: pointer;
+        }
+      }
+      >input{
+        flex: 1 1 auto;
+        border: none;
+        background-color: transparent;
+        outline: none;
+        font-size: 14px;
+        color: #282828;
+      }
+    }
+    >section{
+      width: 710px;
+      height: 340px;
+      margin: 34px auto;
+      border: 1px solid #d9d9d9;
+      border-radius: 5px;
+      overflow: hidden;
+      position: relative;
+      >ol{
+        margin: 0;
+        padding: 0;
+        height: 47px;
+        line-height: 47px;
+        display: flex;
+        text-align: center;
+        >li{
+          width: 0;
+          flex: 1 1 auto;
+          background-color: #f2f2f2;
+          border-right: 1px solid #d9d9d9;
+          border-bottom: 1px solid #d9d9d9;
+          font-size: 14px;
+          color: #838383;
+          cursor: pointer;
+          &:last-child{
+            border-right: none;
+          }
+          &.active{
+            background-color: #FFFFFF;
+            border-bottom: none;
+          }
+        }
+      }
+      >ul{
+        margin: 20px 19px;
+        display: flex;
+        flex-flow: wrap;
+        >li{
+          width: 94px;
+          height: 94px;
+          margin: 2px 20px;
+          flex: 0 0 auto;
+          position: relative;
+          >b{
+            display: block;
+            margin: 0 auto;
+            margin-top: 14px;
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            background-color: #ffa969;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+            >sup{
+              position: absolute;
+              right: 0;
+              top: 0;
+              font-size: 12px;
+              color: #ffffff;
+              background-color: #b2b2b2;
+              border-radius: 18px;
+              line-height: 18px;
+              padding: 0 8px;
+              white-space: nowrap;
+              transform: translate(80%, -45%);
+            }
+          }
+          >div{
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 94px;
+            height: 94px;
+            border-radius: 5px;
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            >button{
+              flex: 0 1 auto;
+              width: 60px;
+              height: 20px;
+              line-height: 20px;
+              font-size: 12px;
+              margin: 5px 17px;
+              background-color: #f2f2f2;
+              border: none;
+              border-radius: 3px;
+              padding: 0;
+              color: #838383;
+              cursor: pointer;
+              outline: none;
+            }
+          }
+          &:hover{
+            >div{
+              display: flex;
+            }
+            >b>sup{
+              display: none;
+            }
+          }
+          >p{
+            font-size: 14px;
+            color: #696969;
+            line-height: 30px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+    }
+  }
+}

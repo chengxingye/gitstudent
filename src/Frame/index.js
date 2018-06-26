@@ -5,6 +5,8 @@ import 'normalize.css'
 import './skin/default.css'
 import KaraOA from '../kara-oa'
 import {hot} from 'react-hot-loader'
+// import KaraOA from 'kara-oa'
+// import '../../lib/kara-oa.css'
 
 class Frame extends Component{
   history = createBrowserHistory({
@@ -13,7 +15,7 @@ class Frame extends Component{
 
   state = {
     language: 'zh',
-    token: 'N2ZAAYhB87HccnMxGl53RFPfQH1iHi6K',
+    token: 'zXSybkSxCkSXA1BnnTSnq2ZFLOAA4y4u',
     karagw: 'https://xin-sandbox.asiainfo.com:16020',
   }
 

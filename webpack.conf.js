@@ -24,6 +24,7 @@ module.exports = {
     port: 8080,
     open: true,
     hot: true,
+    host: '192.168.1.110',
     clientLogLevel: 'warning'
   },
   devtool: 'cheap-module-eval-source-map',

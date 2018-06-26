@@ -3,6 +3,7 @@ import {inject, observer} from 'mobx-react'
 import './index.scss'
 import Pop from './Pop'
 import Language from '../../language'
+import API from '../../api'
 
 @inject('Config')
 @observer
@@ -14,6 +15,9 @@ class Todo extends Component{
     isApproveReject: false,
     isTrack: false,
     pop: {},
+    todos: [],
+    todoIndex: 0,
+    todoObj: {},
   }
 
   componentDidMount(){
@@ -25,6 +29,14 @@ class Todo extends Component{
         pop: {}
       })
     }, false)
+
+
+    // API.post('/api/v1.0.0/task/taskinfo/query').end(null, {
+    //   pageStart: 1,
+    //   pageEnd: 5,
+    // }).then(res=>{
+    //   this.setState({todos: res.taskInfo||[]})
+    // })
   }
 
   stopPropagation = e=>{
@@ -35,12 +47,14 @@ class Todo extends Component{
     this.setState({tab})
   }
 
-  showApprove = e=>{
+  showApprove = (e, todoIndex, todoObj)=>{
     if(!this.state.isApprove){
       e.nativeEvent.stopImmediatePropagation()
       this.setState({
         isApprove: true,
-        isApproveReject: false
+        isApproveReject: false,
+        todoIndex,
+        todoObj,
       })
     }
   }
@@ -85,31 +99,19 @@ class Todo extends Component{
 
   render(){
     const LConfig = Language[this.props.Config.language]['Todo']
-    const {tab, isApprove, isApproveReject, isTrack, pop} = this.state
+    const {tab, isApprove, isApproveReject, isTrack, pop, todos, todoIndex, todoObj} = this.state
     let dataPanel = null
     if(tab === 0){
       dataPanel = (
-        <ul className="type0" onClick={this.showApprove}>
-          <li>
-            <label>1、待办 待办待办待办待办</label>
-            <p>待办待办待办待办待办待办待办待办待办待办待办待办待办待办待办待办</p>
-          </li>
-          <li>
-            <label>2、待办 待办待办待办待办</label>
-            <p>待办待办待办待办待办待办待办待办待办待办待办待办待办待办待办待办</p>
-          </li>
-          <li>
-            <label>3、待办 待办待办待办待办</label>
-            <p>待办待办待办待办待办待办待办待办待办待办待办待办待办待办待办待办</p>
-          </li>
-          <li>
-            <label>4、待办 待办待办待办待办</label>
-            <p>待办待办待办待办待办待办待办待办待办待办待办待办待办待办待办待办</p>
-          </li>
-          <li>
-            <label>5、待办 待办待办待办待办</label>
-            <p>待办待办待办待办待办待办待办待办待办待办待办待办待办待办待办待办</p>
-          </li>
+        <ul className="type0">
+          {
+            todos.map((todo, index)=>(
+              <li onClick={e=>this.showApprove(e, index+1, todo)} key={todo.id}>
+                <label>{index+1}、{todo.titleInfo.taskTitleCn}</label>
+                <p>{todo.titleInfo.taskDescCn}</p>
+              </li>
+            ))
+          }
         </ul>
       )
     }else if(tab === 1){
@@ -192,14 +194,14 @@ class Todo extends Component{
             className="approve"
             onClick={this.stopPropagation}>
             <header>
-              <label>1、常伟 调动-Band8</label>
-              <p>常伟 调动-Band8常伟 调动-Band8常伟 调动-Band8常伟 调动-Band8常伟 调动-Band8常伟 调动-Band8</p>
+              <label>{todoIndex}、{todoObj.titleInfo.taskTitleCn}</label>
+              <p>{todoObj.titleInfo.taskDescCn}</p>
             </header>
             <h2>
               <button>{LConfig['TODO_AGREE']}</button>
               <button onClick={this.toggleReject}>{LConfig['TODO_REJECT']}</button>
               <button>{LConfig['TODO_DETAIL']}</button>
-              <span>2018-05-18</span>
+              <span>{todoObj.taskDispTime.substr(0, 10)}</span>
             </h2>
             {
               isApproveReject

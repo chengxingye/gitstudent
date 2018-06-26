@@ -1,12 +1,15 @@
 export default {
   zh: {
     Tool:{
+      TYPE_COMMON: '常用',
       BUTTON_OK : '确定',
       BUTTON_CUSTOM : '自定义',
       ADD: '添加',
-      MODAL_TITLE: '自定义功能',
+      MODAL_TITLE: '添加至常用',
       MODAL_ADD: '添加',
+      MODAL_CANCEL: '取消添加',
       MODAL_ADDED: '已添加',
+      MODAL_DETAIL: '详情',
       MODAL_KEYWORD: '关键字',
       MODAL_INTRODUCTION: '简介',
     },
@@ -57,12 +60,15 @@ export default {
   },
   en: {
     Tool:{
+      TYPE_COMMON: '常用en',
       BUTTON_OK : '确定en',
       BUTTON_CUSTOM : '自定义en',
       ADD: '添加en',
-      MODAL_TITLE: '自定义功能en',
+      MODAL_TITLE: '添加至常用en',
       MODAL_ADD: '添加en',
+      MODAL_CANCEL: '取消添加en',
       MODAL_ADDED: '已添加en',
+      MODAL_DETAIL: '详情en',
       MODAL_KEYWORD: '关键字en',
       MODAL_INTRODUCTION: '简介en',
     },
