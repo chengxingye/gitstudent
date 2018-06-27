@@ -31,12 +31,12 @@ class Todo extends Component{
     }, false)
 
 
-    // API.post('/api/v1.0.0/task/taskinfo/query').end(null, {
-    //   pageStart: 1,
-    //   pageEnd: 5,
-    // }).then(res=>{
-    //   this.setState({todos: res.taskInfo||[]})
-    // })
+    API.post('/api/v1.0.0/task/taskinfo/query').end(null, {
+      pageStart: 1,
+      pageEnd: 5,
+    }).then(res=>{
+      this.setState({todos: res.taskInfo||[]})
+    })
   }
 
   stopPropagation = e=>{
@@ -100,6 +100,7 @@ class Todo extends Component{
   render(){
     const LConfig = Language[this.props.Config.language]['Todo']
     const {tab, isApprove, isApproveReject, isTrack, pop, todos, todoIndex, todoObj} = this.state
+    let isZH = this.props.Config.language==='zh'
     let dataPanel = null
     if(tab === 0){
       dataPanel = (
@@ -107,8 +108,8 @@ class Todo extends Component{
           {
             todos.map((todo, index)=>(
               <li onClick={e=>this.showApprove(e, index+1, todo)} key={todo.id}>
-                <label>{index+1}、{todo.titleInfo.taskTitleCn}</label>
-                <p>{todo.titleInfo.taskDescCn}</p>
+                <label>{index+1}、{isZH ? todo.titleInfo.taskTitleCn : todo.titleInfo.taskTitleEn}</label>
+                <p>{isZH ? todo.titleInfo.taskDescCn : todo.titleInfo.taskDescEn}</p>
               </li>
             ))
           }
@@ -194,8 +195,8 @@ class Todo extends Component{
             className="approve"
             onClick={this.stopPropagation}>
             <header>
-              <label>{todoIndex}、{todoObj.titleInfo.taskTitleCn}</label>
-              <p>{todoObj.titleInfo.taskDescCn}</p>
+              <label>{todoIndex}、{isZH ? todoObj.titleInfo.taskTitleCn : todoObj.titleInfo.taskTitleEn}</label>
+              <p>{isZH ? todoObj.titleInfo.taskDescCn : todoObj.titleInfo.taskDescEn}</p>
             </header>
             <h2>
               <button>{LConfig['TODO_AGREE']}</button>
