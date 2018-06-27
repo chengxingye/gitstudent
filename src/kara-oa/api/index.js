@@ -4,14 +4,17 @@ import Config from '../stores/Config'
 export default{
   url: '',
   method: 'GET',
-  get(url){
+  header: {},
+  get(url, header={}){
     this.url = Config.karagw + url
     this.method = 'GET'
+    this.header = header
     return this
   },
-  post(url){
+  post(url, header={}){
     this.url = Config.karagw + url
     this.method = 'POST'
+    this.header = header
     return this
   },
   end(params, body){
@@ -25,6 +28,7 @@ export default{
       headers: {
         'Content-Type': 'application/json',
         Authorization: `bearer ${Config.token}`,
+        ...this.header,
       },
       body: JSON.stringify(body),
     }).then(res=>res.json())

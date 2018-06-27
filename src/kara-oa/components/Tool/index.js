@@ -16,199 +16,12 @@ class Tool extends Component{
     types: [],
     typeID: Tool.COMMON_ID,
     nodeTree: {
-      [Tool.COMMON_ID]: [
-        {
-          id: '11',
-        },
-        {
-          id: '22',
-        },
-        {
-          id: '33',
-        },
-        {
-          id: '44',
-        },
-        {
-          id: '55',
-        },
-        {
-          id: '66',
-        },
-        {
-          id: '77',
-        },
-        {
-          id: '88',
-        },
-        {
-          id: '99',
-        },
-        {
-          id: '111',
-        },
-        {
-          id: '222',
-        },
-      ],
-      'wc_financialAndLegalAffairs': [],
-      'wc_scenario': [
-        {
-          id: '11',
-        },
-        {
-          id: '22',
-        },
-        {
-          id: '33',
-        },
-        {
-          id: '44',
-        },
-        {
-          id: '55',
-        },
-        {
-          id: '66',
-        },
-        {
-          id: '77',
-        },
-        {
-          id: '88',
-        },
-        {
-          id: '99',
-        },
-        {
-          id: '111',
-        },
-        {
-          id: '222',
-          children: [
-            {
-              id: '333',
-            },
-          ]
-        },
-      ],
-      'wc_mis': [],
-      'wc_supplyManagement': [],
-      'wc_hr': [],
-      'wc_operationManagement': [],
+      [Tool.COMMON_ID]: [],
     },
-    webAppInfos: {
-      '11': {
-        id: "11",
-        appName: "休假申请",
-        appNameEn: "Leave",
-        appDesc: "休假请找我",
-        appDescEn: "leave ask me...",
-        icon: "https://kara-image.asiainfo.com/scale/channel/15a81055-ced8-451c-88e1-d6f51f7498e2.png",
-        url: "http://hrleave.asiainfo.com/LeaveMS/index.jsp",
-      },
-      '22': {
-        id: "22",
-        appName: "休假申请",
-        appNameEn: "Leave",
-        appDesc: "休假请找我",
-        appDescEn: "leave ask me...",
-        icon: "https://kara-image.asiainfo.com/scale/channel/15a81055-ced8-451c-88e1-d6f51f7498e2.png",
-        url: "http://hrleave.asiainfo.com/LeaveMS/index.jsp",
-      },
-      '33': {
-        id: "33",
-        appName: "休假申请",
-        appNameEn: "Leave",
-        appDesc: "休假请找我",
-        appDescEn: "leave ask me...",
-        icon: "https://kara-image.asiainfo.com/scale/channel/15a81055-ced8-451c-88e1-d6f51f7498e2.png",
-        url: "http://hrleave.asiainfo.com/LeaveMS/index.jsp",
-      },
-      '44': {
-        id: "44",
-        appName: "休假申请",
-        appNameEn: "Leave",
-        appDesc: "休假请找我",
-        appDescEn: "leave ask me...",
-        icon: "https://kara-image.asiainfo.com/scale/channel/15a81055-ced8-451c-88e1-d6f51f7498e2.png",
-        url: "http://hrleave.asiainfo.com/LeaveMS/index.jsp",
-      },
-      '55': {
-        id: "55",
-        appName: "休假申请",
-        appNameEn: "Leave",
-        appDesc: "休假请找我",
-        appDescEn: "leave ask me...",
-        icon: "https://kara-image.asiainfo.com/scale/channel/15a81055-ced8-451c-88e1-d6f51f7498e2.png",
-        url: "http://hrleave.asiainfo.com/LeaveMS/index.jsp",
-      },
-      '66': {
-        id: "66",
-        appName: "休假申请",
-        appNameEn: "Leave",
-        appDesc: "休假请找我",
-        appDescEn: "leave ask me...",
-        icon: "https://kara-image.asiainfo.com/scale/channel/15a81055-ced8-451c-88e1-d6f51f7498e2.png",
-        url: "http://hrleave.asiainfo.com/LeaveMS/index.jsp",
-      },
-      '77': {
-        id: "77",
-        appName: "休假申请",
-        appNameEn: "Leave",
-        appDesc: "休假请找我",
-        appDescEn: "leave ask me...",
-        icon: "https://kara-image.asiainfo.com/scale/channel/15a81055-ced8-451c-88e1-d6f51f7498e2.png",
-        url: "http://hrleave.asiainfo.com/LeaveMS/index.jsp",
-      },
-      '88': {
-        id: "88",
-        appName: "休假申请",
-        appNameEn: "Leave",
-        appDesc: "休假请找我",
-        appDescEn: "leave ask me...",
-        icon: "https://kara-image.asiainfo.com/scale/channel/15a81055-ced8-451c-88e1-d6f51f7498e2.png",
-        url: "http://hrleave.asiainfo.com/LeaveMS/index.jsp",
-      },
-      '99': {
-        id: "99",
-        appName: "休假申请",
-        appNameEn: "Leave",
-        appDesc: "休假请找我",
-        appDescEn: "leave ask me...",
-        icon: "https://kara-image.asiainfo.com/scale/channel/15a81055-ced8-451c-88e1-d6f51f7498e2.png",
-        url: "http://hrleave.asiainfo.com/LeaveMS/index.jsp",
-      },
-      '111': {
-        id: "111",
-        appName: "休假申请",
-        appNameEn: "Leave",
-        appDesc: "休假请找我",
-        appDescEn: "leave ask me...",
-        icon: "https://kara-image.asiainfo.com/scale/channel/15a81055-ced8-451c-88e1-d6f51f7498e2.png",
-        url: "http://hrleave.asiainfo.com/LeaveMS/index.jsp",
-      },
-      '222': {
-        id: "222",
-        appName: "休假申请",
-        appNameEn: "Leave",
-        appDesc: "休假请找我",
-        appDescEn: "leave ask me...",
-        icon: "https://kara-image.asiainfo.com/scale/channel/15a81055-ced8-451c-88e1-d6f51f7498e2.png",
-        url: "http://hrleave.asiainfo.com/LeaveMS/index.jsp",
-      },
-      '333': {
-        id: "333",
-        appName: "休假申请",
-        appNameEn: "Leave",
-        appDesc: "休假请找我",
-        appDescEn: "leave ask me...",
-        icon: "https://kara-image.asiainfo.com/scale/channel/15a81055-ced8-451c-88e1-d6f51f7498e2.png",
-        url: "http://hrleave.asiainfo.com/LeaveMS/index.jsp",
-      },
-    },
+    webAppInfos: {},
     pageNo: 0,
     isEdit: false,
+    isModal: false,
   }
 
   componentDidMount(){
@@ -221,7 +34,12 @@ class Tool extends Component{
             nameEn: Language['en']['Tool']['TYPE_COMMON']
           },
           ...res.appCatalogInfos
-        ]
+        ],
+        nodeTree: {
+          ...res.nodeTree,
+          [Tool.COMMON_ID]: res.customWebAppList.map(id=>({id})),
+        },
+        webAppInfos: res.webAppInfos,
       })
     })
   }
@@ -282,7 +100,18 @@ class Tool extends Component{
     this.setState({pageNo})
   }
 
+  saveCustom = ()=>{
+    API.post('/api/v1.0.0/webhook/w_custom_apps.set').end(null, {
+      webCustomAppIds: this.state.nodeTree[Tool.COMMON_ID].map(app=>app.id)
+    }).then(res=>{
+      console.log(res)
+    })
+  }
+
   toggleEdit = ()=>{
+    if(this.state.isEdit){
+      this.saveCustom()
+    }
     this.setState({
       isEdit: !this.state.isEdit
     })
@@ -323,8 +152,16 @@ class Tool extends Component{
     })
   }
 
+  onClose = ()=>{
+    this.setState({isModal: false})
+  }
+
+  showModal = ()=>{
+    this.setState({isModal: true})
+  }
+
   render(){
-    const {types, typeID, nodeTree, webAppInfos, pageNo, isEdit} = this.state
+    const {types, typeID, nodeTree, webAppInfos, pageNo, isEdit, isModal} = this.state
     let isZH = this.props.Config.language==='zh'
     const LConfig = Language[this.props.Config.language]['Tool']
     let isCustom = typeID===Tool.COMMON_ID
@@ -359,6 +196,7 @@ class Tool extends Component{
               ?
               <a 
                 key={id}
+                onClick={this.showModal}
                 href='javascript:void(0);'>
                 <b className="add"></b>
                 <p>{LConfig['ADD']}</p>
@@ -399,15 +237,22 @@ class Tool extends Component{
             null
           }
         </footer>
-        <Modal {
-          ...{
-            types: types.filter(type=>type.id!==Tool.COMMON_ID),
-            customList: nodeTree[Tool.COMMON_ID].map(app=>app.id),
-            nodeTree,
-            webAppInfos,
-            onToggle: this.onToggle
-          }
-        } />
+        {
+          isModal
+          ?
+          <Modal {
+            ...{
+              types: types.filter(type=>type.id!==Tool.COMMON_ID),
+              customList: nodeTree[Tool.COMMON_ID].map(app=>app.id),
+              nodeTree,
+              webAppInfos,
+              onToggle: this.onToggle,
+              onClose: this.onClose,
+            }
+          } />
+          :
+          null
+        }
       </div>
     )
   }
