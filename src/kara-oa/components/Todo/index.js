@@ -8,34 +8,113 @@ import API from '../../api'
 @inject('Config')
 @observer
 class Todo extends Component{
+  static PAGE_SIZE = 5
+
   state = {
-    list: [],
-    tab: 0,
-    isApprove: false,
-    isApproveReject: false,
-    isTrack: false,
-    pop: {},
-    todos: [],
-    todoIndex: 0,
-    todoObj: {},
+    type: 'todo',
+    todoInfo: {
+      pageNo: 1,
+      count: 0,
+      result: [],
+    },
+    trackInfo: {
+      pageNo: 1,
+      count: 0,
+      result: [],
+    },
+    todoActive: null,
+    trackActive: null,
+    pop: null,
   }
 
   componentDidMount(){
     document.addEventListener('click', ()=>{
       this.setState({
-        isApprove: false,
-        isApproveReject: false,
-        isTrack: false,
-        pop: {}
+        todoActive: null,
+        trackActive: null,
+        pop: null
       })
     }, false)
+    this.refresh()
+  }
 
+  refresh = ()=>{
+    this.getTodos(1)
+    this.getTracks(1)
+  }
 
+  getTodos = pageNo=>{
     API.post('/api/v1.0.0/task/taskinfo/query').end(null, {
-      pageStart: 1,
-      pageEnd: 5,
+      pageStart: (pageNo-1)*Todo.PAGE_SIZE+1,
+      pageEnd: pageNo*Todo.PAGE_SIZE,
     }).then(res=>{
-      this.setState({todos: res.taskInfo||[]})
+      this.setState({
+        todoInfo: {
+          pageNo,
+          count: res.count,
+          result: res.taskInfo||[],
+        }
+      })
+    })
+  }
+
+  getTracks = pageNo=>{
+    API.post('/api/v1.0.0/task/tasktrace/query').end(null, {
+      pageStart: (pageNo-1)*Todo.PAGE_SIZE+1,
+      pageEnd: pageNo*Todo.PAGE_SIZE,
+    }).then(res=>{
+      this.setState({
+        trackInfo: {
+          pageNo,
+          count: res.count,
+          result: res.taskTraceInfo||[],
+        }
+      })
+    })
+  }
+
+  prev = ()=>{
+    const {type, todoInfo, trackInfo} = this.state
+    if(type==='todo'){
+      this.getTodos(todoInfo.pageNo-1)
+    }else if(type==='track'){
+      this.getTracks(trackInfo.pageNo-1)
+    }
+  }
+
+  next = ()=>{
+    const {type, todoInfo, trackInfo} = this.state
+    if(type==='todo'){
+      this.getTodos(todoInfo.pageNo+1)
+    }else if(type==='track'){
+      this.getTracks(trackInfo.pageNo+1)
+    }
+  }
+
+  todoAgree = ()=>{
+    this.postTodo()
+  }
+
+  todoReject = ()=>{
+    const {todoActive} = this.state
+    if(!todoActive.rejectReason){
+      console.log('请输入驳回原因')
+    }else{
+      this.postTodo(false)
+    }
+  }
+
+  postTodo = (isAgree=true)=>{
+    const {todoActive} = this.state
+    API.post('/api/v1.0.0/task/taskinfo/async').end(null, {
+      systemId: todoActive.systemId,
+      targetTaskId: todoActive.targetTaskId,
+      service: isAgree ? todoActive.acceptBtnUrl : todoActive.rejectBtnUrl,
+      sync: '0',
+      channel: 'oa',
+      rejectReason: isAgree ? undefined : todoActive.rejectReason,
+    }).then(res=>{
+      console.log(res)
     })
   }
 
@@ -43,114 +122,116 @@ class Todo extends Component{
     e.nativeEvent.stopImmediatePropagation()
   }
 
-  setTab = tab=>{
-    this.setState({tab})
-  }
-
-  showApprove = (e, todoIndex, todoObj)=>{
-    if(!this.state.isApprove){
-      e.nativeEvent.stopImmediatePropagation()
-      this.setState({
-        isApprove: true,
-        isApproveReject: false,
-        todoIndex,
-        todoObj,
-      })
+  setType = e=>{
+    const type = e.target.dataset.type
+    if(type){
+      this.setState({type})
     }
   }
 
-  toggleReject = e=>{
-    this.setState({isApproveReject: !this.state.isApproveReject})
-  }
-
-  showTrack = e=>{
-    if(!this.state.isTrack){
+  showApprove = (e, todoActive)=>{
+    if(!this.state.todoActive){
       e.nativeEvent.stopImmediatePropagation()
-      this.setState({isTrack: true})
-    }
-  }
-
-  showPop = e=>{
-    if(e.target.tagName !== 'I')  return
-    e.nativeEvent.stopImmediatePropagation()
-    e.stopPropagation()
-    // TODO 如果当前pop已经显示 则隐藏当前pop 
-    let rect = e.target.getBoundingClientRect()
-    this.setState({
-      pop: {
-        show: true,
-        left: rect.left-23,
-        top: rect.top+24,
-      }
-    })
-  }
-
-  stopTrackPropagation = e=>{
-    e.nativeEvent.stopImmediatePropagation()
-    if(this.state.pop.show){
       this.setState({
-        pop: {
-          ...this.state.pop,
-          show: false
+        todoActive: {
+          ...todoActive,
+          isApproveReject: false,
+          rejectReason: '',
         }
       })
     }
   }
 
+  toggleReject = e=>{
+    const {todoActive} = this.state
+    this.setState({
+      todoActive: {
+        ...todoActive,
+        isApproveReject: !todoActive.isApproveReject,
+      }
+    })
+  }
+
+  showTrack = (e, trackActive)=>{
+    if(!this.state.trackActive){
+      e.nativeEvent.stopImmediatePropagation()
+      this.setState({trackActive})
+    }
+  }
+
+  showPop = (e, node)=>{
+    e.nativeEvent.stopImmediatePropagation()
+    e.stopPropagation()
+    let rect = e.target.getBoundingClientRect()
+    const {pop} = this.state
+    if(pop && pop.node.nodeSeq===node.nodeSeq){
+      this.setState({pop: null})
+    }else{
+      this.setState({
+        pop: {
+          node,
+          left: rect.left-23,
+          top: rect.top+24,
+        }
+      })
+    }
+  }
+
+  stopTrackPropagation = e=>{
+    e.nativeEvent.stopImmediatePropagation()
+    if(this.state.pop){
+      this.setState({pop: null})
+    }
+  }
+
+  rejectReasonChange = e=>{
+    const {todoActive} = this.state
+    this.setState({
+      todoActive: {
+        ...todoActive,
+        rejectReason: e.target.value,
+      }
+    })
+  }
+
   render(){
     const LConfig = Language[this.props.Config.language]['Todo']
-    const {tab, isApprove, isApproveReject, isTrack, pop, todos, todoIndex, todoObj} = this.state
+    const {type, todoInfo, todoActive, trackInfo, trackActive, pop} = this.state
     let isZH = this.props.Config.language==='zh'
     let dataPanel = null
-    if(tab === 0){
+    let pageInfo = {}
+    if(type ==='todo'){
+      pageInfo = todoInfo
       dataPanel = (
-        <ul className="type0">
+        <ul className="todoList">
           {
-            todos.map((todo, index)=>(
-              <li onClick={e=>this.showApprove(e, index+1, todo)} key={todo.id}>
-                <label>{index+1}、{isZH ? todo.titleInfo.taskTitleCn : todo.titleInfo.taskTitleEn}</label>
+            todoInfo.result.map((todo, index)=>(
+              <li onClick={e=>this.showApprove(e, todo)} key={todo.id}>
+                <label>{(todoInfo.pageNo-1)*Todo.PAGE_SIZE+index+1}、{isZH ? todo.titleInfo.taskTitleCn : todo.titleInfo.taskTitleEn}</label>
                 <p>{isZH ? todo.titleInfo.taskDescCn : todo.titleInfo.taskDescEn}</p>
               </li>
             ))
           }
         </ul>
       )
-    }else if(tab === 1){
+    }else if(type === 'track'){
+      pageInfo = trackInfo
       dataPanel = (
-        <ul className="type1" onClick={this.showTrack}>
-          <li>
-            <label>1、跟踪 任务跟踪任务跟踪</label>
-            <p>任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪</p>
-            <span>{LConfig['TRACK_PROCESSING']}</span>
-            <button>{LConfig['TRACK_BUTTON_PROCESS']}</button>
-          </li>
-          <li>
-            <label>2、跟踪 任务跟踪任务跟踪</label>
-            <p>任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪</p>
-            <span>{LConfig['TRACK_PROCESSING']}</span>
-            <button>{LConfig['TRACK_BUTTON_PROCESS']}</button>
-          </li>
-          <li>
-            <label>3、跟踪 任务跟踪任务跟踪</label>
-            <p>任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪</p>
-            <span>{LConfig['TRACK_PROCESSING']}</span>
-            <button>{LConfig['TRACK_BUTTON_PROCESS']}</button>
-          </li>
-          <li>
-            <label>4、跟踪 任务跟踪任务跟踪</label>
-            <p>任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪</p>
-            <span>{LConfig['TRACK_PROCESSING']}</span>
-            <button>{LConfig['TRACK_BUTTON_PROCESS']}</button>
-          </li>
-          <li>
-            <label>5、跟踪 任务跟踪任务跟踪</label>
-            <p>任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪</p>
-            <span>{LConfig['TRACK_PROCESSING']}</span>
-            <button>{LConfig['TRACK_BUTTON_PROCESS']}</button>
-          </li>
+        <ul className="trackList">
+          {
+            trackInfo.result.map((track, index)=>(
+              <li onClick={e=>this.showTrack(e, track)} key={track.orderId}>
+                <label>{(trackInfo.pageNo-1)*Todo.PAGE_SIZE+index+1}、{isZH ? track.titleInfo.orderTitleCn : track.titleInfo.orderTitleEn}</label>
+                <p>{isZH ? track.titleInfo.orderDescCn : track.titleInfo.orderDescEn}</p>
+                <span>{LConfig['TRACK_PROCESSING']}</span>
+                <button>{LConfig['TRACK_BUTTON_PROCESS']}</button>
+              </li>
+            ))
+          }
         </ul>
       )
-    }else if(tab === 2){
+    }else if(type === 'other'){
+      pageInfo = {pageNo: 1, count: 0}
       dataPanel = (
         <table>
           <tbody>
@@ -173,49 +254,101 @@ class Todo extends Component{
 
     return (
       <div className="Todo">
-        <ol>
-          <li onClick={e=>this.setTab(0)} className={`${tab===0 ? 'active' : ''}`}>{LConfig['TODO_TITLE']}&ensp;<span className="red">2</span></li>
-          <li onClick={e=>this.setTab(1)} className={`${tab===1 ? 'active' : ''}`}>{LConfig['TRACK_TITLE']}&ensp;<span className="blue">12</span></li>
-          <li onClick={e=>this.setTab(2)} className={`${tab===2 ? 'active' : ''}`}>{LConfig['OTHER_TITLE']}&ensp;<span className="green">12</span></li>
+        <ol onClick={this.setType}>
+          <li 
+            data-type='todo' 
+            className={`${type==='todo' ? 'active' : ''}`}>
+            {LConfig['TODO_TITLE']}&ensp;
+            <span data-type='todo' className="red">{todoInfo.count}</span>
+          </li>
+          <li 
+            data-type='track' 
+            className={`${type==='track' ? 'active' : ''}`}>
+            {LConfig['TRACK_TITLE']}&ensp;
+            <span data-type='track' className="blue">{trackInfo.count}</span>
+          </li>
+          <li 
+            data-type='other' 
+            className={`${type==='other' ? 'active' : ''}`}>
+            {LConfig['OTHER_TITLE']}&ensp;
+            <span data-type='other' className="green">12</span>
+          </li>
           <li className="empty"></li>
-          <li className="kara-oa-font orange">&#xe7a4;</li>
+          <li onClick={this.refresh} className="kara-oa-font orange">&#xe7a4;</li>
           <li className="kara-oa-font orange">&#xe671;</li>
         </ol>
-        <p className="nothing">
-          <img src={require("./nothing.png")} />
-          &emsp;当前还没有待办内容~
-        </p>
+        <section>
+          <p className="nothing">
+            <img src={require("./nothing.png")} />
+            &emsp;当前还没有待办内容~
+          </p>
+          {
+            dataPanel
+          }
+          {
+            pageInfo.pageNo>1
+            ?
+            <span onClick={this.prev} className='left kara-oa-font'>&#xe618;</span>
+            :
+            null
+          }
+          {
+            pageInfo.pageNo*Todo.PAGE_SIZE<pageInfo.count
+            ?
+            <span onClick={this.next} className='right kara-oa-font'>&#xe7a5;</span>
+            :
+            null
+          }
+        </section>
         {
-          dataPanel
-        }
-        {
-          isApprove
+          todoActive
           ?
           <div 
             className="approve"
             onClick={this.stopPropagation}>
             <header>
-              <label>{todoIndex}、{isZH ? todoObj.titleInfo.taskTitleCn : todoObj.titleInfo.taskTitleEn}</label>
-              <p>{isZH ? todoObj.titleInfo.taskDescCn : todoObj.titleInfo.taskDescEn}</p>
+              <label>{(todoInfo.pageNo-1)*Todo.PAGE_SIZE+todoInfo.result.findIndex(todo=>todo.id===todoActive.id)+1}、{isZH ? todoActive.titleInfo.taskTitleCn : todoActive.titleInfo.taskTitleEn}</label>
+              <p>{isZH ? todoActive.titleInfo.taskDescCn : todoActive.titleInfo.taskDescEn}</p>
             </header>
             <h2>
-              <button>{LConfig['TODO_AGREE']}</button>
-              <button onClick={this.toggleReject}>{LConfig['TODO_REJECT']}</button>
-              <button>{LConfig['TODO_DETAIL']}</button>
-              <span>{todoObj.taskDispTime.substr(0, 10)}</span>
+              {
+                todoActive.acceptBtnUrl
+                ?
+                <button onClick={this.todoAgree}>{LConfig['TODO_AGREE']}</button>
+                :
+                null
+              }
+              {
+                todoActive.rejectBtnUrl
+                ?
+                <button onClick={this.toggleReject}>{LConfig['TODO_REJECT']}</button>
+                :
+                null
+              }
+              {
+                todoActive.viewBtnUrl
+                ?
+                <a href={todoActive.viewBtnUrl} target="_blank">{LConfig['TODO_DETAIL']}</a>
+                :
+                null
+              }
+              <span>{todoActive.taskDispTime.substr(0, 10)}</span>
             </h2>
             {
-              isApproveReject
+              todoActive.isApproveReject
               ?
-              <textarea placeholder={LConfig['TODO_REJECT_PLACEHOLDER']}></textarea>
+              <textarea 
+                value={todoActive.rejectReason}
+                onChange={this.rejectReasonChange}
+                placeholder={LConfig['TODO_REJECT_PLACEHOLDER']}></textarea>
               :
               null
             }
             {
-              isApproveReject
+              todoActive.isApproveReject
               ?
               <footer>
-                <button>{LConfig['TODO_SUBMIT']}</button>
+                <button onClick={this.todoReject}>{LConfig['TODO_SUBMIT']}</button>
               </footer>
               :
               null
@@ -225,35 +358,27 @@ class Todo extends Component{
           null
         }
         {
-          isTrack
+          trackActive
           ?
           <div 
             className="track" 
             onClick={this.stopTrackPropagation}>
             <header>
-              <label>1、跟踪 任务跟踪任务跟踪</label>
-              <p>任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪任务跟踪</p>
+              <label>{(trackInfo.pageNo-1)*Todo.PAGE_SIZE+trackInfo.result.findIndex(track=>track.orderId===trackActive.orderId)+1}、{isZH ? trackActive.titleInfo.orderTitleCn : trackActive.titleInfo.orderTitleEn}</label>
+              <p>{isZH ? trackActive.titleInfo.orderDescCn : trackActive.titleInfo.orderDescEn}</p>
               <span>{LConfig['TRACK_PROCESSING']}</span>
               <button>{LConfig['TRACK_BUTTON_PROCESS']}</button>
             </header>
             <div className="scroll">
-              <ul onClick={this.showPop}>
-                <li>
-                  <i></i>
-                  <p>高芳<br/>2018-03-27 19:12</p>
-                </li>
-                <li>
-                  <i></i>
-                  <p>高芳<br/>2018-03-27 19:12</p>
-                </li>
-                <li>
-                  <i></i>
-                  <p>高芳<br/>2018-03-27 19:12</p>
-                </li>
-                <li className="active">
-                  <i></i>
-                  <p>高芳<br/>2018-03-27 19:12</p>
-                </li>
+              <ul>
+                {
+                  trackActive.nodeInfo.map(node=>(
+                    <li className={`${node.nodeStatus==='1' ? 'done' : ''} ${node.nodeStatus==='2' ? 'wait' : ''}`} key={node.nodeSeq}>
+                      <i onClick={e=>this.showPop(e, node)}></i>
+                      <p>{node.accountName||(isZH ? node.nodeNameCn : node.nodeNameEn)}<br/>{node.nodeStatusDate}</p>
+                    </li>
+                  ))
+                }
               </ul>
             </div>
           </div>
@@ -261,9 +386,9 @@ class Todo extends Component{
           null
         }
         {
-          pop.show
+          pop
           ?
-          <Pop left={pop.left} top={pop.top} />
+          <Pop node={pop.node} left={pop.left} top={pop.top} />
           :
           null
         }

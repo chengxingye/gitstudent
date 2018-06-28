@@ -41,104 +41,134 @@ div.KaraOA{
         }
       }
     }
-    >p.nothing{
-      display: none;
-      margin-top: 40px;
-      font-size: 14px;
-      color: #838383;
-      text-align: center;
-      line-height: 89px;
-      >img{
-        vertical-align: middle;
-      }
-    }
-    >ul.type0{
-      color: #838383;
-      margin: 9px 0;
-      line-height: 30px;
-      white-space: nowrap;
-      >li{
-        padding: 0 10px;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        >label{
-          flex: 0 0 130px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          margin-right: 20px;
-          cursor: pointer;
-        }
-        >p{
-          width: 0;
-          flex: 1 1 auto;
-          overflow: hidden;
-          text-overflow: ellipsis;
+    >section{
+      height: 168px;
+      overflow: hidden;
+      position: relative;
+      >p.nothing{
+        display: none;
+        margin-top: 40px;
+        font-size: 14px;
+        color: #838383;
+        text-align: center;
+        line-height: 89px;
+        >img{
+          vertical-align: middle;
         }
       }
-    }
-    >ul.type1{
-      color: #838383;
-      margin: 9px 0;
-      line-height: 30px;
-      white-space: nowrap;
-      >li{
-        padding: 0 10px;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        >label{
-          flex: 0 0 130px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          margin-right: 20px;
+      >ul.todoList{
+        color: #838383;
+        margin: 9px 0;
+        line-height: 30px;
+        white-space: nowrap;
+        >li{
+          padding: 0 10px;
+          display: flex;
+          align-items: center;
           cursor: pointer;
+          >label{
+            flex: 0 0 130px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-right: 20px;
+            cursor: pointer;
+          }
+          >p{
+            width: 0;
+            flex: 1 1 auto;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
         }
-        >p{
-          width: 0;
-          flex: 1 1 auto;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-        >span{
-          display: none;
-          flex: 0 0 75px;
-          color: #ff8d3a;
-          text-align: center;
-        }
-        >button{
-          display: none;
-          outline: none;
+      }
+      >ul.trackList{
+        color: #838383;
+        margin: 9px 0;
+        line-height: 30px;
+        white-space: nowrap;
+        >li{
+          padding: 0 10px;
+          display: flex;
+          align-items: center;
           cursor: pointer;
-          flex: 0 0 50px;
-          background-color: #ff8d3a;
-          color: #FFFFFF;
-          border: none;
-          height: 20px;
-          border-radius: 20px;
-        }
-        &:hover{
-          border-top: 1px solid #d9d9d9;
-          border-bottom: 1px solid #d9d9d9;
-          box-shadow: 0 0 10px #e3e3e3;
+          >label{
+            flex: 0 0 130px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-right: 20px;
+            cursor: pointer;
+          }
+          >p{
+            width: 0;
+            flex: 1 1 auto;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
           >span{
-            display: block;
+            display: none;
+            flex: 0 0 75px;
+            color: #ff8d3a;
+            text-align: center;
           }
           >button{
-            display: block;
+            display: none;
+            outline: none;
+            cursor: pointer;
+            flex: 0 0 50px;
+            background-color: #ff8d3a;
+            color: #FFFFFF;
+            border: none;
+            height: 20px;
+            border-radius: 20px;
+          }
+          &:hover{
+            border-top: 1px solid #d9d9d9;
+            border-bottom: 1px solid #d9d9d9;
+            box-shadow: 0 0 10px #e3e3e3;
+            >span{
+              display: block;
+            }
+            >button{
+              display: block;
+            }
           }
         }
       }
-    }
-    >table{
-      margin: 9px 0;
-      width: 100%;
-      border-spacing: 0;
-      >tbody>tr>td{
-        padding: 15px 20px;
-        line-height: 20px;
+      >table{
+        margin: 9px 0;
+        width: 100%;
+        border-spacing: 0;
+        >tbody>tr>td{
+          padding: 15px 20px;
+          line-height: 20px;
+          >span{
+            color: #5f95fd;
+          }
+        }
+      }
+      &:hover{
         >span{
-          color: #5f95fd;
+          display: block;
+        }
+      }
+      >span{
+        display: none;
+        position: absolute;
+        top: 50%;
+        width: 20px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        background-color: rgba(0,0,0,0.1);
+        transform: translate(0, -50%);
+        cursor: pointer;
+        color: #FFFFFF;
+        user-select: none;
+        &.left{
+          left: 0;
+        }
+        &.right{
+          right: 0;
         }
       }
     }
@@ -194,9 +224,14 @@ div.KaraOA{
           &:nth-child(2){
             background-color: #a2a2a2;
           }
-          &:nth-child(3){
-            background-color: #5f95fd;
-          }
+        }
+        >a{
+          line-height: 20px;
+          border-radius: 20px;
+          font-size: 12px;
+          padding: 0 15px;
+          color: #FFFFFF;
+          background-color: #5f95fd;
         }
         >span{
           display: block;
@@ -292,23 +327,32 @@ div.KaraOA{
             vertical-align: top;
             width: 127px;
             white-space: normal;
-            border-top: 2px solid #b2b2b2;
+            border-top: 2px solid #ff9445;
             position: relative;
             font-size: 0.39rem;
-            color: #b2b2b2;
+            color: #ff9445;
             >i{
               position: absolute;
               left: -8px;
               top: -9px;
               width: 16px;
               height: 16px;
-              background-color: #b2b2b2;
               border-radius: 16px;
+              border: 2px solid #ff9445;
+              background-color: #FFFFFF;
               cursor: pointer;
             }
-            &.active{
-              color: #ff9445;
+            &.done{
+              border-top: 2px solid #b2b2b2;
+              color: #b2b2b2;
               >i{
+                border: none;
+                background-color: #b2b2b2;
+              }
+            }
+            &.wait{
+              >i{
+                border: none;
                 background-color: #ff9445;
               }
             }

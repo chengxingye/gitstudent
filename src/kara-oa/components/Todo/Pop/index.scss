@@ -39,17 +39,22 @@ div.KaraOAPop{
   >div:last-child{
     width: 0;
     flex: 1 1 auto;
-    white-space: nowrap;
-    overflow: hidden;
     >p{
       font-size: 14px;
       color: #838383;
       line-height: 20px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
     >a{
+      display: block;
       font-size: 14px;
       color: #5f95fd;
       line-height: 20px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   }
   &:before{

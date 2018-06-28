@@ -248,11 +248,17 @@ class Modal extends Component{
                         <p>{isZH ? webAppInfos[app.id].appName : webAppInfos[app.id].appNameEn}</p>
                         <div>
                           {
-                            customList.includes(app.id)
+                            webAppInfos[app.id].canCustom!==1
                             ?
-                            <button onClick={e=>this.onToggle(app.id)}>{LConfig['MODAL_CANCEL']}</button>
+                            null
                             :
-                            <button onClick={e=>this.onToggle(app.id)}>{LConfig['MODAL_ADD']}</button>
+                            (
+                              customList.includes(app.id)
+                              ?
+                              <button onClick={e=>this.onToggle(app.id)}>{LConfig['MODAL_CANCEL']}</button>
+                              :
+                              <button onClick={e=>this.onToggle(app.id)}>{LConfig['MODAL_ADD']}</button>
+                            )
                           }
                           {
                             app.children&&app.children.length>0
