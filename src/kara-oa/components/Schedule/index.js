@@ -3,6 +3,8 @@ import {inject, observer} from 'mobx-react'
 import './index.scss'
 import Language from '../../language'
 import API from '../../api'
+import Modal from './Modal'
+import {Confirm, Toast} from '../common'
 
 @inject('Config')
 @observer
@@ -24,10 +26,15 @@ class Schedule extends Component{
       pageNo: 1,
       pageCount: 0,
       result: [],
+      operate: null,
     }
   }
 
   componentDidMount(){
+    this.refresh()
+  }
+
+  refresh = ()=>{
     const {year, month, today} = this.state
     this.getMonthList(year, month)
     this.getDayList(today.y, today.m, today.d)
@@ -55,7 +62,7 @@ class Schedule extends Component{
         let dd = new Date(o.beginTime)
         let h = dd.getHours()
         let m = dd.getMinutes()
-        o.beginTime = `${h<10 ? '0'+h : h}:${m<10 ? '0'+m : m}`
+        o.beginTimeShow = `${h<10 ? '0'+h : h}:${m<10 ? '0'+m : m}`
       })
       this.setState({
         result: res.resultList,
@@ -131,9 +138,79 @@ class Schedule extends Component{
     this.setState({pageNo: this.state.pageNo+1})
   }
 
+  modify = event=>{
+    if(event.repeatType){
+      this.setState({
+        operate: {
+          method: 'modify',
+          event,
+        }
+      })
+    }else{
+      // TODO 修改事件
+      Toast.info('修改成功')
+    }
+  }
+
+  deleteEvent = id=>{
+    API.post(`/api/v1.0.0/schedule/event/delete/${id}`).end().then(res=>{
+      Toast.info('删除成功')
+      this.refresh()
+    })
+  }
+
+  delete = event=>{
+    if(event.repeatType){
+      this.setState({
+        operate: {
+          method: 'delete',
+          event,
+        }
+      })
+    }else{
+      Confirm('删除后无法恢复，是否确认删除？', ()=>{
+        this.deleteEvent(event.id)
+      })
+    }
+  }
+
+  onCancel = ()=>{
+    this.setState({operate: null})
+  }
+
+  deleteRepeatEvent = body=>{
+    API.post('/api/v1.0.0/schedule/event/modify.repeat').end(null, body).then(res=>{
+      Toast.info('删除成功')
+      this.refresh()
+    })
+  }
+
+  onOK = type=>{
+    const {operate} = this.state
+    if(operate.method === 'delete'){
+      let dd = new Date(operate.event.beginTime)
+      let y = dd.getFullYear()
+      let m = dd.getMonth()+1
+      let d = dd.getDate()
+      this.deleteRepeatEvent({
+        method: operate.method,
+        type,
+        changeDate: `${y}${m<10 ? '0'+m : m}${d<10 ? '0'+d : d}`,
+        scheduleEvent: {
+          correlationEventId: operate.event.correlationEventId,
+          id: operate.event.id,
+        }
+      })
+    }else if(operate.method === 'modify'){
+      // TODO 修改重复事件
+      Toast.info('修改成功')
+    }
+    this.setState({operate: null})
+  }
+
   render(){
     const LConfig = Language[this.props.Config.language]['Schedule']
-    const {year, month, today, marks, pageNo, pageCount, result} = this.state
+    const {year, month, today, marks, pageNo, pageCount, result, operate} = this.state
     const dp = this.generateDatePanel(year, month)
 
     return (
@@ -188,17 +265,17 @@ class Schedule extends Component{
                 {
                   result.slice((pageNo-1)*Schedule.PAGE_SIZE, pageNo*Schedule.PAGE_SIZE).map(event=>(
                     <li key={event.id}>
-                      <label>{event.isAllDay==='yes' ? LConfig['ALL_DAY'] : event.beginTime}</label>
+                      <label>{event.isAllDay==='yes' ? LConfig['ALL_DAY'] : event.beginTimeShow}</label>
                       <p>{event.content}</p>
                       <div className="pop">
                         <header>
-                          <label>{event.isAllDay==='yes' ? LConfig['ALL_DAY'] : event.beginTime}</label>
+                          <label>{event.isAllDay==='yes' ? LConfig['ALL_DAY'] : event.beginTimeShow}</label>
                           <p>{event.content}</p>
                         </header>
                         <footer>
                           <button>{LConfig['TO_DETAIL']}</button>
-                          <button>{LConfig['TO_EDIT']}</button>
-                          <button>{LConfig['TO_DEL']}</button>
+                          <button onClick={e=>this.modify(event)}>{LConfig['TO_EDIT']}</button>
+                          <button onClick={e=>this.delete(event)}>{LConfig['TO_DEL']}</button>
                         </footer>
                       </div>
                     </li>
@@ -223,6 +300,16 @@ class Schedule extends Component{
             </section>
           </div>
         </section>
+        {
+          operate
+          ?
+          <Modal 
+            method={operate.method}
+            onCancel={this.onCancel}
+            onOK={this.onOK} />
+          :
+          null
+        }
       </div>
     )
   }

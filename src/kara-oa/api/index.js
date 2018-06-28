@@ -1,5 +1,6 @@
 import 'whatwg-fetch'
 import Config from '../stores/Config'
+import {Toast} from '../components/common'
 
 export default{
   url: '',
@@ -31,6 +32,19 @@ export default{
         ...this.header,
       },
       body: JSON.stringify(body),
-    }).then(res=>res.json())
+    }).then(res=>res.json()).then(res=>{
+      if(res.error_description){
+        Toast.error(res.error_description)
+        return Promise.reject()
+      }else if(res.resultCode !== '000000'){
+        Toast.error(res.resultMessage)
+        return Promise.reject()
+      }else{
+        return res
+      }
+    }).catch(e=>{
+      Toast.error('Please try again later')
+      return Promise.reject()
+    })
   },
 }

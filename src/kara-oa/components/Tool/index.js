@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {inject, observer} from 'mobx-react'
 import './index.scss'
-import {Paging} from '../common'
+import {Paging, Toast} from '../common'
 import API from '../../api'
 import Language from '../../language'
 import Modal from './Modal'
@@ -85,7 +85,7 @@ class Tool extends Component{
     API.post('/api/v1.0.0/webhook/w_custom_appCatalog.set').end(null, {
       webCustomAppCatalogIds: types
     }).then(res=>{
-      console.log(res)
+      Toast.info('调整成功')
     })
   }
 
@@ -104,7 +104,7 @@ class Tool extends Component{
     API.post('/api/v1.0.0/webhook/w_custom_apps.set').end(null, {
       webCustomAppIds: this.state.nodeTree[Tool.COMMON_ID].map(app=>app.id)
     }).then(res=>{
-      console.log(res)
+      Toast.info('保存成功')
     })
   }
 

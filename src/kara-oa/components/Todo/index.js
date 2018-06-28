@@ -4,6 +4,7 @@ import './index.scss'
 import Pop from './Pop'
 import Language from '../../language'
 import API from '../../api'
+import {Toast} from '../common'
 
 @inject('Config')
 @observer
@@ -98,7 +99,7 @@ class Todo extends Component{
   todoReject = ()=>{
     const {todoActive} = this.state
     if(!todoActive.rejectReason){
-      console.log('请输入驳回原因')
+      Toast.error('请输入驳回原因')
     }else{
       this.postTodo(false)
     }
@@ -114,7 +115,8 @@ class Todo extends Component{
       channel: 'oa',
       rejectReason: isAgree ? undefined : todoActive.rejectReason,
     }).then(res=>{
-      console.log(res)
+      Toast.error('审批成功')
+      this.refresh()
     })
   }
 

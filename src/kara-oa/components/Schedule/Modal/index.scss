@@ -1,0 +1,53 @@
+div.KaraOAScheduleModal{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  >div{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFFFFF;
+    width: 312px;
+    border-radius: 5px;
+    overflow: hidden;
+    >header{
+      background-color: #f3f3f3;
+      line-height: 78px;
+      font-size: 18px;
+      padding-left: 38px;
+      color: #232323;
+    }
+    >label{
+      display: block;
+      padding: 0 38px;
+      padding-top: 15px;
+      font-size: 14px;
+      >input{
+        outline: none;
+      }
+    }
+    >footer{
+      text-align: center;
+      padding: 35px 0;
+      >button{
+        border: none;
+        width: 106px;
+        height: 32px;
+        border-radius: 5px;
+        margin: 0 12px;
+        background-color:#bfbfbf;
+        font-size: 14px;
+        color: #fffefe;
+        cursor: pointer;
+        outline: none;
+        &.ok{
+          background-color: #ff8928;
+        }
+      }
+    }
+  }
+}
