@@ -15,7 +15,7 @@ class Frame extends Component{
 
   state = {
     language: 'zh',
-    token: 'kfcA8tRVvMW8AhotuyPMfQmtxy38AVKi',
+    token: 'djrWLcSdT3GRhS7hc19gJUXtR7qWBGmt',
     karagw: 'https://xin-sandbox.asiainfo.com:16020',
   }
 
