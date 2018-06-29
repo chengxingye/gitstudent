@@ -4,7 +4,7 @@ div.KaraOA {
   margin: 0 auto; }
   div.KaraOA > a {
     display: block;
-    width: 100%;
+    margin: 0 10px;
     height: 70px;
     background-size: cover;
     background-position: center;
@@ -55,6 +55,7 @@ div.KaraOA div.Tool {
         -ms-user-select: none;
             user-select: none; }
     div.KaraOA div.Tool > ol > li {
+      width: 0;
       height: 44px;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
@@ -67,6 +68,485 @@ div.KaraOA div.Tool {
       div.KaraOA div.Tool > ol > li.active {
         color: #2fc257;
         background-color: #FFFFFF; }
+  div.KaraOA div.Tool > nav {
+    height: 80px;
+    margin: 0 4px;
+    margin-top: 24px;
+    display: -ms-flexbox;
+    display: flex; }
+    div.KaraOA div.Tool > nav > a {
+      width: 0;
+      -ms-flex: 0 1 87px;
+          flex: 0 1 87px;
+      margin: 0 5px; }
+      div.KaraOA div.Tool > nav > a > b {
+        position: relative;
+        display: block;
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
+        border-radius: 5px;
+        background-color: #ffa969;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center; }
+        div.KaraOA div.Tool > nav > a > b.add {
+          background-color: transparent;
+          background-size: cover;
+          background-image: url(img/add.586a5.png); }
+        div.KaraOA div.Tool > nav > a > b > i {
+          position: absolute;
+          right: -8px;
+          top: -8px;
+          width: 20px;
+          height: 20px;
+          line-height: 20px;
+          text-align: center;
+          color: #ff533f; }
+      div.KaraOA div.Tool > nav > a > p {
+        font-size: 14px;
+        line-height: 30px;
+        color: #333333;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+           text-overflow: ellipsis; }
+  div.KaraOA div.Tool > footer {
+    height: 40px;
+    position: relative; }
+    div.KaraOA div.Tool > footer > button {
+      position: absolute;
+      right: 25px;
+      bottom: 0;
+      z-index: 20;
+      font-size: 14px;
+      line-height: 40px;
+      color: #5f95fd;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      outline: none;
+      padding: 0; }
+
+div.KaraOA div.Paging,
+div.KaraOAModal div.Paging {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 40px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center; }
+  div.KaraOA div.Paging > i,
+  div.KaraOAModal div.Paging > i {
+    -ms-flex: 0 1 20px;
+        flex: 0 1 20px;
+    height: 2px;
+    margin: 0 5px;
+    background-color: #a0a0a0;
+    cursor: pointer; }
+    div.KaraOA div.Paging > i.active,
+    div.KaraOAModal div.Paging > i.active {
+      background-color: #ff8d3a; }
+
+div.KaraOAModal {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); }
+  div.KaraOAModal > div.default {
+    width: 860px;
+    height: 560px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 30;
+    margin-left: -430px;
+    margin-top: -280px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding: 30px; }
+    div.KaraOAModal > div.default > h1 {
+      margin: 0;
+      font-size: 16px;
+      color: #282828;
+      line-height: 24px;
+      position: relative; }
+      div.KaraOAModal > div.default > h1 > i {
+        position: absolute;
+        right: 0;
+        font-size: 24px;
+        cursor: pointer; }
+    div.KaraOAModal > div.default > form {
+      width: 400px;
+      height: 34px;
+      background-color: #f3f3f3;
+      border: 1px solid #d9d9d9;
+      border-radius: 5px;
+      margin: 0 auto;
+      margin-top: 40px;
+      display: -ms-flexbox;
+      display: flex; }
+      div.KaraOAModal > div.default > form.focus {
+        background-color: #FFFFFF;
+        border: 1px solid #ffa969; }
+        div.KaraOAModal > div.default > form.focus > i {
+          color: #ffa969; }
+      div.KaraOAModal > div.default > form > i {
+        display: block;
+        width: 34px;
+        height: 34px;
+        line-height: 34px;
+        text-align: center;
+        color: #b0b0b0; }
+        div.KaraOAModal > div.default > form > i:last-child {
+          cursor: pointer; }
+      div.KaraOAModal > div.default > form > input {
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+        border: none;
+        background-color: transparent;
+        outline: none;
+        font-size: 14px;
+        color: #282828; }
+    div.KaraOAModal > div.default > section {
+      width: 710px;
+      height: 340px;
+      margin: 34px auto;
+      border: 1px solid #d9d9d9;
+      border-radius: 5px;
+      overflow: hidden;
+      position: relative; }
+      div.KaraOAModal > div.default > section > ol {
+        margin: 0;
+        padding: 0;
+        height: 47px;
+        line-height: 47px;
+        display: -ms-flexbox;
+        display: flex;
+        text-align: center; }
+        div.KaraOAModal > div.default > section > ol > li {
+          width: 0;
+          -ms-flex: 1 1 auto;
+              flex: 1 1 auto;
+          background-color: #f2f2f2;
+          border-right: 1px solid #d9d9d9;
+          border-bottom: 1px solid #d9d9d9;
+          font-size: 14px;
+          color: #838383;
+          cursor: pointer; }
+          div.KaraOAModal > div.default > section > ol > li:last-child {
+            border-right: none; }
+          div.KaraOAModal > div.default > section > ol > li.active {
+            background-color: #FFFFFF;
+            border-bottom: none; }
+      div.KaraOAModal > div.default > section > ul {
+        margin: 20px 19px;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-flow: wrap;
+            flex-flow: wrap; }
+        div.KaraOAModal > div.default > section > ul > li {
+          width: 94px;
+          height: 94px;
+          margin: 2px 20px;
+          -ms-flex: 0 0 auto;
+              flex: 0 0 auto;
+          position: relative; }
+          div.KaraOAModal > div.default > section > ul > li > b {
+            display: block;
+            margin: 0 auto;
+            margin-top: 14px;
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            background-color: #ffa969;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative; }
+            div.KaraOAModal > div.default > section > ul > li > b > sup {
+              position: absolute;
+              right: 0;
+              top: 0;
+              font-size: 12px;
+              color: #ffffff;
+              background-color: #b2b2b2;
+              border-radius: 18px;
+              line-height: 18px;
+              padding: 0 8px;
+              white-space: nowrap;
+              -webkit-transform: translate(80%, -45%);
+                  -ms-transform: translate(80%, -45%);
+                      transform: translate(80%, -45%); }
+          div.KaraOAModal > div.default > section > ul > li > div {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 94px;
+            height: 94px;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            -ms-flex-direction: column;
+                flex-direction: column;
+            -ms-flex-pack: center;
+                justify-content: center; }
+            div.KaraOAModal > div.default > section > ul > li > div > button {
+              -ms-flex: 0 1 auto;
+                  flex: 0 1 auto;
+              width: 60px;
+              height: 20px;
+              line-height: 20px;
+              font-size: 12px;
+              margin: 5px 17px;
+              background-color: #f2f2f2;
+              border: none;
+              border-radius: 3px;
+              padding: 0;
+              color: #838383;
+              cursor: pointer;
+              outline: none; }
+          div.KaraOAModal > div.default > section > ul > li:hover > div {
+            display: -ms-flexbox;
+            display: flex; }
+          div.KaraOAModal > div.default > section > ul > li:hover > b > sup {
+            display: none; }
+          div.KaraOAModal > div.default > section > ul > li > p {
+            font-size: 14px;
+            color: #696969;
+            line-height: 30px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            -o-text-overflow: ellipsis;
+               text-overflow: ellipsis; }
+    div.KaraOAModal > div.default > ul {
+      margin: 40px 10px;
+      height: 339px;
+      overflow-x: hidden;
+      overflow-y: auto; }
+      div.KaraOAModal > div.default > ul > li {
+        padding: 15px;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+            align-items: center;
+        background-color: #f7f7f7;
+        margin-bottom: 2px;
+        position: relative;
+        overflow: hidden; }
+        div.KaraOAModal > div.default > ul > li > sup {
+          position: absolute;
+          left: -20px;
+          top: 10px;
+          z-index: 30;
+          background-color: #ffa969;
+          font-size: 12px;
+          color: #FFFFFF;
+          width: 80px;
+          line-height: 18px;
+          text-align: center;
+          -webkit-transform-origin: 50%, 50%;
+              -ms-transform-origin: 50%, 50%;
+                  transform-origin: 50%, 50%;
+          -webkit-transform: rotate(-45deg);
+              -ms-transform: rotate(-45deg);
+                  transform: rotate(-45deg); }
+        div.KaraOAModal > div.default > ul > li > b {
+          display: block;
+          width: 50px;
+          height: 50px;
+          -ms-flex: 0 0 auto;
+              flex: 0 0 auto;
+          margin-left: 30px;
+          margin-right: 50px;
+          background-color: #ffa969;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+          border-radius: 5px; }
+        div.KaraOAModal > div.default > ul > li > div {
+          width: 0;
+          -ms-flex: 1 1 auto;
+              flex: 1 1 auto; }
+          div.KaraOAModal > div.default > ul > li > div > h1 {
+            margin: 0;
+            font-size: 16px;
+            color: #696969;
+            line-height: 33px;
+            overflow: hidden;
+            white-space: nowrap;
+            -o-text-overflow: ellipsis;
+               text-overflow: ellipsis; }
+          div.KaraOAModal > div.default > ul > li > div > h2 {
+            margin: 0;
+            font-size: 14px;
+            color: #888888;
+            line-height: 24px;
+            overflow: hidden;
+            white-space: nowrap;
+            -o-text-overflow: ellipsis;
+               text-overflow: ellipsis; }
+          div.KaraOAModal > div.default > ul > li > div > p {
+            font-size: 14px;
+            color: #b2b2b2;
+            line-height: 24px;
+            overflow: hidden;
+            white-space: nowrap;
+            -o-text-overflow: ellipsis;
+               text-overflow: ellipsis; }
+        div.KaraOAModal > div.default > ul > li > button {
+          -ms-flex: 0 0 auto;
+              flex: 0 0 auto;
+          width: 80px;
+          height: 30px;
+          background-color: #ffa969;
+          color: #FFFFFF;
+          font-size: 14px;
+          border: none;
+          outline: none;
+          border-radius: 30px;
+          cursor: pointer; }
+          div.KaraOAModal > div.default > ul > li > button.added {
+            background-color: #b2b2b2; }
+  div.KaraOAModal > div.subView {
+    width: 860px;
+    height: 560px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 40;
+    margin-left: -430px;
+    margin-top: -280px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding: 30px; }
+    div.KaraOAModal > div.subView > h1 {
+      margin: 0;
+      font-size: 16px;
+      color: #282828;
+      line-height: 24px;
+      position: relative; }
+      div.KaraOAModal > div.subView > h1 > i {
+        position: absolute;
+        right: 0;
+        font-size: 24px;
+        cursor: pointer; }
+      div.KaraOAModal > div.subView > h1 > span {
+        color: #ffa969; }
+    div.KaraOAModal > div.subView > section {
+      width: 710px;
+      height: 420px;
+      margin: 0 auto;
+      margin-top: 30px;
+      border-radius: 5px;
+      border: 1px solid #d9d9d9; }
+      div.KaraOAModal > div.subView > section > ul {
+        width: 650px;
+        height: 300px;
+        margin: 0 auto;
+        margin-top: 20px;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-flow: wrap;
+            flex-flow: wrap; }
+        div.KaraOAModal > div.subView > section > ul > li {
+          width: 0;
+          height: 100px;
+          -ms-flex: 0 0 100px;
+              flex: 0 0 100px;
+          margin: 0 15px;
+          position: relative; }
+          div.KaraOAModal > div.subView > section > ul > li > b {
+            display: block;
+            margin: 0 auto;
+            margin-top: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            background-color: #ffa969;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative; }
+            div.KaraOAModal > div.subView > section > ul > li > b > sup {
+              position: absolute;
+              right: 0;
+              top: 0;
+              font-size: 12px;
+              color: #ffffff;
+              background-color: #b2b2b2;
+              border-radius: 18px;
+              line-height: 18px;
+              padding: 0 8px;
+              white-space: nowrap;
+              -webkit-transform: translate(80%, -45%);
+                  -ms-transform: translate(80%, -45%);
+                      transform: translate(80%, -45%); }
+          div.KaraOAModal > div.subView > section > ul > li > p {
+            font-size: 14px;
+            color: #696969;
+            line-height: 30px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            -o-text-overflow: ellipsis;
+               text-overflow: ellipsis; }
+          div.KaraOAModal > div.subView > section > ul > li > div {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.5); }
+            div.KaraOAModal > div.subView > section > ul > li > div > button {
+              width: 60px;
+              height: 20px;
+              line-height: 20px;
+              margin: 40px 20px;
+              font-size: 12px;
+              background-color: #f2f2f2;
+              border: none;
+              border-radius: 3px;
+              padding: 0;
+              color: #838383;
+              cursor: pointer;
+              outline: none; }
+          div.KaraOAModal > div.subView > section > ul > li:hover > div {
+            display: block; }
+          div.KaraOAModal > div.subView > section > ul > li:hover > b > sup {
+            display: none; }
+      div.KaraOAModal > div.subView > section > div {
+        height: 40px;
+        position: relative; }
+      div.KaraOAModal > div.subView > section > button {
+        display: block;
+        margin: 0 auto;
+        width: 110px;
+        height: 32px;
+        border: 1px solid #d9d9d9;
+        background-color: #f2f2f2;
+        color: #838383;
+        font-size: 14px;
+        border-radius: 5px;
+        outline: none;
+        cursor: pointer; }
 
 div.KaraOA div.Todo {
   background-color: #FFFFFF;
@@ -101,104 +581,132 @@ div.KaraOA div.Todo {
         color: #055dca; }
       div.KaraOA div.Todo > ol > li > span.green {
         color: #2aca05; }
-  div.KaraOA div.Todo > p.nothing {
-    display: none;
-    margin-top: 40px;
-    font-size: 14px;
-    color: #838383;
-    text-align: center;
-    line-height: 89px; }
-    div.KaraOA div.Todo > p.nothing > img {
-      vertical-align: middle; }
-  div.KaraOA div.Todo > ul.type0 {
-    color: #838383;
-    margin: 9px 0;
-    line-height: 30px;
-    white-space: nowrap; }
-    div.KaraOA div.Todo > ul.type0 > li {
-      padding: 0 10px;
-      display: -ms-flexbox;
-      display: flex;
-      -ms-flex-align: center;
-          align-items: center;
-      cursor: pointer; }
-      div.KaraOA div.Todo > ul.type0 > li > label {
-        -ms-flex: 0 0 130px;
-            flex: 0 0 130px;
-        overflow: hidden;
-        -o-text-overflow: ellipsis;
-           text-overflow: ellipsis;
-        margin-right: 20px;
+  div.KaraOA div.Todo > section {
+    height: 168px;
+    overflow: hidden;
+    position: relative; }
+    div.KaraOA div.Todo > section > p.nothing {
+      display: none;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #838383;
+      text-align: center;
+      line-height: 89px; }
+      div.KaraOA div.Todo > section > p.nothing > img {
+        vertical-align: middle; }
+    div.KaraOA div.Todo > section > ul.todoList {
+      color: #838383;
+      margin: 9px 0;
+      line-height: 30px;
+      white-space: nowrap; }
+      div.KaraOA div.Todo > section > ul.todoList > li {
+        padding: 0 10px;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+            align-items: center;
         cursor: pointer; }
-      div.KaraOA div.Todo > ul.type0 > li > p {
-        width: 0;
-        -ms-flex: 1 1 auto;
-            flex: 1 1 auto;
-        overflow: hidden;
-        -o-text-overflow: ellipsis;
-           text-overflow: ellipsis; }
-  div.KaraOA div.Todo > ul.type1 {
-    color: #838383;
-    margin: 9px 0;
-    line-height: 30px;
-    white-space: nowrap; }
-    div.KaraOA div.Todo > ul.type1 > li {
-      padding: 0 10px;
-      display: -ms-flexbox;
-      display: flex;
-      -ms-flex-align: center;
-          align-items: center;
-      cursor: pointer; }
-      div.KaraOA div.Todo > ul.type1 > li > label {
-        -ms-flex: 0 0 130px;
-            flex: 0 0 130px;
-        overflow: hidden;
-        -o-text-overflow: ellipsis;
-           text-overflow: ellipsis;
-        margin-right: 20px;
+        div.KaraOA div.Todo > section > ul.todoList > li > label {
+          -ms-flex: 0 0 130px;
+              flex: 0 0 130px;
+          overflow: hidden;
+          -o-text-overflow: ellipsis;
+             text-overflow: ellipsis;
+          margin-right: 20px;
+          cursor: pointer; }
+        div.KaraOA div.Todo > section > ul.todoList > li > p {
+          width: 0;
+          -ms-flex: 1 1 auto;
+              flex: 1 1 auto;
+          overflow: hidden;
+          -o-text-overflow: ellipsis;
+             text-overflow: ellipsis; }
+    div.KaraOA div.Todo > section > ul.trackList {
+      color: #838383;
+      margin: 9px 0;
+      line-height: 30px;
+      white-space: nowrap; }
+      div.KaraOA div.Todo > section > ul.trackList > li {
+        padding: 0 10px;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+            align-items: center;
         cursor: pointer; }
-      div.KaraOA div.Todo > ul.type1 > li > p {
-        width: 0;
-        -ms-flex: 1 1 auto;
-            flex: 1 1 auto;
-        overflow: hidden;
-        -o-text-overflow: ellipsis;
-           text-overflow: ellipsis; }
-      div.KaraOA div.Todo > ul.type1 > li > span {
-        display: none;
-        -ms-flex: 0 0 75px;
-            flex: 0 0 75px;
-        color: #ff8d3a;
-        text-align: center; }
-      div.KaraOA div.Todo > ul.type1 > li > button {
-        display: none;
-        outline: none;
-        cursor: pointer;
-        -ms-flex: 0 0 50px;
-            flex: 0 0 50px;
-        background-color: #ff8d3a;
-        color: #FFFFFF;
-        border: none;
-        height: 20px;
-        border-radius: 20px; }
-      div.KaraOA div.Todo > ul.type1 > li:hover {
-        border-top: 1px solid #d9d9d9;
-        border-bottom: 1px solid #d9d9d9;
-        -webkit-box-shadow: 0 0 10px #e3e3e3;
-                box-shadow: 0 0 10px #e3e3e3; }
-        div.KaraOA div.Todo > ul.type1 > li:hover > span {
-          display: block; }
-        div.KaraOA div.Todo > ul.type1 > li:hover > button {
-          display: block; }
-  div.KaraOA div.Todo > table {
-    margin: 9px 0;
-    width: 100%;
-    border-spacing: 0; }
-    div.KaraOA div.Todo > table > tbody > tr > td {
-      padding: 15px 20px;
-      line-height: 20px; }
-      div.KaraOA div.Todo > table > tbody > tr > td > span {
-        color: #5f95fd; }
+        div.KaraOA div.Todo > section > ul.trackList > li > label {
+          -ms-flex: 0 0 130px;
+              flex: 0 0 130px;
+          overflow: hidden;
+          -o-text-overflow: ellipsis;
+             text-overflow: ellipsis;
+          margin-right: 20px;
+          cursor: pointer; }
+        div.KaraOA div.Todo > section > ul.trackList > li > p {
+          width: 0;
+          -ms-flex: 1 1 auto;
+              flex: 1 1 auto;
+          overflow: hidden;
+          -o-text-overflow: ellipsis;
+             text-overflow: ellipsis; }
+        div.KaraOA div.Todo > section > ul.trackList > li > span {
+          display: none;
+          -ms-flex: 0 0 75px;
+              flex: 0 0 75px;
+          color: #ff8d3a;
+          text-align: center; }
+        div.KaraOA div.Todo > section > ul.trackList > li > button {
+          display: none;
+          outline: none;
+          cursor: pointer;
+          -ms-flex: 0 0 50px;
+              flex: 0 0 50px;
+          background-color: #ff8d3a;
+          color: #FFFFFF;
+          border: none;
+          height: 20px;
+          border-radius: 20px; }
+        div.KaraOA div.Todo > section > ul.trackList > li:hover {
+          border-top: 1px solid #d9d9d9;
+          border-bottom: 1px solid #d9d9d9;
+          -webkit-box-shadow: 0 0 10px #e3e3e3;
+                  box-shadow: 0 0 10px #e3e3e3; }
+          div.KaraOA div.Todo > section > ul.trackList > li:hover > span {
+            display: block; }
+          div.KaraOA div.Todo > section > ul.trackList > li:hover > button {
+            display: block; }
+    div.KaraOA div.Todo > section > table {
+      margin: 9px 0;
+      width: 100%;
+      border-spacing: 0; }
+      div.KaraOA div.Todo > section > table > tbody > tr > td {
+        padding: 15px 20px;
+        line-height: 20px; }
+        div.KaraOA div.Todo > section > table > tbody > tr > td > span {
+          color: #5f95fd; }
+    div.KaraOA div.Todo > section:hover > span {
+      display: block; }
+    div.KaraOA div.Todo > section > span {
+      display: none;
+      position: absolute;
+      top: 50%;
+      width: 20px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.1);
+      -webkit-transform: translate(0, -50%);
+          -ms-transform: translate(0, -50%);
+              transform: translate(0, -50%);
+      cursor: pointer;
+      color: #FFFFFF;
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none; }
+      div.KaraOA div.Todo > section > span.left {
+        left: 0; }
+      div.KaraOA div.Todo > section > span.right {
+        right: 0; }
   div.KaraOA div.Todo > div.approve {
     position: absolute;
     left: 0;
@@ -253,8 +761,13 @@ div.KaraOA div.Todo {
           background-color: #ff9445; }
         div.KaraOA div.Todo > div.approve > h2 > button:nth-child(2) {
           background-color: #a2a2a2; }
-        div.KaraOA div.Todo > div.approve > h2 > button:nth-child(3) {
-          background-color: #5f95fd; }
+      div.KaraOA div.Todo > div.approve > h2 > a {
+        line-height: 20px;
+        border-radius: 20px;
+        font-size: 12px;
+        padding: 0 15px;
+        color: #FFFFFF;
+        background-color: #5f95fd; }
       div.KaraOA div.Todo > div.approve > h2 > span {
         display: block;
         -ms-flex: 1 1 auto;
@@ -349,23 +862,29 @@ div.KaraOA div.Todo {
           vertical-align: top;
           width: 127px;
           white-space: normal;
-          border-top: 2px solid #b2b2b2;
+          border-top: 2px solid #ff9445;
           position: relative;
           font-size: 0.39rem;
-          color: #b2b2b2; }
+          color: #ff9445; }
           div.KaraOA div.Todo > div.track div.scroll > ul > li > i {
             position: absolute;
             left: -8px;
             top: -9px;
             width: 16px;
             height: 16px;
-            background-color: #b2b2b2;
             border-radius: 16px;
+            border: 2px solid #ff9445;
+            background-color: #FFFFFF;
             cursor: pointer; }
-          div.KaraOA div.Todo > div.track div.scroll > ul > li.active {
-            color: #ff9445; }
-            div.KaraOA div.Todo > div.track div.scroll > ul > li.active > i {
-              background-color: #ff9445; }
+          div.KaraOA div.Todo > div.track div.scroll > ul > li.done {
+            border-top: 2px solid #b2b2b2;
+            color: #b2b2b2; }
+            div.KaraOA div.Todo > div.track div.scroll > ul > li.done > i {
+              border: none;
+              background-color: #b2b2b2; }
+          div.KaraOA div.Todo > div.track div.scroll > ul > li.wait > i {
+            border: none;
+            background-color: #ff9445; }
           div.KaraOA div.Todo > div.track div.scroll > ul > li:last-child {
             width: 51px;
             border-top: 2px solid transparent; }
@@ -416,17 +935,24 @@ div.KaraOAPop {
   div.KaraOAPop > div:last-child {
     width: 0;
     -ms-flex: 1 1 auto;
-        flex: 1 1 auto;
-    white-space: nowrap;
-    overflow: hidden; }
+        flex: 1 1 auto; }
     div.KaraOAPop > div:last-child > p {
       font-size: 14px;
       color: #838383;
-      line-height: 20px; }
+      line-height: 20px;
+      overflow: hidden;
+      white-space: nowrap;
+      -o-text-overflow: ellipsis;
+         text-overflow: ellipsis; }
     div.KaraOAPop > div:last-child > a {
+      display: block;
       font-size: 14px;
       color: #5f95fd;
-      line-height: 20px; }
+      line-height: 20px;
+      overflow: hidden;
+      white-space: nowrap;
+      -o-text-overflow: ellipsis;
+         text-overflow: ellipsis; }
   div.KaraOAPop:before {
     content: '';
     position: absolute;
@@ -484,32 +1010,6 @@ div.KaraOA div.Ad {
       left: 0; }
     div.KaraOA div.Ad > span.right {
       right: 0; }
-
-div.KaraOA div.Paging,
-div.KaraOAModal div.Paging {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
-  width: 100%;
-  height: 40px;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-align: center;
-      align-items: center; }
-  div.KaraOA div.Paging > i,
-  div.KaraOAModal div.Paging > i {
-    -ms-flex: 0 1 20px;
-        flex: 0 1 20px;
-    height: 2px;
-    margin: 0 5px;
-    background-color: #a0a0a0;
-    cursor: pointer; }
-    div.KaraOA div.Paging > i.active,
-    div.KaraOAModal div.Paging > i.active {
-      background-color: #ff8d3a; }
 
 @charset "UTF-8";
 div.KaraOA div.Schedule {
@@ -717,6 +1217,54 @@ div.KaraOA div.Schedule {
             div.KaraOA div.Schedule > section > div.right > section > div.paging > span.disabled {
               color: #bababa;
               cursor: not-allowed; }
+
+div.KaraOAScheduleModal {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); }
+  div.KaraOAScheduleModal > div {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    background-color: #FFFFFF;
+    width: 312px;
+    border-radius: 5px;
+    overflow: hidden; }
+    div.KaraOAScheduleModal > div > header {
+      background-color: #f3f3f3;
+      line-height: 78px;
+      font-size: 18px;
+      padding-left: 38px;
+      color: #232323; }
+    div.KaraOAScheduleModal > div > label {
+      display: block;
+      padding: 0 38px;
+      padding-top: 15px;
+      font-size: 14px; }
+      div.KaraOAScheduleModal > div > label > input {
+        outline: none; }
+    div.KaraOAScheduleModal > div > footer {
+      text-align: center;
+      padding: 35px 0; }
+      div.KaraOAScheduleModal > div > footer > button {
+        border: none;
+        width: 106px;
+        height: 32px;
+        border-radius: 5px;
+        margin: 0 12px;
+        background-color: #bfbfbf;
+        font-size: 14px;
+        color: #fffefe;
+        cursor: pointer;
+        outline: none; }
+        div.KaraOAScheduleModal > div > footer > button.ok {
+          background-color: #ff8928; }
 
 @charset "UTF-8";
 div.KaraOA div.News {

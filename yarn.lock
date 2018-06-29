@@ -3928,10 +3928,11 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-kara-oa@^1.1.4:
-  version "1.1.4"
-  resolved "http://registry.npm.taobao.org/kara-oa/download/kara-oa-1.1.4.tgz#f3d24c2558c111e3d8d3f05391a0e0b5a4ac1789"
+kara-oa@^1.1.4, kara-oa@^1.2.0:
+  version "1.2.0"
+  resolved "http://registry.npm.taobao.org/kara-oa/download/kara-oa-1.2.0.tgz#363d7153704586d780534f9e52abc1275aa00539"
   dependencies:
+    kara-oa "^1.1.4"
     mobx "^4.3.0"
     mobx-react "^5.1.2"
     normalize.css "^8.0.0"
