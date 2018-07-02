@@ -35,7 +35,8 @@ export default function Confirm(msg, fn=()=>{}){
     confirm.addEventListener('click', e=>{
       confirm.style.display = 'none'
     }, false)
-    document.body.appendChild(confirm)
+	let root = document.getElementById('web')||document.getElementById('client')
+    root.appendChild(confirm)
   }
   confirm.style.display = 'block'
 }

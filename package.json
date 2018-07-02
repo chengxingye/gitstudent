@@ -1,6 +1,6 @@
 {
   "name": "kara-oa",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "李信",
   "description": "OA组件",
   "keywords": [
@@ -52,6 +52,7 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-router": "^4.2.0",
+    "react-scroller-plugin": "^0.0.4",
     "whatwg-fetch": "^2.0.4"
   }
 }

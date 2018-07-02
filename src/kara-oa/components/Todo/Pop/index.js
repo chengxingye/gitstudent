@@ -28,7 +28,7 @@ class Pop extends Component{
           <a href={`mailto: ${node.email}`}>{LConfig['POP_MAIL']}：{node.email}</a>
         </div>
       </div>,
-      document.body
+      document.getElementById('web')||document.getElementById('client')
     )
   }
 }

@@ -5,5 +5,5 @@ import Frame from './Frame'
 
 ReactDOM.render(
   <Frame />,
-  document.getElementById('app')
+  document.getElementById('web')
 )

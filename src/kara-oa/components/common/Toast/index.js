@@ -10,7 +10,8 @@ export default {
     p.style.cssText = `background-color:${bgColor};margin-bottom:2px;word-break:break-all;`
     p.innerHTML = msg
     toastPanel.appendChild(p)
-    document.body.appendChild(toastPanel)
+	let root = document.getElementById('web')||document.getElementById('client')
+    root.appendChild(toastPanel)
     setTimeout(()=>{
       toastPanel.removeChild(p)
       if(typeof fn === 'function'){

@@ -54,7 +54,7 @@ class Modal extends Component{
           </footer>
         </div>
       </div>,
-      document.body
+      document.getElementById('web')||document.getElementById('client')
     )
   }
 }
