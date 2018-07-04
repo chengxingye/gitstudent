@@ -22,7 +22,6 @@ div.KaraOAModal{
     >h1{
       margin: 0;
       font-size: 16px;
-      color: #282828;
       line-height: 24px;
       position: relative;
       >i{
@@ -35,18 +34,14 @@ div.KaraOAModal{
     >form{
       width: 400px;
       height: 34px;
-      background-color: #f3f3f3;
-      border: 1px solid #d9d9d9;
+      border-width: 1px;
+      border-style: solid;
       border-radius: 5px;
       margin: 0 auto;
       margin-top: 40px;
       display: flex;
       &.focus{
         background-color: #FFFFFF;
-        border: 1px solid #ffa969;
-        >i{
-          color: #ffa969;
-        }
       }
       >i{
         display: block;
@@ -54,7 +49,6 @@ div.KaraOAModal{
         height: 34px;
         line-height: 34px;
         text-align: center;
-        color: #b0b0b0;
         &:last-child{
           cursor: pointer;
         }
@@ -65,14 +59,14 @@ div.KaraOAModal{
         background-color: transparent;
         outline: none;
         font-size: 14px;
-        color: #282828;
       }
     }
     >section{
       width: 710px;
       height: 340px;
       margin: 34px auto;
-      border: 1px solid #d9d9d9;
+      border-width: 1px;
+      border-style: solid;
       border-radius: 5px;
       overflow: hidden;
       position: relative;
@@ -86,11 +80,11 @@ div.KaraOAModal{
         >li{
           width: 0;
           flex: 1 1 auto;
-          background-color: #f2f2f2;
-          border-right: 1px solid #d9d9d9;
-          border-bottom: 1px solid #d9d9d9;
+          border-right-width: 1px;
+          border-bottom-width: 1px;
+          border-right-style: solid;
+          border-bottom-style: solid;
           font-size: 14px;
-          color: #838383;
           cursor: pointer;
           &:last-child{
             border-right: none;
@@ -118,7 +112,6 @@ div.KaraOAModal{
             width: 50px;
             height: 50px;
             border-radius: 5px;
-            background-color: #ffa969;
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -129,7 +122,6 @@ div.KaraOAModal{
               top: 0;
               font-size: 12px;
               color: #ffffff;
-              background-color: #b2b2b2;
               border-radius: 18px;
               line-height: 18px;
               padding: 0 8px;
@@ -155,11 +147,9 @@ div.KaraOAModal{
               line-height: 20px;
               font-size: 12px;
               margin: 5px 17px;
-              background-color: #f2f2f2;
               border: none;
               border-radius: 3px;
               padding: 0;
-              color: #838383;
               cursor: pointer;
               outline: none;
             }
@@ -174,7 +164,6 @@ div.KaraOAModal{
           }
           >p{
             font-size: 14px;
-            color: #696969;
             line-height: 30px;
             text-align: center;
             white-space: nowrap;
@@ -193,7 +182,6 @@ div.KaraOAModal{
         padding: 15px;
         display: flex;
         align-items: center;
-        background-color: #f7f7f7;
         margin-bottom: 2px;
         position: relative;
         overflow: hidden;
@@ -202,7 +190,6 @@ div.KaraOAModal{
           left: -20px;
           top: 10px;
           z-index: 30;
-          background-color: #ffa969;
           font-size: 12px;
           color: #FFFFFF;
           width: 80px;
@@ -218,7 +205,6 @@ div.KaraOAModal{
           flex: 0 0 auto;
           margin-left: 30px;
           margin-right: 50px;
-          background-color: #ffa969;
           background-size: contain;
           background-repeat: no-repeat;
           background-position: center;
@@ -230,7 +216,6 @@ div.KaraOAModal{
           >h1{
             margin: 0;
             font-size: 16px;
-            color: #696969;
             line-height: 33px;
             overflow: hidden;
             white-space: nowrap;
@@ -239,7 +224,6 @@ div.KaraOAModal{
           >h2{
             margin: 0;
             font-size: 14px;
-            color: #888888;
             line-height: 24px;
             overflow: hidden;
             white-space: nowrap;
@@ -247,7 +231,6 @@ div.KaraOAModal{
           }
           >p{
             font-size: 14px;
-            color: #b2b2b2;
             line-height: 24px;
             overflow: hidden;
             white-space: nowrap;
@@ -258,16 +241,12 @@ div.KaraOAModal{
           flex: 0 0 auto;
           width: 80px;
           height: 30px;
-          background-color: #ffa969;
           color: #FFFFFF;
           font-size: 14px;
           border: none;
           outline: none;
           border-radius: 30px;
           cursor: pointer;
-          &.added{
-            background-color: #b2b2b2;
-          }
         }
       }
     }
@@ -288,7 +267,6 @@ div.KaraOAModal{
     >h1{
       margin: 0;
       font-size: 16px;
-      color: #282828;
       line-height: 24px;
       position: relative;
       >i{
@@ -297,9 +275,6 @@ div.KaraOAModal{
         font-size: 24px;
         cursor: pointer;
       }
-      >span{
-        color: #ffa969;
-      }
     }
     >section{
       width: 710px;
@@ -307,7 +282,8 @@ div.KaraOAModal{
       margin: 0 auto;
       margin-top: 30px;
       border-radius: 5px;
-      border: 1px solid #d9d9d9;
+      border-width: 1px;
+      border-style: solid;
       >ul{
         width: 650px;
         height: 300px;
@@ -328,7 +304,6 @@ div.KaraOAModal{
             width: 50px;
             height: 50px;
             border-radius: 5px;
-            background-color: #ffa969;
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -339,7 +314,6 @@ div.KaraOAModal{
               top: 0;
               font-size: 12px;
               color: #ffffff;
-              background-color: #b2b2b2;
               border-radius: 18px;
               line-height: 18px;
               padding: 0 8px;
@@ -349,7 +323,6 @@ div.KaraOAModal{
           }
           >p{
             font-size: 14px;
-            color: #696969;
             line-height: 30px;
             text-align: center;
             white-space: nowrap;
@@ -371,11 +344,9 @@ div.KaraOAModal{
               line-height: 20px;
               margin: 40px 20px;
               font-size: 12px;
-              background-color: #f2f2f2;
               border: none;
               border-radius: 3px;
               padding: 0;
-              color: #838383;
               cursor: pointer;
               outline: none;
             }
@@ -399,9 +370,8 @@ div.KaraOAModal{
         margin: 0 auto;
         width: 110px;
         height: 32px;
-        border: 1px solid #d9d9d9;
-        background-color: #f2f2f2;
-        color: #838383;
+        border-width: 1px;
+        border-style: solid;
         font-size: 14px;
         border-radius: 5px;
         outline: none;

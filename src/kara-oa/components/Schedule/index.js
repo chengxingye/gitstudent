@@ -4,7 +4,8 @@ import './index.scss'
 import Language from '../../language'
 import API from '../../api'
 import Modal from './Modal'
-import {Confirm, Toast} from '../common'
+import {Confirm} from '../common'
+import {successTost} from "kara-module-tost"
 
 @inject('Config')
 @observer
@@ -148,13 +149,13 @@ class Schedule extends Component{
       })
     }else{
       // TODO 修改事件
-      Toast.info('修改成功')
+      successTost({msg: '修改成功', time: 1.5})
     }
   }
 
   deleteEvent = id=>{
     API.post(`/api/v1.0.0/schedule/event/delete/${id}`).end().then(res=>{
-      Toast.info('删除成功')
+      successTost({msg: '删除成功', time: 1.5})
       this.refresh()
     })
   }
@@ -180,7 +181,7 @@ class Schedule extends Component{
 
   deleteRepeatEvent = body=>{
     API.post('/api/v1.0.0/schedule/event/modify.repeat').end(null, body).then(res=>{
-      Toast.info('删除成功')
+      successTost({msg: '删除成功', time: 1.5})
       this.refresh()
     })
   }
@@ -203,7 +204,7 @@ class Schedule extends Component{
       })
     }else if(operate.method === 'modify'){
       // TODO 修改重复事件
-      Toast.info('修改成功')
+      successTost({msg: '修改成功', time: 1.5})
     }
     this.setState({operate: null})
   }

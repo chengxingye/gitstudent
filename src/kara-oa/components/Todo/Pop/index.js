@@ -16,16 +16,16 @@ class Pop extends Component{
     const {node, left, top} = this.props
 
     return ReactDOM.createPortal(
-      <div onClick={this.stopPropagation} className="KaraOAPop" style={{left, top}}>
+      <div onClick={this.stopPropagation} className="KaraOAPop s-b-default" style={{left, top}}>
         <div>
           <img src={node.headIcon} alt="" />
-          <button>{LConfig['POP_BUTTON']}</button>
+          <button className="s-bg-primary small">{LConfig['POP_BUTTON']}</button>
         </div>
         <div>
-          <p>{LConfig['POP_NAME']}：{node.accountName}（{node.nodeEmployeeNo}）</p>
-          <p>{LConfig['POP_ORG']}：{node.dept}</p>
-          <p>{LConfig['POP_TEL']}：{node.phone}</p>
-          <a href={`mailto: ${node.email}`}>{LConfig['POP_MAIL']}：{node.email}</a>
+          <p className="s-secondary">{LConfig['POP_NAME']}：{node.accountName}（{node.nodeEmployeeNo}）</p>
+          <p className="s-secondary">{LConfig['POP_ORG']}：{node.dept}</p>
+          <p className="s-secondary">{LConfig['POP_TEL']}：{node.phone}</p>
+          <a className="s-info" href={`mailto: ${node.email}`}>{LConfig['POP_MAIL']}：{node.email}</a>
         </div>
       </div>,
       document.getElementById('web')||document.getElementById('client')

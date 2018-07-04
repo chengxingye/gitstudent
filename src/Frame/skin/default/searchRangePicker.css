@@ -1,0 +1,20 @@
+.ks-range-picker {
+    font-family: inherit;
+}
+
+.ant-calendar-picker-container {
+    font-family: inherit;
+}
+
+.ant-calendar-picker:hover .ant-calendar-picker-input:not(.ant-input-disabled) {
+    border-color: #ff9445;
+}
+
+.ant-calendar-picker-input.ant-input {
+    padding: 4px 14px 4px 4px;
+    font-size: 12px;
+}
+
+.ant-calendar-picker-icon {
+    right: 4px;
+}

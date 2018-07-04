@@ -1,0 +1,315 @@
+@charset "UTF-8";
+/* 主样式 */
+html {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font: 14px/1.5 "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #333;
+}
+*,
+*::before,
+*::after {
+  -moz-box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+p {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+/* skin */
+/* F: find 发现在什么地方 */
+/* R: replace 被取代的颜色 */
+
+/* #################### 文字 #################### */
+.s-default {
+  color: #333; /* 默认=body  R:#222222/#282828/#3f4042/#373737*/
+}
+.s-lesser {
+  color: #666; /* 辅色较少的 R:#686868/#696969 */
+}
+.s-secondary {
+  color: #838383; /* 辅色 R:#888888/#7f8393 */
+}
+.s-hint {
+  color: #999; /* 辅色提示label R:#898989 */
+}
+.s-tips {
+  color: #b5b5b5; /* 提示 公告 R:#b2b2b2 */
+}
+.s-primary {
+  color: #ff9445; /* 凸显 */
+}
+/* 凸显深 凸显浅*/
+.s-success {
+  color: #2fc257; /* 成功 */
+}
+.s-warn {
+  color: #f0ad4e; /* 警告 暂无 */
+}
+.s-danger {
+  color: #ff533f; /* 危险 R:#fc6832 */
+}
+.s-info {
+  color: #5f95fd; /* 一般 */
+}
+.s-link {
+  color: #0f4f9f; /* 链接 R:#066280 */
+}
+.s-reverse {
+  color: #fff; /* 反色 */
+}
+.s-women {
+  color: #f800e9; /* 女士 F:个人信息 */
+}
+
+/* #################### 背景 #################### */
+.s-bg-primary {
+  background-color: #ffa969; /* 凸显(大块的浅) */
+}
+.s-bg-primary.small {
+  background-color: #ff9445; /* 凸显(小块的深) */
+}
+.s-bg-primary.active {
+  background-color: #ff8329; /* 凸显active */
+}
+.s-bg-primary-hover:hover {
+  background-color: #ffa969; /* 凸显色hover F:左侧菜单 */
+}
+.s-bg-page {
+  background-color: #f0f0f0; /* 页面主背景 */
+}
+.s-bg-container {
+  background-color: #fff; /* 内容 */
+}
+.s-bg-info {
+  background-color: #f8f8f8; /* 块 一般是 s-bg-container 凸显的地方 F:朋友圈  R:#f7f7f7 */
+}
+.s-bg-panel-title {
+  background-color: #f2f2f2; /* tab F:工作台 */
+}
+.s-bg-panel-title.active {
+  background-color: #fff; /* tab.active */
+}
+.s-bg-input-a {
+  background-color: #f3f3f3; /* input ？？？ F:自定义功能 */
+}
+.s-bg-menu.active {
+  background-color: #e5e5e5; /* 菜单active F:个人中心 */
+}
+.s-bg-top {
+  background-color: #fdffff; /* 顶部bar */
+}
+.s-bg-switch {
+  background-color: #f7f7f7; /* switch按钮 */
+}
+.s-bg-li:hover,
+.s-bg-li.active {
+  background-color: #eee; /* 列表hover */
+}
+.s-bg-slicer-dot {
+  background-color: #a0a0a0; /* slider控制按钮 F:工作台 */
+}
+.s-bg-group-top {
+  background-color: #f3f5fa; /* 同事圈顶部 ?? */
+}
+.s-bg-score {
+  background-color: #f4735e; /* 积分 */
+}
+.s-bg-danger {
+  background-color: #ff533f; /* 危险 R:#fc6832 */
+}
+.s-bg-audio {
+  background-color: #dfe3ee; /* 语音 F:朋友圈 */
+}
+.s-bg-file {
+  background-color: #ca6ad2; /* 文件 */
+}
+.s-bg-zip {
+  background-color: #ffbb00; /* 压缩包 */
+}
+
+.s-bg-holiday {
+  background-color: #45aff5; /* 休假ICON */
+}
+
+.s-bg-success {
+  background-color: #2fc257; /* 成功 */
+}
+.s-bg-warn {
+  background-color: #f0ad4e; /* 警告 暂无 */
+}
+.s-bg-danger,
+.s-bg-error{
+  background-color: #ff533f; /* 危险 R:#fc6832 */
+}
+
+/* #################### 边框 #################### */
+.s-b-primary {
+  border-color: #ff9445; /* 凸显 */
+}
+.s-b-default {
+  border-color: #d9d9d9; /* 默认边框 R:#dbdbdb */
+}
+.s-b-secondary {
+  border-color: #eee; /* 边框辅色 */
+}
+.s-b-reverse {
+  border-color: #fff; /* 边框反色 */
+}
+
+.s-b-avatar {
+  border-color: rgba(255, 255, 255, 0.5); /* 头像边框 */
+}
+
+/* #################### 其他 #################### */
+.s-br-normal {
+  border-radius: 4px; /* 默认圆角 */
+}
+
+.s-shadow-select {
+  box-shadow: 0 2px 4px 0 #ccc;
+}
+
+/* #################### 按钮 #################### */
+/* 默认高30 */
+.btn {
+  display: inline-block;
+  font-weight: normal;
+  line-height: 18px;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 5px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* 圆角 */
+.btn.round {
+  border-radius: 15px;
+}
+.btn.round.small {
+  border-radius: 10px;
+}
+
+/* 中号 高24 */
+.btn.medium {
+  line-height: 22px;
+  padding: 0 8px;
+  font-size: 12px;
+  border-radius: 3px;
+}
+
+/* 小号 高20 */
+.btn.small {
+  line-height: 18px;
+  padding: 0 8px;
+  font-size: 12px;
+  border-radius: 2px;
+}
+
+.btn:focus, .btn:hover {
+  text-decoration: none;
+}
+
+.btn:focus, .btn.focus {
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 2px rgba(255, 169, 105, 0.25);
+  box-shadow: 0 0 0 2px rgba(255, 169, 105, 0.25);
+}
+
+.btn.disabled, .btn:disabled {
+  cursor: not-allowed;
+  opacity: .65;
+}
+
+.btn:active, .btn.active {
+  background-image: none;
+}
+
+a.btn.disabled,
+fieldset[disabled] a.btn {
+  pointer-events: none;
+}
+
+.btn-primary {
+  background-color: #ffa969;
+  border-color: #ffa969;
+}
+
+.btn-primary.outline {
+  color: #ffa969;
+  background-color: transparent;
+}
+
+.btn-primary.outline:hover {
+  color: #fff;
+  background-color: #ffa969;
+}
+
+.btn-secondary {
+  background-color: #b2b2b2;
+  border-color: #b2b2b2;
+}
+
+.btn-secondary.outline {
+  color: #b2b2b2;
+  background-color: transparent;
+}
+
+.btn-info {
+  background-color: #5f95fd;
+  border-color: #5f95fd;
+}
+
+.btn-info.outline {
+  color: #5f95fd;
+  background-color: transparent;
+}
+
+/* 其它 */
+#root {
+  background: url("./background.png") no-repeat center;
+  background-size: cover;
+}
+
+@import "./searchRangePicker.css";

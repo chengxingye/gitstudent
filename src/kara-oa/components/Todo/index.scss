@@ -7,13 +7,14 @@ div.KaraOA{
       padding: 0;
       display: flex;
       line-height: 29px;
-      background-color: #f2f2f2;
       cursor: pointer;
       >li{
         padding: 0 10px;
         color: #838383;
-        border-bottom: 1px solid #d9d9d9;
-        border-right: 1px solid #d9d9d9;
+        border-right-width: 1px;
+        border-bottom-width: 1px;
+        border-right-style: solid;
+        border-bottom-style: solid;
         &:last-child{
           border-right: none;
         }
@@ -46,18 +47,22 @@ div.KaraOA{
       overflow: hidden;
       position: relative;
       >p.nothing{
-        display: none;
         margin-top: 40px;
         font-size: 14px;
-        color: #838383;
         text-align: center;
         line-height: 89px;
-        >img{
+        >b{
+          display: inline-block;
           vertical-align: middle;
+          width: 98px;
+          height: 89px;
+          background-image: url(./nothing.png);
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
         }
       }
       >ul.todoList{
-        color: #838383;
         margin: 9px 0;
         line-height: 30px;
         white-space: nowrap;
@@ -82,7 +87,6 @@ div.KaraOA{
         }
       }
       >ul.trackList{
-        color: #838383;
         margin: 9px 0;
         line-height: 30px;
         white-space: nowrap;
@@ -107,7 +111,6 @@ div.KaraOA{
           >span{
             display: none;
             flex: 0 0 75px;
-            color: #ff8d3a;
             text-align: center;
           }
           >button{
@@ -115,7 +118,6 @@ div.KaraOA{
             outline: none;
             cursor: pointer;
             flex: 0 0 50px;
-            background-color: #ff8d3a;
             color: #FFFFFF;
             border: none;
             height: 20px;
@@ -141,9 +143,6 @@ div.KaraOA{
         >tbody>tr>td{
           padding: 15px 20px;
           line-height: 20px;
-          >span{
-            color: #5f95fd;
-          }
         }
       }
       &:hover{
@@ -180,8 +179,10 @@ div.KaraOA{
       box-sizing: border-box;
       padding: 0 10px;
       background-color: #FFFFFF;
-      border-top: 1px solid #d9d9d9;
-      border-bottom: 1px solid #d9d9d9;
+      border-top-width: 1px;
+      border-bottom-width: 1px;
+      border-top-style: solid;
+      border-bottom-style: solid;
       box-shadow: 0 0 10px #e3e3e3;
       >header{
         display: flex;
@@ -218,12 +219,6 @@ div.KaraOA{
           color: #FFFFFF;
           outline: none;
           cursor: pointer;
-          &:nth-child(1){
-            background-color: #ff9445;
-          }
-          &:nth-child(2){
-            background-color: #a2a2a2;
-          }
         }
         >a{
           line-height: 20px;
@@ -231,19 +226,18 @@ div.KaraOA{
           font-size: 12px;
           padding: 0 15px;
           color: #FFFFFF;
-          background-color: #5f95fd;
         }
         >span{
           display: block;
           flex: 1 1 auto;
           text-align: right;
-          color: #838383;
           font-size: 12px;
         }
       }
       >textarea{
         display: block;
-        border: 1px solid #d9d9d9;
+        border-width: 1px;
+        border-style: solid;
         width: 100%;
         height: 32px;
         outline: none;
@@ -262,7 +256,6 @@ div.KaraOA{
           padding: 0 15px;
           height: 20px;
           border-radius: 20px;
-          background-color: #ff9445;
           color: #FFFFFF;
           outline: none;
           cursor: pointer;
@@ -276,8 +269,10 @@ div.KaraOA{
       width: 100%;
       height: 140px;
       background-color: #FFFFFF;
-      border-top: 1px solid #d9d9d9;
-      border-bottom: 1px solid #d9d9d9;
+      border-top-width: 1px;
+      border-bottom-width: 1px;
+      border-top-style: solid;
+      border-bottom-style: solid;
       box-shadow: 0 0 10px #e3e3e3;
       >header{
         padding: 0 10px;
@@ -299,23 +294,21 @@ div.KaraOA{
         }
         >span{
           flex: 0 0 75px;
-          color: #ff8d3a;
           text-align: center;
         }
         >button{
           outline: none;
           flex: 0 0 50px;
-          background-color: #ff8d3a;
           color: #FFFFFF;
           border: none;
           height: 20px;
           border-radius: 20px;
         }
       }
-      div.scroll{
-        overflow-x: auto;
-        overflow-y: hidden;
-        >ul{
+      div.trackScroll{
+        height: 110px;
+        overflow: hidden;
+        ul{
           width: auto;
           height: 90px;
           margin-top: 20px;
@@ -327,10 +320,10 @@ div.KaraOA{
             vertical-align: top;
             width: 127px;
             white-space: normal;
-            border-top: 2px solid #ff9445;
+            border-top-width: 2px;
+            border-top-style: solid;
             position: relative;
             font-size: 0.39rem;
-            color: #ff9445;
             >i{
               position: absolute;
               left: -8px;
@@ -338,22 +331,21 @@ div.KaraOA{
               width: 16px;
               height: 16px;
               border-radius: 16px;
-              border: 2px solid #ff9445;
-              background-color: #FFFFFF;
+              border-width: 2px;
+              border-style: solid;
               cursor: pointer;
+              &.iDefault{
+                background-color: #FFFFFF;
+              }
             }
             &.done{
-              border-top: 2px solid #b2b2b2;
-              color: #b2b2b2;
               >i{
                 border: none;
-                background-color: #b2b2b2;
               }
             }
             &.wait{
               >i{
                 border: none;
-                background-color: #ff9445;
               }
             }
             &:last-child{

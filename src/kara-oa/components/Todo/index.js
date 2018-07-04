@@ -4,7 +4,8 @@ import './index.scss'
 import Pop from './Pop'
 import Language from '../../language'
 import API from '../../api'
-import {Toast} from '../common'
+import {successTost, errorTost} from "kara-module-tost"
+import Scroll from 'react-scroller-plugin'
 
 @inject('Config')
 @observer
@@ -99,7 +100,7 @@ class Todo extends Component{
   todoReject = ()=>{
     const {todoActive} = this.state
     if(!todoActive.rejectReason){
-      Toast.error('请输入驳回原因')
+      errorTost({msg: '请输入驳回原因', time: 1.5})
     }else{
       this.postTodo(false)
     }
@@ -115,7 +116,7 @@ class Todo extends Component{
       channel: 'oa',
       rejectReason: isAgree ? undefined : todoActive.rejectReason,
     }).then(res=>{
-      Toast.error('审批成功')
+      successTost({msg: '审批成功', time: 1.5})
       this.refresh()
     })
   }
@@ -202,10 +203,12 @@ class Todo extends Component{
     let isZH = this.props.Config.language==='zh'
     let dataPanel = null
     let pageInfo = {}
+    let isNothing = false
     if(type ==='todo'){
+      isNothing = todoInfo.count===0
       pageInfo = todoInfo
       dataPanel = (
-        <ul className="todoList">
+        <ul className="todoList s-secondary">
           {
             todoInfo.result.map((todo, index)=>(
               <li onClick={e=>this.showApprove(e, todo)} key={todo.id}>
@@ -217,16 +220,17 @@ class Todo extends Component{
         </ul>
       )
     }else if(type === 'track'){
+      isNothing = trackInfo.count===0
       pageInfo = trackInfo
       dataPanel = (
-        <ul className="trackList">
+        <ul className="trackList s-secondary">
           {
             trackInfo.result.map((track, index)=>(
               <li onClick={e=>this.showTrack(e, track)} key={track.orderId}>
                 <label>{(trackInfo.pageNo-1)*Todo.PAGE_SIZE+index+1}、{isZH ? track.titleInfo.orderTitleCn : track.titleInfo.orderTitleEn}</label>
                 <p>{isZH ? track.titleInfo.orderDescCn : track.titleInfo.orderDescEn}</p>
-                <span>{LConfig['TRACK_PROCESSING']}</span>
-                <button>{LConfig['TRACK_BUTTON_PROCESS']}</button>
+                <span className="s-primary">{LConfig['TRACK_PROCESSING']}</span>
+                <button className="s-bg-primary">{LConfig['TRACK_BUTTON_PROCESS']}</button>
               </li>
             ))
           }
@@ -238,16 +242,16 @@ class Todo extends Component{
         <table>
           <tbody>
             <tr>
-              <td>{LConfig['OTHER_0_0']}: <span>10</span></td>
-              <td>{LConfig['OTHER_0_1']}: <span>10</span></td>
+              <td>{LConfig['OTHER_0_0']}: <span className="s-info">10</span></td>
+              <td>{LConfig['OTHER_0_1']}: <span className="s-info">10</span></td>
             </tr>
             <tr>
-              <td>{LConfig['OTHER_1_0']}: <span>20</span></td>
-              <td>{LConfig['OTHER_1_1']}: <span>20</span></td>
+              <td>{LConfig['OTHER_1_0']}: <span className="s-info">20</span></td>
+              <td>{LConfig['OTHER_1_1']}: <span className="s-info">20</span></td>
             </tr>
             <tr>
-              <td>{LConfig['OTHER_2_0']}: <span>15</span></td>
-              <td>{LConfig['OTHER_2_1']}: <span>15</span></td>
+              <td>{LConfig['OTHER_2_0']}: <span className="s-info">15</span></td>
+              <td>{LConfig['OTHER_2_1']}: <span className="s-info">15</span></td>
             </tr>
           </tbody>
         </table>
@@ -256,34 +260,40 @@ class Todo extends Component{
 
     return (
       <div className="Todo">
-        <ol onClick={this.setType}>
+        <ol onClick={this.setType} className="s-bg-panel-title">
           <li 
             data-type='todo' 
-            className={`${type==='todo' ? 'active' : ''}`}>
+            className={`s-b-default ${type==='todo' ? 'active' : ''}`}>
             {LConfig['TODO_TITLE']}&ensp;
             <span data-type='todo' className="red">{todoInfo.count}</span>
           </li>
           <li 
             data-type='track' 
-            className={`${type==='track' ? 'active' : ''}`}>
+            className={`s-b-default ${type==='track' ? 'active' : ''}`}>
             {LConfig['TRACK_TITLE']}&ensp;
             <span data-type='track' className="blue">{trackInfo.count}</span>
           </li>
           <li 
             data-type='other' 
-            className={`${type==='other' ? 'active' : ''}`}>
+            className={`s-b-default ${type==='other' ? 'active' : ''}`}>
             {LConfig['OTHER_TITLE']}&ensp;
             <span data-type='other' className="green">12</span>
           </li>
-          <li className="empty"></li>
-          <li onClick={this.refresh} className="kara-oa-font orange">&#xe7a4;</li>
-          <li className="kara-oa-font orange">&#xe671;</li>
+          <li className="s-b-default empty"></li>
+          <li onClick={this.refresh} className="s-b-default kara-oa-font orange">&#xe7a4;</li>
+          <li className="s-b-default kara-oa-font orange">&#xe671;</li>
         </ol>
         <section>
-          <p className="nothing">
-            <img src={require("./nothing.png")} />
-            &emsp;当前还没有待办内容~
-          </p>
+          {
+            isNothing
+            ?
+            <p className="nothing s-secondary">
+              <b></b>
+              &emsp;当前还没有待办内容~
+            </p>
+            :
+            null
+          }
           {
             dataPanel
           }
@@ -306,7 +316,7 @@ class Todo extends Component{
           todoActive
           ?
           <div 
-            className="approve"
+            className="approve s-b-default"
             onClick={this.stopPropagation}>
             <header>
               <label>{(todoInfo.pageNo-1)*Todo.PAGE_SIZE+todoInfo.result.findIndex(todo=>todo.id===todoActive.id)+1}、{isZH ? todoActive.titleInfo.taskTitleCn : todoActive.titleInfo.taskTitleEn}</label>
@@ -316,30 +326,31 @@ class Todo extends Component{
               {
                 todoActive.acceptBtnUrl
                 ?
-                <button onClick={this.todoAgree}>{LConfig['TODO_AGREE']}</button>
+                <button className="s-bg-primary small" onClick={this.todoAgree}>{LConfig['TODO_AGREE']}</button>
                 :
                 null
               }
               {
                 todoActive.rejectBtnUrl
                 ?
-                <button onClick={this.toggleReject}>{LConfig['TODO_REJECT']}</button>
+                <button className="s-bg-slicer-dot" onClick={this.toggleReject}>{LConfig['TODO_REJECT']}</button>
                 :
                 null
               }
               {
                 todoActive.viewBtnUrl
                 ?
-                <a href={todoActive.viewBtnUrl} target="_blank">{LConfig['TODO_DETAIL']}</a>
+                <a className="btn-info" href={todoActive.viewBtnUrl} target="_blank">{LConfig['TODO_DETAIL']}</a>
                 :
                 null
               }
-              <span>{todoActive.taskDispTime.substr(0, 10)}</span>
+              <span className="s-secondary">{todoActive.taskDispTime.substr(0, 10)}</span>
             </h2>
             {
               todoActive.isApproveReject
               ?
               <textarea 
+                className="s-b-default"
                 value={todoActive.rejectReason}
                 onChange={this.rejectReasonChange}
                 placeholder={LConfig['TODO_REJECT_PLACEHOLDER']}></textarea>
@@ -350,7 +361,7 @@ class Todo extends Component{
               todoActive.isApproveReject
               ?
               <footer>
-                <button onClick={this.todoReject}>{LConfig['TODO_SUBMIT']}</button>
+                <button className="s-bg-primary small" onClick={this.todoReject}>{LConfig['TODO_SUBMIT']}</button>
               </footer>
               :
               null
@@ -363,25 +374,27 @@ class Todo extends Component{
           trackActive
           ?
           <div 
-            className="track" 
+            className="track s-b-default" 
             onClick={this.stopTrackPropagation}>
             <header>
               <label>{(trackInfo.pageNo-1)*Todo.PAGE_SIZE+trackInfo.result.findIndex(track=>track.orderId===trackActive.orderId)+1}、{isZH ? trackActive.titleInfo.orderTitleCn : trackActive.titleInfo.orderTitleEn}</label>
               <p>{isZH ? trackActive.titleInfo.orderDescCn : trackActive.titleInfo.orderDescEn}</p>
-              <span>{LConfig['TRACK_PROCESSING']}</span>
-              <button>{LConfig['TRACK_BUTTON_PROCESS']}</button>
+              <span className="s-primary">{LConfig['TRACK_PROCESSING']}</span>
+              <button className="s-bg-primary">{LConfig['TRACK_BUTTON_PROCESS']}</button>
             </header>
-            <div className="scroll">
-              <ul>
-                {
-                  trackActive.nodeInfo.map(node=>(
-                    <li className={`${node.nodeStatus==='1' ? 'done' : ''} ${node.nodeStatus==='2' ? 'wait' : ''}`} key={node.nodeSeq}>
-                      <i onClick={e=>this.showPop(e, node)}></i>
-                      <p>{node.accountName||(isZH ? node.nodeNameCn : node.nodeNameEn)}<br/>{node.nodeStatusDate}</p>
-                    </li>
-                  ))
-                }
-              </ul>
+            <div className="trackScroll">
+              <Scroll>
+                <ul>
+                  {
+                    trackActive.nodeInfo.map(node=>(
+                      <li className={`${node.nodeStatus==='1' ? 'btn-secondary outline' : 's-b-primary s-primary'} ${node.nodeStatus==='1' ? 'done' : ''} ${node.nodeStatus==='2' ? 'wait' : ''}`} key={node.nodeSeq}>
+                        <i className={`s-b-primary ${node.nodeStatus==='1' ? 's-bg-slicer-dot' : ''} ${node.nodeStatus==='2' ? 's-bg-primary small' : ''} ${node.nodeStatus!=='1'&&node.nodeStatus!=='2' ? 'iDefault' : ''} `} onClick={e=>this.showPop(e, node)}></i>
+                        <p>{node.accountName||(isZH ? node.nodeNameCn : node.nodeNameEn)}<br/>{node.nodeStatusDate}</p>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </Scroll>
             </div>
           </div>
           :

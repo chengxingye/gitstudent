@@ -125,32 +125,32 @@ class Modal extends Component{
           !keyword && subNodeTree
           ?
           <div className="subView"  onClick={this.stopPropagation}>
-            <h1>
-              {LConfig['MODAL_TITLE']}&nbsp;>&nbsp;<span>{isZH ? webAppInfos[subNodeTree.id].appName : webAppInfos[subNodeTree.id].appNameEn}</span>
+            <h1 className="s-default">
+              {LConfig['MODAL_TITLE']}&nbsp;>&nbsp;<span className="s-primary">{isZH ? webAppInfos[subNodeTree.id].appName : webAppInfos[subNodeTree.id].appNameEn}</span>
               <i onClick={this.closeSubView} className="kara-oa-font">&#xe655;</i>
             </h1>
-            <section>
+            <section className="s-b-default">
               <ul>
                 {
                   subNodeTree.children.map(app=>app.id).slice(subPageNo*Modal.SUB_PAGE_SIZE, (subPageNo+1)*Modal.SUB_PAGE_SIZE).map(id=>(
                     <li key={id}>
-                      <b style={{backgroundImage: `url(${webAppInfos[id].icon})`}}>
+                      <b className="s-bg-primary" style={{backgroundImage: `url(${webAppInfos[id].icon})`}}>
                         {
                           customList.includes(id)
                           ?
-                          <sup>{LConfig['MODAL_ADDED']}</sup>
+                          <sup className="s-bg-slicer-dot">{LConfig['MODAL_ADDED']}</sup>
                           :
                           null
                         }
                       </b>
-                      <p>{isZH ? webAppInfos[id].appName : webAppInfos[id].appNameEn}</p>
+                      <p className="s-lesser">{isZH ? webAppInfos[id].appName : webAppInfos[id].appNameEn}</p>
                       <div>
                         {
                           customList.includes(id)
                           ?
-                          <button onClick={e=>this.onToggle(id)}>{LConfig['MODAL_CANCEL']}</button>
+                          <button className="s-secondary s-bg-panel-title" onClick={e=>this.onToggle(id)}>{LConfig['MODAL_CANCEL']}</button>
                           :
-                          <button onClick={e=>this.onToggle(id)}>{LConfig['MODAL_ADD']}</button>
+                          <button className="s-secondary s-bg-panel-title" onClick={e=>this.onToggle(id)}>{LConfig['MODAL_ADD']}</button>
                         }
                       </div>
                     </li>
@@ -169,22 +169,22 @@ class Modal extends Component{
                   null
                 }
               </div>
-              <button onClick={this.closeSubView}>{LConfig['MODAL_BACK']}</button>
+              <button className="s-b-default s-bg-panel-title s-secondary" onClick={this.closeSubView}>{LConfig['MODAL_BACK']}</button>
             </section>
           </div>
           :
           <div className="default"  onClick={this.stopPropagation}>
-            <h1>
+            <h1 className="s-default">
               {LConfig['MODAL_TITLE']}
               <i onClick={this.close} className="kara-oa-font">&#xe655;</i>
             </h1>
-            <form className={isFocus ? 'focus' : ''}>
-              <i className="kara-oa-font">&#xe61c;</i>
-              <input type="text" onFocus={this.keywordFocus} onBlur={this.keywordBlur} value={keyword} onChange={this.keywordChange} />
+            <form className={isFocus ? 'focus s-b-primary' : 's-bg-input-a s-b-default'}>
+              <i className={`kara-oa-font ${isFocus ? 's-primary' : 's-tips'}`}>&#xe61c;</i>
+              <input className="s-default" type="text" onFocus={this.keywordFocus} onBlur={this.keywordBlur} value={keyword} onChange={this.keywordChange} />
               {
                 keyword
                 ?
-                <i onClick={this.keywordClear} className="kara-oa-font">&#xe655;</i>
+                <i onClick={this.keywordClear} className={`kara-oa-font ${isFocus ? 's-primary' : 's-tips'}`}>&#xe655;</i>
                 :
                 null
               }
@@ -195,40 +195,40 @@ class Modal extends Component{
               <ul>
                 {
                   result.map(app=>(
-                    <li key={app.id}>
+                    <li className="s-bg-info" key={app.id}>
                       {
                         customList.includes(app.id)
                         ?
-                        <sup>{LConfig['MODAL_ADDED']}</sup>
+                        <sup className="s-bg-primary">{LConfig['MODAL_ADDED']}</sup>
                         :
                         null
                       }
-                      <b style={{backgroundImage: `url(${app.icon})`}}></b>
+                      <b className="s-bg-primary" style={{backgroundImage: `url(${app.icon})`}}></b>
                       <div>
-                        <h1 dangerouslySetInnerHTML={{__html: isZH ? app.appName : app.appNameEn}}></h1>
-                        <h2 dangerouslySetInnerHTML={{__html: `${LConfig['MODAL_KEYWORD']}：${isZH ? app.keywords : app.keywordsEn}`}}></h2>
-                        <p dangerouslySetInnerHTML={{__html: `${LConfig['MODAL_INTRODUCTION']}：${isZH ? app.appDesc : app.appDescEn}`}}></p>
+                        <h1 className="s-lesser" dangerouslySetInnerHTML={{__html: isZH ? app.appName : app.appNameEn}}></h1>
+                        <h2 className="s-secondary" dangerouslySetInnerHTML={{__html: `${LConfig['MODAL_KEYWORD']}：${isZH ? app.keywords : app.keywordsEn}`}}></h2>
+                        <p className="s-tips" dangerouslySetInnerHTML={{__html: `${LConfig['MODAL_INTRODUCTION']}：${isZH ? app.appDesc : app.appDescEn}`}}></p>
                       </div>
                       {
                         customList.includes(app.id)
                         ?
-                        <button onClick={e=>this.onToggle(app.id)} className="added">{LConfig['MODAL_CANCEL']}</button>
+                        <button className="s-bg-primary s-bg-slicer-dot" onClick={e=>this.onToggle(app.id)}>{LConfig['MODAL_CANCEL']}</button>
                         :
-                        <button onClick={e=>this.onToggle(app.id)}>{LConfig['MODAL_ADD']}</button>
+                        <button className="s-bg-primary" onClick={e=>this.onToggle(app.id)}>{LConfig['MODAL_ADD']}</button>
                       }
                     </li>
                   ))
                 }
               </ul>
               :
-              <section>
+              <section className="s-b-default">
                 <ol onClick={this.setTypeIndex}>
                   {
                     types.map((type, index)=>(
                       <li 
                         key={type.id}
                         data-ii={index}
-                        className={index===typeIndex ? 'active' : ''}>{isZH ? type.name : type.nameEn}</li>
+                        className={`s-secondary s-b-default s-bg-panel-title ${index===typeIndex ? 'active' : ''}`}>{isZH ? type.name : type.nameEn}</li>
                     ))
                   }
                 </ol>
@@ -236,16 +236,16 @@ class Modal extends Component{
                   {
                     uiList.slice(pageNo*Modal.PAGE_SIZE, (pageNo+1)*Modal.PAGE_SIZE).map(app=>(
                       <li key={app.id}>
-                        <b style={{backgroundImage: `url(${webAppInfos[app.id].icon})`}}>
+                        <b className="s-bg-primary" style={{backgroundImage: `url(${webAppInfos[app.id].icon})`}}>
                           {
                             customList.includes(app.id)
                             ?
-                            <sup>{LConfig['MODAL_ADDED']}</sup>
+                            <sup className="s-bg-slicer-dot">{LConfig['MODAL_ADDED']}</sup>
                             :
                             null
                           }
                         </b>
-                        <p>{isZH ? webAppInfos[app.id].appName : webAppInfos[app.id].appNameEn}</p>
+                        <p className="s-lesser">{isZH ? webAppInfos[app.id].appName : webAppInfos[app.id].appNameEn}</p>
                         <div>
                           {
                             webAppInfos[app.id].canCustom!==1
@@ -255,15 +255,15 @@ class Modal extends Component{
                             (
                               customList.includes(app.id)
                               ?
-                              <button onClick={e=>this.onToggle(app.id)}>{LConfig['MODAL_CANCEL']}</button>
+                              <button className="s-secondary s-bg-panel-title" onClick={e=>this.onToggle(app.id)}>{LConfig['MODAL_CANCEL']}</button>
                               :
-                              <button onClick={e=>this.onToggle(app.id)}>{LConfig['MODAL_ADD']}</button>
+                              <button className="s-secondary s-bg-panel-title" onClick={e=>this.onToggle(app.id)}>{LConfig['MODAL_ADD']}</button>
                             )
                           }
                           {
                             app.children&&app.children.length>0
                             ?
-                            <button onClick={e=>this.showSubView(app)}>{LConfig['MODAL_DETAIL']}</button>
+                            <button className="s-secondary s-bg-panel-title" onClick={e=>this.showSubView(app)}>{LConfig['MODAL_DETAIL']}</button>
                             :
                             null
                           }

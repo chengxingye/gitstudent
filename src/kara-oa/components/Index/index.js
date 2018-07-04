@@ -7,7 +7,6 @@ import Schedule from '../Schedule'
 import News from '../News'
 import API from '../../api'
 import Scroll from 'react-scroller-plugin'
-import 'react-scroller-plugin/lib/scroll.css'
 
 class KaraOA extends Component{
   state = {

@@ -1,6 +1,6 @@
 {
   "name": "kara-oa",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "author": "李信",
   "description": "OA组件",
   "keywords": [
@@ -45,7 +45,8 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
-    "kara-oa": "^1.2.0",
+    "kara-module-tost": "^0.1.0",
+    "kara-oa": "^1.2.2",
     "mobx": "^4.3.0",
     "mobx-react": "^5.1.2",
     "normalize.css": "^8.0.0",

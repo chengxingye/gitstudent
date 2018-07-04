@@ -4,6 +4,8 @@ import {Provider} from 'mobx-react'
 import Index from './components/Index'
 import Config from './stores/Config'
 import './font/font.css'
+import 'react-scroller-plugin/lib/scroll.css'
+import 'kara-module-tost/lib/index.css'
 
 configure({
   enforceActions: true,

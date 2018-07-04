@@ -4,9 +4,8 @@ div.KaraOA{
     >header{
       line-height: 30px;
       padding: 0 10px;
-      background-color: #f2f2f2;
-      border-bottom: 1px solid #d9d9d9;
-      color: #838383;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
       font-size: 14px;
     }
     >section{
@@ -29,7 +28,6 @@ div.KaraOA{
           flex: 1 1 auto;
           >h1{
             margin: 0;
-            color: #0f4f9f;
             font-size: 18px;
             line-height: 39px;
             overflow: hidden;
@@ -37,7 +35,6 @@ div.KaraOA{
             text-overflow: ellipsis;
           }
           >p{
-            color: #222222;
             font-size: 14px;
             height: 50px;
             line-height: 25px;
@@ -55,8 +52,8 @@ div.KaraOA{
       >ul{
         margin-top: 18px;
         padding-top: 12px;
-        border-top: 1px solid #d9d9d9;
-        color: #222222;
+        border-top-width: 1px;
+        border-top-style: solid;
         font-size: 16px;
         line-height: 32px;
         >li{

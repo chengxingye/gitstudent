@@ -1,41 +1,44 @@
 div.KaraOA {
-  width: 1000px;
-  height: auto;
-  margin: 0 auto; }
-  div.KaraOA > a {
-    display: block;
-    margin: 0 10px;
-    height: 70px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat; }
-  div.KaraOA > section {
-    width: 100%;
+  width: 100%;
+  height: 100%; }
+  div.KaraOA div.KaraOAContainer {
+    width: 1000px;
     height: auto;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-    padding: 5px;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-flow: row wrap;
-        flex-flow: row wrap; }
-    div.KaraOA > section > div {
-      margin: 5px;
-      border: 1px solid #d9d9d9;
-      border-radius: 5px;
-      overflow: hidden; }
-      div.KaraOA > section > div:nth-child(1) {
-        height: 190px;
-        -ms-flex: 0 0 980px;
-            flex: 0 0 980px; }
-      div.KaraOA > section > div:nth-child(2), div.KaraOA > section > div:nth-child(3) {
-        height: 200px;
-        -ms-flex: 0 0 485px;
-            flex: 0 0 485px; }
-      div.KaraOA > section > div:nth-child(4), div.KaraOA > section > div:nth-child(5) {
-        height: 289px;
-        -ms-flex: 0 0 485px;
-            flex: 0 0 485px; }
+    margin: 0 auto; }
+    div.KaraOA div.KaraOAContainer > a {
+      display: block;
+      margin: 0 10px;
+      height: 70px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat; }
+    div.KaraOA div.KaraOAContainer > section {
+      width: 100%;
+      height: auto;
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+      padding: 5px;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap; }
+      div.KaraOA div.KaraOAContainer > section > div {
+        margin: 5px;
+        border: 1px solid #d9d9d9;
+        border-radius: 5px;
+        overflow: hidden; }
+        div.KaraOA div.KaraOAContainer > section > div:nth-child(1) {
+          height: 190px;
+          -ms-flex: 0 0 980px;
+              flex: 0 0 980px; }
+        div.KaraOA div.KaraOAContainer > section > div:nth-child(2), div.KaraOA div.KaraOAContainer > section > div:nth-child(3) {
+          height: 200px;
+          -ms-flex: 0 0 485px;
+              flex: 0 0 485px; }
+        div.KaraOA div.KaraOAContainer > section > div:nth-child(4), div.KaraOA div.KaraOAContainer > section > div:nth-child(5) {
+          height: 289px;
+          -ms-flex: 0 0 485px;
+              flex: 0 0 485px; }
 
 div.KaraOA div.Tool {
   background-color: #FFFFFF; }
@@ -586,14 +589,20 @@ div.KaraOA div.Todo {
     overflow: hidden;
     position: relative; }
     div.KaraOA div.Todo > section > p.nothing {
-      display: none;
       margin-top: 40px;
       font-size: 14px;
       color: #838383;
       text-align: center;
       line-height: 89px; }
-      div.KaraOA div.Todo > section > p.nothing > img {
-        vertical-align: middle; }
+      div.KaraOA div.Todo > section > p.nothing > b {
+        display: inline-block;
+        vertical-align: middle;
+        width: 98px;
+        height: 89px;
+        background-image: url(img/nothing.08f0a.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center; }
     div.KaraOA div.Todo > section > ul.todoList {
       color: #838383;
       margin: 9px 0;
@@ -1288,7 +1297,7 @@ div.KaraOA div.News {
       div.KaraOA div.News > section > header > b {
         width: 140px;
         margin-right: 10px;
-        background-image: url(img/header.60d4e.png);
+        background-image: url(img/header.0bd4b.png);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center; }
@@ -1347,6 +1356,7 @@ div.KaraOA div.News {
           line-height: 32px;
           font-size: 13px; }
 
+.scroll{position:relative;overflow:hidden;height:100%}.scroll>.horizontal-bar,.scroll>.vertical-bar{opacity:0;position:absolute;z-index:9;-webkit-transition:opacity .6s;-o-transition:opacity .6s;transition:opacity .6s}.scroll>.horizontal-bar>i,.scroll>.vertical-bar>i{opacity:.2;position:absolute;width:100%;height:100%;border:1px solid #fff;border-radius:3px;background-color:#333;cursor:pointer;-webkit-transition:opacity .2s;-o-transition:opacity .2s;transition:opacity .2s}.scroll>.horizontal-bar>i:hover,.scroll>.vertical-bar>i:hover{opacity:.3}.scroll>.vertical-bar{top:0;right:0;width:7px;height:100%}.scroll>.vertical-bar>i{top:0;left:0}.scroll>.horizontal-bar{bottom:0;left:0;width:100%;height:7px}.scroll>.horizontal-bar>i{bottom:0;left:0}.scroll>.horizontal-bar.drag,.scroll>.vertical-bar.drag{opacity:1}.scroll>.horizontal-bar.drag>i,.scroll>.vertical-bar.drag>i{opacity:.3}.scroll>.horizontal-bar.hidden,.scroll>.vertical-bar.hidden{opacity:0}.scroll>.container{position:absolute;top:0;right:0;bottom:0;left:0;overflow:scroll}.scroll:hover>.horizontal-bar,.scroll:hover>.vertical-bar{opacity:1}.scroll:hover>.horizontal-bar.hidden,.scroll:hover>.vertical-bar.hidden{opacity:0}.noselect{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
 @font-face{
   font-family: "kara-oa";
   src: url(font/iconfont.5d287.eot);
@@ -1363,3 +1373,4 @@ div.KaraOA div.News {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.tost{position:absolute;top:40px;right:0;left:70px;text-align:center}.tost .tost-item{position:relative;height:40px;line-height:40px;color:#fff}.tost .tost-item i{display:block;width:100%;height:100%;opacity:.7}.tost .tost-item span{position:absolute;top:0;left:0;width:100%;height:100%}

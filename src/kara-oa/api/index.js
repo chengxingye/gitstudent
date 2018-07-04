@@ -1,6 +1,6 @@
 import 'whatwg-fetch'
 import Config from '../stores/Config'
-import {Toast} from '../components/common'
+import {errorTost} from "kara-module-tost"
 
 export default{
   url: '',
@@ -34,16 +34,16 @@ export default{
       body: JSON.stringify(body),
     })
     .catch(e=>{
-      Toast.error('Please try again later.')
+      errorTost({msg: 'Please try again later.', time: 1.5})
       return Promise.reject()
     })
     .then(res=>res.json())
     .then(res=>{
       if(res.error_description){
-        Toast.error(res.error_description)
+        errorTost({msg: res.error_description, time: 1.5})
         return Promise.reject()
       }else if(res.resultCode !== '000000'){
-        Toast.error(res.resultMessage)
+        errorTost({msg: res.resultMessage, time: 1.5})
         return Promise.reject()
       }else{
         return res

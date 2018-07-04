@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Redirect, Route, Router, Switch} from 'react-router'
 import createBrowserHistory from 'history/createBrowserHistory'
 import 'normalize.css'
-import './skin/default.css'
+import './skin/default/skin.css'
 import KaraOA from '../kara-oa'
 import {hot} from 'react-hot-loader'
 // import KaraOA from 'kara-oa'
@@ -15,7 +15,7 @@ class Frame extends Component{
 
   state = {
     language: 'zh',
-    token: 'rjClrzw41w3LWPjWteTL3SpYFZr4L2nZ',
+    token: '4EWNhND0pyduLSTzvce5FQFCo3TLDnPx',
     karagw: 'https://xin-sandbox.asiainfo.com:16020',
   }
 

@@ -7,7 +7,8 @@ div.KaraOAPop{
   padding: 10px;
   background-color: #FFFFFF;
   display: flex;
-  border: 1px solid #d9d9d9;
+  border-width: 1px;
+  border-style: solid;
   border-radius: 5px;
   >div:first-child{
     width: 0;
@@ -26,7 +27,6 @@ div.KaraOAPop{
       height: 20px;
       margin-top: 10px;
       border: none;
-      background-color: #ff9445;
       color: #FFFFFF;
       font-size: 12px;
       padding: 0;
@@ -41,7 +41,6 @@ div.KaraOAPop{
     flex: 1 1 auto;
     >p{
       font-size: 14px;
-      color: #838383;
       line-height: 20px;
       overflow: hidden;
       white-space: nowrap;
@@ -50,7 +49,6 @@ div.KaraOAPop{
     >a{
       display: block;
       font-size: 14px;
-      color: #5f95fd;
       line-height: 20px;
       overflow: hidden;
       white-space: nowrap;

@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 import {inject, observer} from 'mobx-react'
 import './index.scss'
-import {Paging, Toast} from '../common'
+import {Paging} from '../common'
 import API from '../../api'
 import Language from '../../language'
 import Modal from './Modal'
+import {successTost} from "kara-module-tost"
 
 @inject('Config')
 @observer
@@ -85,7 +86,7 @@ class Tool extends Component{
     API.post('/api/v1.0.0/webhook/w_custom_appCatalog.set').end(null, {
       webCustomAppCatalogIds: types
     }).then(res=>{
-      Toast.info('调整成功')
+      successTost({msg: '调整成功', time: 1.5})
     })
   }
 
@@ -104,7 +105,7 @@ class Tool extends Component{
     API.post('/api/v1.0.0/webhook/w_custom_apps.set').end(null, {
       webCustomAppIds: this.state.nodeTree[Tool.COMMON_ID].map(app=>app.id)
     }).then(res=>{
-      Toast.info('保存成功')
+      successTost({msg: '保存成功', time: 1.5})
     })
   }
 
@@ -174,6 +175,7 @@ class Tool extends Component{
     return (
       <div className="Tool">
         <ol 
+          className="s-bg-panel-title"
           onClick={this.setTypeID}
           onDragStart={this.onDragStart}
           onDragEnter={this.onDragEnter}
@@ -185,7 +187,7 @@ class Tool extends Component{
                 data-id={type.id}
                 key={type.id} 
                 draggable={type.id!==Tool.COMMON_ID}
-                className={typeID===type.id ? 'active' : ''}>{isZH ? type.name : type.nameEn}</li>
+                className={typeID===type.id ? 's-secondary s-success active' : 's-secondary'}>{isZH ? type.name : type.nameEn}</li>
             ))
           }
         </ol>
@@ -207,11 +209,11 @@ class Tool extends Component{
                 key={id}
                 title={isZH ? webAppInfos[id].appDesc : webAppInfos[id].appDescEn}
                 href={webAppInfos[id].url}>
-                <b style={{backgroundImage: `url(${webAppInfos[id].icon})`}}>
+                <b className="s-bg-primary" style={{backgroundImage: `url(${webAppInfos[id].icon})`}}>
                   {
                     isEdit && isCustom
                     ?
-                    <i onClick={this.deleteApp} data-id={id} className="kara-oa-font">&#xe635;</i>
+                    <i onClick={this.deleteApp} data-id={id} className="kara-oa-font s-danger">&#xe635;</i>
                     :
                     null
                   }
@@ -232,7 +234,7 @@ class Tool extends Component{
           {
             isCustom
             ?
-            <button onClick={this.toggleEdit}>{isEdit ? LConfig['BUTTON_OK'] : LConfig['BUTTON_CUSTOM']}</button>
+            <button className="btn-info outline" onClick={this.toggleEdit}>{isEdit ? LConfig['BUTTON_OK'] : LConfig['BUTTON_CUSTOM']}</button>
             :
             null
           }
