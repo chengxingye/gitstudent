@@ -216,18 +216,18 @@ class Schedule extends Component{
 
     return (
       <div className="Schedule">
-        <header>
+        <header className="s-bg-panel-title s-b-default s-secondary">
           {LConfig['TITLE']}
-          <button className="kara-oa-font">&#xe671;</button>
+          <button className="kara-oa-font s-b-default s-primary">&#xe671;</button>
         </header>
         <section>
           <div className="left">
-            <h1>
+            <h1 className="s-default">
               <i onClick={this.prev} className="kara-oa-font">&#xe618;</i>
               &ensp;{year}{LConfig['YEAR_LABEL']}{month}{LConfig['MONTH_LABEL']}&ensp;
               <i onClick={this.next} className="kara-oa-font">&#xe7a5;</i>
             </h1>
-            <header>
+            <header className="s-tips">
               <b>{LConfig['WEEK_SUNDAY']}</b>
               <b>{LConfig['WEEK_MONDAY']}</b>
               <b>{LConfig['WEEK_TUESDAY']}</b>
@@ -245,6 +245,8 @@ class Schedule extends Component{
                   }
                   if(date.y===today.y && date.m===today.m && date.d===today.d){
                     classNames.push('cur')
+                    classNames.push('s-bg-primary')
+                    classNames.push('small')
                   }
                   if(marks.some(o=>o===`${date.y}/${date.m}/${date.d}`)){
                     classNames.push('mark')
@@ -253,30 +255,30 @@ class Schedule extends Component{
                     <span 
                       key={index} 
                       title={`${date.y}/${date.m}/${date.d}`}
-                      className={classNames.join(' ')}>{date.d}</span>
+                      className={`s-secondary ${classNames.join(' ')}`}>{date.d}</span>
                   )
                 })
               }
             </div>
           </div>
           <div className="right">
-            <h1>{LConfig['SUB_TITLE']}<button>+{LConfig['ADD_SCHEDULE']}</button></h1>
+            <h1 className="s-default">{LConfig['SUB_TITLE']}<button className="s-primary">+{LConfig['ADD_SCHEDULE']}</button></h1>
             <section>
-              <ul>
+              <ul className="s-default">
                 {
                   result.slice((pageNo-1)*Schedule.PAGE_SIZE, pageNo*Schedule.PAGE_SIZE).map(event=>(
                     <li key={event.id}>
-                      <label>{event.isAllDay==='yes' ? LConfig['ALL_DAY'] : event.beginTimeShow}</label>
+                      <label className="s-primary">{event.isAllDay==='yes' ? LConfig['ALL_DAY'] : event.beginTimeShow}</label>
                       <p>{event.content}</p>
-                      <div className="pop">
+                      <div className="pop s-b-default">
                         <header>
-                          <label>{event.isAllDay==='yes' ? LConfig['ALL_DAY'] : event.beginTimeShow}</label>
+                          <label className="s-primary">{event.isAllDay==='yes' ? LConfig['ALL_DAY'] : event.beginTimeShow}</label>
                           <p>{event.content}</p>
                         </header>
                         <footer>
-                          <button>{LConfig['TO_DETAIL']}</button>
-                          <button onClick={e=>this.modify(event)}>{LConfig['TO_EDIT']}</button>
-                          <button onClick={e=>this.delete(event)}>{LConfig['TO_DEL']}</button>
+                          <button className="btn-info buttonDetail">{LConfig['TO_DETAIL']}</button>
+                          <button className="s-info" onClick={e=>this.modify(event)}>{LConfig['TO_EDIT']}</button>
+                          <button className="s-danger" onClick={e=>this.delete(event)}>{LConfig['TO_DEL']}</button>
                         </footer>
                       </div>
                     </li>
@@ -289,11 +291,11 @@ class Schedule extends Component{
                 <div className="paging">
                   <span 
                     onClick={this.prevPage} 
-                    className={`kara-oa-font${pageNo<=1 ? ' disabled' : ''}`}>&#xe618;</span>
+                    className={`s-bg-page kara-oa-font ${pageNo<=1 ? 'disabled s-tips' : 's-info'}`}>&#xe618;</span>
                   {pageNo}
                   <span 
                     onClick={this.nextPage} 
-                    className={`kara-oa-font${pageNo>=pageCount ? ' disabled' : ''}`}>&#xe7a5;</span>
+                    className={`s-bg-page kara-oa-font ${pageNo>=pageCount ? 'disabled s-tips' : 's-info'}`}>&#xe7a5;</span>
                 </div>
                 :
                 null

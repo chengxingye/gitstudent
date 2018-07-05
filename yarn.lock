@@ -5301,9 +5301,9 @@ kara-module-tost@^0.1.0:
     webpack-manifest-plugin "1.3.2"
     whatwg-fetch "2.0.3"
 
-kara-oa@^1.2.2:
-  version "1.2.2"
-  resolved "http://registry.npm.taobao.org/kara-oa/download/kara-oa-1.2.2.tgz#e9d7f285e6fcadceb8dbf30320239d4c3ef96441"
+kara-oa@^1.3.0:
+  version "1.3.0"
+  resolved "http://registry.npm.taobao.org/kara-oa/download/kara-oa-1.3.0.tgz#718f0f32ab11523028a2702bf764556bcd78fab1"
   dependencies:
     kara-module-tost "^0.1.0"
     mobx "^4.3.0"

@@ -10,7 +10,6 @@ div.KaraOA{
       cursor: pointer;
       >li{
         padding: 0 10px;
-        color: #838383;
         border-right-width: 1px;
         border-bottom-width: 1px;
         border-right-style: solid;
@@ -25,9 +24,6 @@ div.KaraOA{
         &.active{
           border-bottom: none;
           background-color: #FFFFFF;
-        }
-        &.orange{
-          color: #ff8d3a;
         }
         >span{
           &.red{

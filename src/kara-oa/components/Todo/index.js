@@ -263,25 +263,25 @@ class Todo extends Component{
         <ol onClick={this.setType} className="s-bg-panel-title">
           <li 
             data-type='todo' 
-            className={`s-b-default ${type==='todo' ? 'active' : ''}`}>
+            className={`s-secondary s-b-default ${type==='todo' ? 'active' : ''}`}>
             {LConfig['TODO_TITLE']}&ensp;
             <span data-type='todo' className="red">{todoInfo.count}</span>
           </li>
           <li 
             data-type='track' 
-            className={`s-b-default ${type==='track' ? 'active' : ''}`}>
+            className={`s-secondary s-b-default ${type==='track' ? 'active' : ''}`}>
             {LConfig['TRACK_TITLE']}&ensp;
             <span data-type='track' className="blue">{trackInfo.count}</span>
           </li>
           <li 
             data-type='other' 
-            className={`s-b-default ${type==='other' ? 'active' : ''}`}>
+            className={`s-secondary s-b-default ${type==='other' ? 'active' : ''}`}>
             {LConfig['OTHER_TITLE']}&ensp;
             <span data-type='other' className="green">12</span>
           </li>
-          <li className="s-b-default empty"></li>
-          <li onClick={this.refresh} className="s-b-default kara-oa-font orange">&#xe7a4;</li>
-          <li className="s-b-default kara-oa-font orange">&#xe671;</li>
+          <li className="s-secondary s-b-default empty"></li>
+          <li onClick={this.refresh} className="s-primary s-b-default kara-oa-font">&#xe7a4;</li>
+          <li className="s-primary s-b-default kara-oa-font">&#xe671;</li>
         </ol>
         <section>
           {
